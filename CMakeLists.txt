@@ -4,5 +4,6 @@ project(RogueProject)
 add_subdirectory(${PROJECT_SOURCE_DIR}/src)
 
 add_executable(roguelike ${EXECUTABLE_SOURCES})
+target_link_libraries(roguelike SDL2 GL)
 
 list(APPEND CMAKE_CXX_FLAGS '-std=c++14')
