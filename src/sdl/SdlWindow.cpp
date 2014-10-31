@@ -2,6 +2,8 @@
 
 #include "Events/Event.h"
 
+#include "SdlException.h"
+
 namespace sdl
 {
 
@@ -12,7 +14,8 @@ SdlWindow::SdlWindow(const std::string& title, int width, int height,
            SDL_WINDOWPOS_UNDEFINED, width, height, flags.get_raw_value()); 
     if(m_handle == nullptr)
     {
-        //TODO: Exceptions
+        std::string error_msg = SDL_GetError();
+        throw SdlException(std::move(error_msg));
     }
 }
  

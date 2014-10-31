@@ -1,11 +1,16 @@
 #include "SdlUser.h"
 
+#include "sdl/SdlException.h"
+
 namespace sdl
 {
 
 SdlUser::SdlUser(Flags<SdlSubsystem> init_subsystems)
 {
-    SDL_Init(init_subsystems.get_raw_value()); 
+    if(SDL_Init(init_subsystems.get_raw_value()) != 0)
+    {
+        throw SdlException(SDL_GetError());
+    }
 }
  
 SdlUser::~SdlUser()
