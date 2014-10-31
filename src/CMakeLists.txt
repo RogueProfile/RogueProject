@@ -10,6 +10,8 @@ set(EXECUTABLE_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/GlMacros.h
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/GlObject.h
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/GlObject.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/gl/Shader.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/gl/Shader.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/sdl/SdlException.h
     ${CMAKE_CURRENT_SOURCE_DIR}/sdl/SdlException.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/sdl/SdlGlContext.h
