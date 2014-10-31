@@ -1,13 +1,15 @@
 set(EXECUTABLE_SOURCES
+    ${CMAKE_CURRENT_SOURCE_DIR}/Events/Event.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Events/Event.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Exceptions/Exception.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Exceptions/Exception.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/GlContext.h
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/GlContext.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/gl/GlException.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/gl/GlException.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/GlMacros.h
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/GlObject.h
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/GlObject.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/gl/GlException.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/gl/GlException.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/sdl/SdlException.h
     ${CMAKE_CURRENT_SOURCE_DIR}/sdl/SdlException.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/sdl/SdlGlContext.h
@@ -16,13 +18,11 @@ set(EXECUTABLE_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/sdl/SdlUser.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/sdl/SdlWindow.h
     ${CMAKE_CURRENT_SOURCE_DIR}/sdl/SdlWindow.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Angle.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Constants.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Flags.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Game.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Game.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Vector2.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/Events/Event.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/Events/Event.cpp
     PARENT_SCOPE)
