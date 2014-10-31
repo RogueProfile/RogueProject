@@ -9,10 +9,10 @@
 #include "Flags.h"
 #include "Vector2.h"
 
-class Event;
 
 namespace sdl
 {
+class Event;
 
 class SdlWindow
 {

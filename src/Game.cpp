@@ -4,7 +4,7 @@
 #include <chrono>
 #include <iostream>
 
-#include "Events/Event.h"
+#include "sdl/Events/Event.h"
 
 
 Game::Game(Vector2i window_size):
@@ -20,7 +20,7 @@ void Game::run()
     {
         for(auto event = m_window.poll_event(); event != nullptr; event = m_window.poll_event())
         {
-            if(event->type() == Event::Type::Quit)
+            if(event->type() == sdl::Event::Type::Quit)
             {
                 return;
             }

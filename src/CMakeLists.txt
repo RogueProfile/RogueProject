@@ -1,6 +1,4 @@
 set(EXECUTABLE_SOURCES
-    ${CMAKE_CURRENT_SOURCE_DIR}/Events/Event.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/Events/Event.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Exceptions/Exception.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Exceptions/Exception.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/GlContext.h
@@ -14,6 +12,8 @@ set(EXECUTABLE_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/Shader.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/ShaderProgram.h
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/ShaderProgram.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/sdl/Events/Event.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/sdl/Events/Event.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/sdl/SdlException.h
     ${CMAKE_CURRENT_SOURCE_DIR}/sdl/SdlException.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/sdl/SdlGlContext.h
