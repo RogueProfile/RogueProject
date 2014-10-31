@@ -1,13 +1,13 @@
 #ifndef GAME_H__
 #define GAME_H__
 
-#include "SdlUser.h"
-#include "SdlWindow.h"
-#include "SdlGlContext.h"
+#include "sdl/SdlUser.h"
+#include "sdl/SdlWindow.h"
+#include "sdl/SdlGlContext.h"
 
 #include "Vector2.h"
 
-class Game: public SdlUser
+class Game: public sdl::SdlUser
 {
 public:
     Game(Vector2i window_size);
@@ -21,8 +21,11 @@ public:
     void run();
 
 protected:
-    SdlWindow m_window;
-    std::unique_ptr<GlContext> m_context;
+    void initialize();
+    void initialize_open_gl();
+
+    sdl::SdlWindow m_window;
+    std::unique_ptr<sdl::SdlGlContext> m_context;
 private:
 };
 

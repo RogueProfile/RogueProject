@@ -1,19 +1,32 @@
 set(EXECUTABLE_SOURCES
-    ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Exceptions/Exception.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Exceptions/Exception.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/gl/GlContext.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/gl/GlContext.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/gl/GlException.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/gl/GlException.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/gl/GlMacros.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/gl/GlObject.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/gl/GlObject.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/gl/Shader.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/gl/Shader.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/gl/ShaderProgram.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/gl/ShaderProgram.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/sdl/Events/Event.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/sdl/Events/Event.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/sdl/SdlException.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/sdl/SdlException.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/sdl/SdlGlContext.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/sdl/SdlGlContext.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/sdl/SdlUser.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/sdl/SdlUser.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/sdl/SdlWindow.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/sdl/SdlWindow.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Angle.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Constants.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Flags.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Game.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Game.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/GlContext.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/GlContext.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/SdlGlContext.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/SdlGlContext.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/SdlUser.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/SdlUser.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/SdlWindow.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/SdlWindow.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Vector2.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/Events/Event.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/Events/Event.cpp
     PARENT_SCOPE)

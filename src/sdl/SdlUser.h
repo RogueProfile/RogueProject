@@ -5,19 +5,23 @@
 
 #include "Flags.h"
 
+namespace sdl
+{
+
+enum class SdlSubsystem
+{
+    Timer = SDL_INIT_TIMER,
+    Audio = SDL_INIT_AUDIO,
+    Video = SDL_INIT_VIDEO,
+    Joystick = SDL_INIT_JOYSTICK,
+    Haptic = SDL_INIT_HAPTIC,
+    GameController = SDL_INIT_GAMECONTROLLER,
+    Events = SDL_INIT_EVENTS
+};
+
 class SdlUser
 {
 public:
-    enum class SdlSubsystem
-    {
-        Timer = SDL_INIT_TIMER,
-        Audio = SDL_INIT_AUDIO,
-        Video = SDL_INIT_VIDEO,
-        Joystick = SDL_INIT_JOYSTICK,
-        Haptic = SDL_INIT_HAPTIC,
-        GameController = SDL_INIT_GAMECONTROLLER,
-        Events = SDL_INIT_EVENTS
-    };
 
     explicit SdlUser(Flags<SdlSubsystem> init_subsystems);
     ~SdlUser();
@@ -31,6 +35,7 @@ protected:
 private:
 };
 
+}
 
 #endif
     

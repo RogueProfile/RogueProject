@@ -1,9 +1,23 @@
 #include "SdlGlContext.h"
 
-SdlGlContext::SdlGlContext(const SdlWindow& window, const SdlGlContext::ContextSettings& ctx)
+#include "sdl/SdlException.h"
+
+namespace sdl
+{
+
+SdlGlContext::SdlGlContext(const SdlWindow& window, const ContextSettings& ctx)
 {
     apply_context_settings(ctx); 
     m_handle = SDL_GL_CreateContext(window.get_handle());     
+    if(m_handle == NullHandle)
+    {
+        throw SdlException(SDL_GetError());
+    }
+}
+ 
+SdlGlContext::~SdlGlContext()
+{
+    destroy(); 
 }
  
 SdlGlContext::SdlGlContext(SdlGlContext&& other) noexcept:
@@ -12,7 +26,7 @@ SdlGlContext::SdlGlContext(SdlGlContext&& other) noexcept:
     other.m_handle = 0; 
 }
  
-SdlGlContext& SdlGlContext::operator=(SdlGlContext&& other)
+SdlGlContext& SdlGlContext::operator=(SdlGlContext&& other) noexcept
 {
     destroy();
     m_handle = other.m_handle;
@@ -44,4 +58,6 @@ void SdlGlContext::apply_context_settings(const ContextSettings& ctx)
     SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, (ctx.double_buffer == true ? 1 : 0));
 
     SDL_GL_SetSwapInterval(ctx.vsync == true ? 1 : 0);
+}
+
 }

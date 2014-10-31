@@ -1,6 +1,9 @@
 #ifndef EVENT_H__
 #define EVENT_H__
 
+namespace sdl
+{
+
 class Event
 {
 public:
@@ -24,6 +27,8 @@ protected:
     Type m_type;
 private:
 };
+
+}
 
 
 #endif

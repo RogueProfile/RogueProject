@@ -9,6 +9,9 @@
 #include "Flags.h"
 #include "Vector2.h"
 
+
+namespace sdl
+{
 class Event;
 
 class SdlWindow
@@ -53,6 +56,7 @@ protected:
     SDL_Window* m_handle;
 };
 
+}
 
 #endif
     

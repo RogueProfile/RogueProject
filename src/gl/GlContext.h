@@ -5,6 +5,9 @@
 
 #include "Flags.h"
 
+namespace gl
+{
+
 enum class ClearTarget
 {
     ColorBuffer = GL_COLOR_BUFFER_BIT,
@@ -29,6 +32,7 @@ protected:
 
 };
 
+}
 
 #endif
     

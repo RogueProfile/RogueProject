@@ -1,9 +1,14 @@
 #ifndef SDLGLCONTEXT_H__
 #define SDLGLCONTEXT_H__
 
+#include "gl/GlContext.h"
+
 #include "SdlWindow.h"
 
-class SdlGlContext : public GlContext
+namespace sdl
+{
+
+class SdlGlContext : public gl::GlContext
 {
 public:
     static constexpr auto NullHandle = SDL_GLContext(0);
@@ -33,8 +38,6 @@ public:
     SdlGlContext& operator =(const SdlGlContext& other) = delete;
     SdlGlContext& operator =(SdlGlContext&& other) noexcept;
 
-    virtual void swap_buffers();
-
 protected:
     void destroy();
     void apply_context_settings(const ContextSettings& ctx);
@@ -43,6 +46,6 @@ protected:
 private:
 };
 
-
+}
 #endif
     
