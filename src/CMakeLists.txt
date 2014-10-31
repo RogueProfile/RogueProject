@@ -7,12 +7,12 @@ set(EXECUTABLE_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Game.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/GlContext.h
     ${CMAKE_CURRENT_SOURCE_DIR}/GlContext.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/SdlGlContext.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/SdlGlContext.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/SdlUser.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/SdlUser.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/SdlWindow.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/SdlWindow.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/sdl/SdlGlContext.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/sdl/SdlGlContext.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/sdl/SdlUser.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/sdl/SdlUser.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/sdl/SdlWindow.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/sdl/SdlWindow.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Vector2.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Events/Event.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Events/Event.cpp

@@ -2,6 +2,8 @@
 
 #include "Events/Event.h"
 
+namespace sdl
+{
 
 SdlWindow::SdlWindow(const std::string& title, int width, int height,
         const Flags<SdlWindow::WindowFlags>& flags)
@@ -105,5 +107,7 @@ std::unique_ptr<Event> SdlWindow::translate_event(const SDL_Event& event)
             return std::make_unique<Event>(Event::Type::Unknown);
         }
     } 
+}
+
 }
  

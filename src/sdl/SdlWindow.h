@@ -11,6 +11,9 @@
 
 class Event;
 
+namespace sdl
+{
+
 class SdlWindow
 {
 public:
@@ -53,6 +56,7 @@ protected:
     SDL_Window* m_handle;
 };
 
+}
 
 #endif
     

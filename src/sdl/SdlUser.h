@@ -5,6 +5,9 @@
 
 #include "Flags.h"
 
+namespace sdl
+{
+
 enum class SdlSubsystem
 {
     Timer = SDL_INIT_TIMER,
@@ -32,6 +35,7 @@ protected:
 private:
 };
 
+}
 
 #endif
     

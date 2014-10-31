@@ -1,5 +1,8 @@
 #include "SdlGlContext.h"
 
+namespace sdl
+{
+
 SdlGlContext::SdlGlContext(const SdlWindow& window, const ContextSettings& ctx)
 {
     apply_context_settings(ctx); 
@@ -49,4 +52,6 @@ void SdlGlContext::apply_context_settings(const ContextSettings& ctx)
     SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, (ctx.double_buffer == true ? 1 : 0));
 
     SDL_GL_SetSwapInterval(ctx.vsync == true ? 1 : 0);
+}
+
 }

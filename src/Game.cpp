@@ -8,8 +8,8 @@
 
 
 Game::Game(Vector2i window_size):
-    SdlUser({SdlSubsystem::Video, SdlSubsystem::Events}),
-    m_window("Roguelike", window_size.x, window_size.y, SdlWindow::WindowFlags::OpenGl)
+    sdl::SdlUser({sdl::SdlSubsystem::Video, sdl::SdlSubsystem::Events}),
+    m_window("Roguelike", window_size.x, window_size.y, sdl::SdlWindow::WindowFlags::OpenGl)
 {
     initialize();
 }
@@ -36,7 +36,7 @@ void Game::initialize()
  
 void Game::initialize_open_gl()
 {
-    SdlGlContext::ContextSettings settings;
+    sdl::SdlGlContext::ContextSettings settings;
     settings.major_version = 3;
     settings.minor_version = 1;
     settings.vsync = 1;    
@@ -48,6 +48,6 @@ void Game::initialize_open_gl()
     settings.stencil_buffer_size = 8;
     settings.double_buffer = true;
 
-    m_context = std::make_unique<SdlGlContext>(m_window, settings);
+    m_context = std::make_unique<sdl::SdlGlContext>(m_window, settings);
 }
  

@@ -5,6 +5,9 @@
 
 #include "SdlWindow.h"
 
+namespace sdl
+{
+
 class SdlGlContext : public GlContext
 {
 public:
@@ -43,6 +46,6 @@ protected:
 private:
 };
 
-
+}
 #endif
     
