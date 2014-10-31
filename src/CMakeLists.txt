@@ -1,6 +1,8 @@
 set(EXECUTABLE_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Exceptions/Exception.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Exceptions/Exception.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/gl/GlContext.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/gl/GlContext.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/sdl/SdlException.h
     ${CMAKE_CURRENT_SOURCE_DIR}/sdl/SdlException.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/sdl/SdlGlContext.h
@@ -15,8 +17,6 @@ set(EXECUTABLE_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Flags.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Game.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Game.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/GlContext.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/GlContext.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Vector2.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Events/Event.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Events/Event.cpp

@@ -1,5 +1,7 @@
 #include "SdlGlContext.h"
 
+#include "sdl/SdlException.h"
+
 namespace sdl
 {
 
@@ -7,6 +9,10 @@ SdlGlContext::SdlGlContext(const SdlWindow& window, const ContextSettings& ctx)
 {
     apply_context_settings(ctx); 
     m_handle = SDL_GL_CreateContext(window.get_handle());     
+    if(m_handle == NullHandle)
+    {
+        throw SdlException(SDL_GetError());
+    }
 }
  
 SdlGlContext::~SdlGlContext()

@@ -25,7 +25,8 @@ void Game::run()
                 return;
             }
         }
-        m_context->clear({ClearTarget::ColorBuffer, ClearTarget::DepthBuffer, ClearTarget::StencilBuffer}); 
+        m_context->clear({gl::ClearTarget::ColorBuffer, gl::ClearTarget::DepthBuffer,
+            gl::ClearTarget::StencilBuffer}); 
         m_window.swap_window();
     }
 } 

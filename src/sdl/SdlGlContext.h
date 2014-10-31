@@ -1,14 +1,14 @@
 #ifndef SDLGLCONTEXT_H__
 #define SDLGLCONTEXT_H__
 
-#include "GlContext.h"
+#include "gl/GlContext.h"
 
 #include "SdlWindow.h"
 
 namespace sdl
 {
 
-class SdlGlContext : public GlContext
+class SdlGlContext : public gl::GlContext
 {
 public:
     static constexpr auto NullHandle = SDL_GLContext(0);
