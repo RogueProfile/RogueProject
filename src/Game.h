@@ -21,6 +21,9 @@ public:
     void run();
 
 protected:
+    void initialize();
+    void initialize_open_gl();
+
     SdlWindow m_window;
     std::unique_ptr<GlContext> m_context;
 private:
