@@ -18,7 +18,7 @@ public:
     GlObject& operator =(const GlObject& other) = delete;
     GlObject& operator =(GlObject&& other) noexcept;
 
-    GLuint get_handle() const {return m_handle;}
+    GLuint handle() const {return m_handle;}
 
 protected:
     virtual void destroy() = 0;

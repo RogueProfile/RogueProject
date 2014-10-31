@@ -20,7 +20,7 @@ class Shader: public GlObject
 {
 public:
     Shader(ShaderType type);
-    virtual ~Shader() override;
+    virtual ~Shader();
 
     Shader(const Shader& other) = delete;
     Shader(Shader&& other) noexcept;
