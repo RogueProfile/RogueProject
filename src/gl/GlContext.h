@@ -7,6 +7,7 @@
 
 namespace gl
 {
+    class GlObject;
 
 enum class ClearTarget
 {
@@ -28,7 +29,9 @@ public:
 
     void clear(const Flags<ClearTarget>& buffers);
 
-protected:
+private:
+
+    GlObject* m_bound_shader_program = nullptr;
 
 };
 

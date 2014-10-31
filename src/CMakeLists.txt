@@ -12,6 +12,8 @@ set(EXECUTABLE_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/Shader.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/ShaderProgram.h
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/ShaderProgram.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/gl/TargetLock.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/gl/TargetLock.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/sdl/Events/Event.h
     ${CMAKE_CURRENT_SOURCE_DIR}/sdl/Events/Event.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/sdl/SdlException.h
