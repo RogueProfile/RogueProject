@@ -5,8 +5,12 @@
 
 #include "Flags.h"
 
+#include "BoundShaderProgram.h"
+
 namespace gl
 {
+    class GlObject;
+    class ShaderProgram;
 
 enum class ClearTarget
 {
@@ -28,7 +32,11 @@ public:
 
     void clear(const Flags<ClearTarget>& buffers);
 
-protected:
+    BoundShaderProgram bind_shader_program(ShaderProgram* program);
+
+private:
+
+    GlObject* m_bound_shader_program = nullptr;
 
 };
 
