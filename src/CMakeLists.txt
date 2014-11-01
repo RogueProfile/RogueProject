@@ -7,6 +7,8 @@ set(EXECUTABLE_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/BoundShaderProgram.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/BoundTexture2d.h
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/BoundTexture2d.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/gl/BufferObject.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/gl/BufferObject.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/GlContext.h
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/GlContext.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/GlException.h
