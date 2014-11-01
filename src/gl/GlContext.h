@@ -5,13 +5,15 @@
 
 #include "Flags.h"
 
-#include "BoundShaderProgram.h"
 #include "Texture2d.h"
 
 namespace gl
 {
-    class GlObject;
-    class ShaderProgram;
+class GlObject;
+class ShaderProgram;
+class BoundShaderProgram;
+class BoundVertexBufferObject;
+class BufferObject;
 
 enum class ClearTarget
 {
@@ -33,7 +35,8 @@ public:
 
     void clear(const Flags<ClearTarget>& buffers);
 
-    BoundShaderProgram bind_shader_program(ShaderProgram* program);
+    BoundShaderProgram bind_shader_program(ShaderProgram& program);
+    BoundVertexBufferObject bind_vertex_buffer(BufferObject& buffer);
 
     Texture2d create_texture(int width, int height, int mipmap_levels,
             Texture::InternalPixelFormat format);

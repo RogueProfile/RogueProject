@@ -20,7 +20,7 @@ class BoundBufferObject
 {
 public:
     BoundBufferObject(BufferObject* buffer, GlContext* context, 
-            BufferBindTarget m_target, TargetLock lock);
+            TargetLock lock);
     virtual ~BoundBufferObject() = default;
 
     BoundBufferObject(const BoundBufferObject& other) = delete;
@@ -65,12 +65,12 @@ public:
     void invalidate();
 
 protected:
-    virtual GLenum target() const = 0;
+    virtual BufferBindTarget target() const = 0;
+    GLenum raw_target() const {return static_cast<GLenum>(target());}
 
-    TargetLock m_lock;
     BufferObject* m_buffer;
     GlContext* m_context;
-    BufferBindTarget m_target;
+    TargetLock m_lock;
 private:
 };
 
@@ -101,7 +101,7 @@ MappedBufferObject<T> BoundBufferObject::map(intptr_t offset, size_t count,
         access |= BufferObject::MappingAccess::Read;
     }
     void* buffer = map_raw(offset, size, options, access);
-    auto ret = MappedBufferObject<T>(m_context, m_target, buffer, size);
+    auto ret = MappedBufferObject<T>(m_context, target(), buffer, size);
     return ret;
 }
  
@@ -111,7 +111,7 @@ MappedBufferObject<const T> BoundBufferObject::map_const(intptr_t offset, size_t
 {
     auto size = count * sizeof(T);
     void* buffer = map_raw(offset, size, options, BufferObject::MappingAccess::Read);
-    auto ret = MappedBufferObject<const T>(m_context, m_target, buffer, size);
+    auto ret = MappedBufferObject<const T>(m_context, target(), buffer, size);
     return ret;
 }
 
