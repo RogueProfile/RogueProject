@@ -95,10 +95,11 @@ inline constexpr Matrix2<T>& Matrix2<T>::operator-=(const Matrix2<T>& rhs)
 template<typename T>
 inline constexpr Matrix2<T>& Matrix2<T>::operator*=(const Matrix2<T>& rhs)
 {
-    val[0] = val[0] * rhs.val[0] + val[1] * rhs.val[2];
-    val[1] = val[0] * rhs.val[1] + val[1] * rhs.val[3];
-    val[2] = val[2] * rhs.val[0] + val[3] * rhs.val[2];
-    val[3] = val[2] * rhs.val[1] + val[3] * rhs.val[3]; 
+    auto old_val = val;
+    val[0] = old_val[0] * rhs.val[0] + old_val[1] * rhs.val[2];
+    val[1] = old_val[0] * rhs.val[1] + old_val[1] * rhs.val[3];
+    val[2] = old_val[2] * rhs.val[0] + old_val[3] * rhs.val[2];
+    val[3] = old_val[2] * rhs.val[1] + old_val[3] * rhs.val[3]; 
     return *this;
 }
  
