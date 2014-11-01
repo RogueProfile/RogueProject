@@ -13,7 +13,7 @@ namespace gl
 class GlException: public Exception
 {
 public:
-    GlException(const std::string& message, GLenum error_code);
+    GlException(const std::string& function, GLenum error_code);
     virtual ~GlException() = default;
 
     GlException(const GlException& other);
