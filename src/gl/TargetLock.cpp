@@ -32,8 +32,8 @@ void TargetLock::release()
     if(m_lock_target != nullptr)
     {
         *m_lock_target = nullptr;
+        m_lock_target = nullptr;
     } 
-    m_lock_target = nullptr;
 }
  
 }

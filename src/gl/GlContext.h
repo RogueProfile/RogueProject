@@ -5,9 +5,12 @@
 
 #include "Flags.h"
 
+#include "BoundShaderProgram.h"
+
 namespace gl
 {
     class GlObject;
+    class ShaderProgram;
 
 enum class ClearTarget
 {
@@ -28,6 +31,8 @@ public:
     GlContext& operator =(GlContext&& other) = default;
 
     void clear(const Flags<ClearTarget>& buffers);
+
+    BoundShaderProgram bind_shader_program(ShaderProgram* program);
 
 private:
 
