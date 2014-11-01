@@ -20,6 +20,7 @@ public:
 
     int width() const {return m_width;}
     int height() const {return m_height;}
+    InternalPixelFormat pixel_format() const {return m_pixel_format;}
 
 protected:
     Texture2d(int width, int height, int mipmap_levels,
@@ -31,6 +32,7 @@ protected:
 
     int m_width;
     int m_height;
+    InternalPixelFormat m_pixel_format;
 private:
 };
 

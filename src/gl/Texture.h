@@ -130,6 +130,9 @@ public:
     Texture& operator =(const Texture& other) = delete;
     Texture& operator =(Texture&& other) noexcept = default;
 
+    static int pixel_size_for_format(DataPixelFormat pixel_format,
+            PixelType pixel_type);
+
 protected:
 private:
 };

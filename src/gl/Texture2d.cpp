@@ -10,7 +10,7 @@ namespace gl
 {
 
 Texture2d::Texture2d(int width, int height, int mipmap_levels, InternalPixelFormat format):
-    m_width(width), m_height(height)
+    m_width(width), m_height(height), m_pixel_format(format)
 {
     glGenTextures(1, &m_handle); 
     CHECK_GL_ERROR(glGenTextures);
@@ -30,7 +30,8 @@ Texture2d::~Texture2d()
  
 Texture2d::Texture2d(Texture2d&& other) noexcept:
     Texture(std::move(other)),
-    m_width(other.m_width), m_height(other.m_height)
+    m_width(other.m_width), m_height(other.m_height),
+    m_pixel_format(other.m_pixel_format)
 {
 }
  
@@ -41,6 +42,7 @@ Texture2d& Texture2d::operator=(Texture2d&& other) noexcept
     other.m_handle = NullHandle;
     m_width = other.m_width;
     m_height = other.m_height;
+    m_pixel_format = other.m_pixel_format;
     return *this;
 }
  

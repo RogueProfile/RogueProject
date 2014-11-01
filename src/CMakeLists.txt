@@ -5,6 +5,8 @@ set(EXECUTABLE_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Exceptions/EnumValueError.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/BoundShaderProgram.h
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/BoundShaderProgram.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/gl/BoundTexture2d.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/gl/BoundTexture2d.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/GlContext.h
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/GlContext.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/GlException.h
@@ -20,6 +22,8 @@ set(EXECUTABLE_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/TargetBindError.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/TargetLock.h
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/TargetLock.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/gl/Texture.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/gl/Texture.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/Texture2d.h
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/Texture2d.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/sdl/Events/Event.h
