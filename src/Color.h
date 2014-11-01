@@ -207,4 +207,5 @@ inline constexpr int Color::to_abgr() const
            | static_cast<uint32_t>(green*255) << 8
            | static_cast<uint32_t>(red*255));
 } 
- 
+
+#endif
