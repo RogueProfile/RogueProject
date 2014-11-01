@@ -41,6 +41,10 @@ protected:
     T m_height;
 };
 
+using Rectangled = Rectangle<double>;
+using Rectanglef = Rectangle<float>;
+using Rectanglei = Rectangle<int>;
+
 template<typename T>
 inline constexpr Rectangle<T>::Rectangle():
     m_right(T(0)), m_top(T(0)), m_width(T(0)), m_height(T(0))
@@ -56,7 +60,8 @@ inline constexpr Rectangle<T>::Rectangle(T right, T top, T width, T height):
  
 template<typename T>
 inline constexpr Rectangle<T>::Rectangle(const Vector2<T>& top_right, const Vector2<T>& bottom_left):
-    m_right(top_right.x), m_top(top_right.y), m_left(bottom_left.x), m_bottom(bottom_left.y)
+    m_right(top_right.x), m_top(top_right.y), m_width(bottom_left.x - top_right.x),
+    m_height(bottom_left.y - top_right.y)
 {
 }
  

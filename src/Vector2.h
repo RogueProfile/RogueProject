@@ -56,6 +56,7 @@ public:
 using Vector2d = Vector2<double>;
 using Vector2f = Vector2<float>;
 using Vector2i = Vector2<int>;
+using Vector2ui = Vector2<unsigned int>;
 
 template<typename T>
 void swap(Vector2<T>& lhs, Vector2<T>& rhs);
