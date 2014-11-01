@@ -3,13 +3,17 @@
 
 #include "Angle.h"
 
+class Color;
+
 class HsvColor
 {
 public:
-    constexpr HsvColor(Degrees<float> hue_value, float saturation_value, float value_value, float alpha_value=1)
+    constexpr HsvColor(Degrees<float> hue_value, float saturation_value,
+           float value_value, float alpha_value=1):
         hue(hue_value), saturation(saturation_value), value(value_value), alpha(alpha_value)
     {}
-    constexpr ~HsvColor() = default;
+
+    ~HsvColor() = default;
 
     constexpr HsvColor(const HsvColor& other) = default;
     constexpr HsvColor(HsvColor&& other) noexcept = default;
@@ -17,14 +21,12 @@ public:
     constexpr HsvColor& operator =(HsvColor&& other) noexcept = default;
 
     constexpr Color to_rgb();
-    static constexpr HsvColor from_rgb(const Color& that); 
+    static HsvColor from_rgb(const Color& that); 
 
     Degrees<float> hue;
     float saturation;
     float value;
     float alpha;
-
-
 protected:
 private:
 };

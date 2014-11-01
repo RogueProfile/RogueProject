@@ -3,10 +3,14 @@
 
 #include <cstdint>
 
+class HsvColor;
+
 class Color
 {
 public:
-    constexpr Color() {}
+    constexpr Color():
+        red(0.0f), green(0.0f), blue(0.0f), alpha(1.0f)
+    {}
     constexpr Color(float red_value, float green_value, float blue_value, float alpha_value):
         red(red_value), green(green_value), blue(blue_value), alpha(alpha_value)
     {}
@@ -20,12 +24,14 @@ public:
         Color(red_value/255.f, green_value/255.f, blue_value/255.f, 1)
     {}
     constexpr Color(uint32_t rgba):
-        Color(((rgba >> 24)/255.f), (((rgba >> 16) && 0xFF)/255.f), (((rgba >> 8) 
-            && 0xFF)/255.f), ((rbga &&)/255.f))
+        Color(((rgba >> 24)/255.f), (((rgba >> 16) & 0xFF)/255.f),
+            (((rgba >> 8) & 0xFF)/255.f), ((rgba & 0xFF)/255.f))
     {}
+
+    ~Color() = default;
     
     constexpr Color(const Color&) = default;
-    constexpr Colot(Color&&) = default;
+    constexpr Color(Color&&) = default;
     constexpr Color& operator =(const Color&) = default;
     constexpr Color& operator =(Color&&) noexcept = default;
 
@@ -33,6 +39,8 @@ public:
     constexpr bool operator!=(const Color& color) const;
     constexpr uint32_t to_rgba() const;
     constexpr uint32_t to_abgr() const;
+
+    HsvColor to_hsv() const;
 
 
     static constexpr Color dark_red() {return Color(0.5450980392156862f, 0.0f, 0.0f, 1.0f);}
@@ -192,7 +200,7 @@ inline constexpr bool Color::operator!=(const Color& color) const
     return !(*this == color);
 }
  
-inline constexpr uint32_t Color::to_rgb() const
+inline constexpr uint32_t Color::to_rgba() const
 {
     return (static_cast<uint32_t>(red*255) << 24
             | static_cast<uint32_t>(green*255) << 16
@@ -200,7 +208,7 @@ inline constexpr uint32_t Color::to_rgb() const
             | static_cast<uint32_t>(alpha*255));
 }
  
-inline constexpr int Color::to_abgr() const
+inline constexpr uint32_t Color::to_abgr() const
 {
     return (static_cast<uint32_t>(alpha*255) << 24
            | static_cast<uint32_t>(blue*255) << 16
@@ -208,4 +216,5 @@ inline constexpr int Color::to_abgr() const
            | static_cast<uint32_t>(red*255));
 } 
 
+ 
 #endif
