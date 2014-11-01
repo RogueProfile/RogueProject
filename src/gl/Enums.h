@@ -9,4 +9,16 @@ enum class BufferBindTarget: GLenum
     IndexBuffer = GL_ELEMENT_ARRAY_BUFFER
 };
 
+enum class VertexComponentType
+{
+    Byte = GL_BYTE,
+    UByte = GL_UNSIGNED_BYTE,
+    Short = GL_SHORT,
+    UShort = GL_UNSIGNED_SHORT,
+    Int = GL_INT,
+    UInt = GL_UNSIGNED_INT,
+    Float = GL_FLOAT,
+    Double = GL_DOUBLE
+};
+
 #endif

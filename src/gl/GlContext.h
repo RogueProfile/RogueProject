@@ -38,7 +38,6 @@ public:
 
     BoundShaderProgram bind_shader_program(ShaderProgram& program);
     BoundVertexBufferObject bind_vertex_buffer(BufferObject& buffer);
-    BoundIndexBufferObject bind_index_buffer(BufferObject& buffer);
 
     Texture2d create_texture(int width, int height, int mipmap_levels,
             Texture::InternalPixelFormat format);
@@ -55,7 +54,6 @@ private:
     GlObject* m_bound_texture_2d = nullptr;
 
     GlObject* m_bound_vertex_buffer = nullptr;
-    GlObject* m_bound_index_buffer = nullptr;
 
 };
 

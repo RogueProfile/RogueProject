@@ -11,6 +11,8 @@ set(EXECUTABLE_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/BoundShaderProgram.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/BoundTexture2d.h
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/BoundTexture2d.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/gl/BoundVertexArrayObject.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/gl/BoundVertexArrayObject.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/BoundVertexBufferObject.h
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/BoundVertexBufferObject.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/BufferObject.h
@@ -37,6 +39,8 @@ set(EXECUTABLE_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/Texture.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/Texture2d.h
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/Texture2d.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/gl/VertexArrayObject.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/gl/VertexArrayObject.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/sdl/Events/Event.h
     ${CMAKE_CURRENT_SOURCE_DIR}/sdl/Events/Event.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/sdl/SdlException.h

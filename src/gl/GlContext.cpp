@@ -42,18 +42,6 @@ BoundVertexBufferObject GlContext::bind_vertex_buffer(BufferObject& buffer)
             TargetLock(&buffer, &m_bound_vertex_buffer));
 }
  
-BoundIndexBufferObject GlContext::bind_index_buffer(BufferObject& buffer)
-{
-    if(m_bound_index_buffer != nullptr)
-    {
-        throw TargetBindError(Target::IndexBuffer);
-    }  
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, buffer.handle());
-    CHECK_GL_ERROR(glBindBuffer);
-    return BoundIndexBufferObject(&buffer, this, 
-            TargetLock(&buffer, &m_bound_index_buffer));
-}
- 
 Texture2d GlContext::create_texture(int width, int height, int mipmap_levels, 
         Texture::InternalPixelFormat format)
 {
