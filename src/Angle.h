@@ -39,6 +39,7 @@ public:
     constexpr Degrees& operator =(Degrees&& rhs) = default;
 
     constexpr Radians<T> to_radians() const;
+    constexpr void clamp_value();
 
     T value;
 };
@@ -149,6 +150,12 @@ template<typename T>
 inline constexpr Radians<T> Degrees<T>::to_radians() const
 {
     return Radians<T>(value * (PI<T> / T(180))); 
+}
+ 
+template<typename T>
+inline constexpr void Degrees<T>::clamp_value()
+{
+    value = std::fmod(value, std::copysignf(360,value));
 }
  
 #endif
