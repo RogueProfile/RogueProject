@@ -38,14 +38,18 @@ public:
     Texture2d create_texture(int width, int height, int mipmap_levels,
             Texture::InternalPixelFormat format);
 
+    void rebind_texture_2d();
+    void rebind_vertex_buffer();
 protected:
 
-    void rebind_texture_2d();
 
 private:
 
     GlObject* m_bound_shader_program = nullptr;
+
     GlObject* m_bound_texture_2d = nullptr;
+
+    GlObject* m_bound_vertex_buffer = nullptr;
 
 };
 

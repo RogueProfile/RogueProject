@@ -38,11 +38,20 @@ Texture2d GlContext::create_texture(int width, int height, int mipmap_levels,
  
 void GlContext::rebind_texture_2d()
 {
-    if(m_bound_shader_program != nullptr)
+    if(m_bound_texture_2d != nullptr)
     {
         glBindTexture(GL_TEXTURE_2D, m_bound_texture_2d->handle());
         CHECK_GL_ERROR(glBindTexture);
     } 
+}
+ 
+void GlContext::rebind_vertex_buffer()
+{
+    if(m_bound_vertex_buffer != nullptr)
+    {
+        glBindBuffer(GL_ARRAY_BUFFER, m_bound_vertex_buffer->handle());
+        CHECK_GL_ERROR(glBindBuffer);
+    }
 }
  
 }

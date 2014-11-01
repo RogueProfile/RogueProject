@@ -3,6 +3,8 @@ set(EXECUTABLE_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Exceptions/Exception.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Exceptions/EnumValueError.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Exceptions/EnumValueError.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/gl/BoundBufferObject.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/gl/BoundBufferObject.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/BoundShaderProgram.h
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/BoundShaderProgram.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/BoundTexture2d.h
@@ -16,6 +18,7 @@ set(EXECUTABLE_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/GlMacros.h
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/GlObject.h
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/GlObject.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/gl/MappedBufferObject.h
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/Shader.h
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/Shader.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/ShaderProgram.h

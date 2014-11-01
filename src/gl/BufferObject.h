@@ -24,13 +24,17 @@ public:
 
 	enum class MappingOptions
 	{
-		Read = GL_MAP_READ_BIT,
-		Write = GL_MAP_WRITE_BIT,
 		Flush = GL_MAP_FLUSH_EXPLICIT_BIT,
 		Invalidate = GL_MAP_INVALIDATE_BUFFER_BIT,
 		Unsyncronized = GL_MAP_UNSYNCHRONIZED_BIT,
 		InvalidateRange = GL_MAP_INVALIDATE_RANGE_BIT
 	};
+
+    enum class MappingAccess
+    {
+        Read = GL_MAP_READ_BIT,
+        Write = GL_MAP_WRITE_BIT
+    };
 
     BufferObject(UsageType usage, size_t data);
     virtual ~BufferObject();
