@@ -37,6 +37,10 @@ const char* Exception::what() const noexcept
     return m_message.c_str(); 
 }
  
+Exception::Exception()
+{
+}
+ 
 void Exception::set_message(std::string message)
 {
     m_message = std::move(message); 

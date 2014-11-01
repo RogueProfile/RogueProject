@@ -18,6 +18,7 @@ public:
     virtual const char* what() const noexcept override;
 
 protected:
+    Exception();
     void set_message(std::string message);
 
     std::string m_message;
