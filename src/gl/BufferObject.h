@@ -36,7 +36,7 @@ public:
         Write = GL_MAP_WRITE_BIT
     };
 
-    BufferObject(UsageType usage, size_t data);
+    BufferObject(UsageType usage, size_t size, GLenum start_target);
     virtual ~BufferObject();
 
     BufferObject(const BufferObject& other) = delete;
@@ -49,6 +49,7 @@ public:
 
 protected:
     virtual void destroy() override;
+    void allocate(GLenum target);
 
     UsageType m_usage;
     size_t m_size;

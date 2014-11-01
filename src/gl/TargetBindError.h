@@ -10,7 +10,8 @@ namespace gl
 enum class Target
 {
     ShaderProgram,
-    VertexBuffer
+    VertexBuffer,
+    IndexBuffer
 };
 
 

@@ -5,7 +5,8 @@
 
 enum class BufferBindTarget: GLenum
 {
-    VertexBuffer = GL_ARRAY_BUFFER
+    VertexBuffer = GL_ARRAY_BUFFER,
+    IndexBuffer = GL_ELEMENT_ARRAY_BUFFER
 };
 
 #endif

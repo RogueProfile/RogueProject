@@ -6,10 +6,12 @@
 namespace gl
 {
 
-BufferObject::BufferObject(UsageType usage, size_t data)
+BufferObject::BufferObject(UsageType usage, size_t size, GLenum start_target):
+    m_usage(usage), m_size(size)
 {
     glGenBuffers(1, &m_handle); 
     CHECK_GL_ERROR(glGenBuffers);
+    allocate(start_target);
 }
  
 BufferObject::~BufferObject()
@@ -39,6 +41,14 @@ void BufferObject::destroy()
     {
         glDeleteBuffers(1, &m_handle);
     } 
+}
+ 
+void BufferObject::allocate(GLenum target)
+{
+    glBindBuffer(target, m_handle); 
+    CHECK_GL_ERROR(glBindBuffer);
+    glBufferData(target, m_size, nullptr, static_cast<GLenum>(m_usage));
+    CHECK_GL_ERROR(glBufferData);
 }
  
 }
