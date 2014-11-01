@@ -16,7 +16,7 @@ public:
 
     BoundShaderProgram(const BoundShaderProgram& other) = delete;
     BoundShaderProgram(BoundShaderProgram&& other) noexcept;
-    gl::BoundShaderProgram& operator =(const BoundShaderProgram& other) = delete;
+    BoundShaderProgram& operator =(const BoundShaderProgram& other) = delete;
     BoundShaderProgram& operator =(BoundShaderProgram&& other) noexcept;
 
 protected:
