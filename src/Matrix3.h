@@ -3,6 +3,7 @@
 
 #include <array>
 #include "Angle.h"
+#include "Vector2.h"
 
 template<typename T>
 class Matrix3
@@ -34,6 +35,9 @@ public:
 
     static constexpr Matrix3<T> zero();
     static constexpr Matrix3<T> identity();
+    static constexpr Matrix3<T> make_rotation(Radians<T> theta);
+    static constexpr Matrix3<T> make_scaling(Vector2<T> scaling_factors);
+    static constexpr Matrix3<T> make_translation(Vector2<T> translation_offsets);
 
     std::array<T, 9> val;
 private:
@@ -178,6 +182,24 @@ template<typename T>
 inline constexpr Matrix3<T> Matrix3<T>::identity()
 {
     return Matrix3<T>{1, 0, 0, 0, 1, 0, 0, 0, 1}; 
+}
+ 
+template<typename T>
+inline constexpr Matrix3<T> Matrix3<T>::make_rotation(Radians<T> theta)
+{
+    return Matrix3<T>{cos(theta), -sin(theta), 0, sin(theta), cos(theta), 0, 0, 0, 1};
+}
+ 
+template<typename T>
+inline constexpr Matrix3<T> Matrix3<T>::make_scaling(Vector2<T> scaling_factors)
+{
+    return Matrix3<T>{scaling_factors.x, 0, 0, 0, scaling_factors.y, 0, 0, 0, 1}; 
+}
+ 
+template<typename T>
+inline constexpr Matrix3<T> Matrix3<T>::make_translation(Vector2<T> translation_offsets)
+{
+    return Matrix3<T>{1, 0, translation_offsets.x, 0, 1, translation_offsets.y, 0, 0, 1}; 
 }
  
 #endif

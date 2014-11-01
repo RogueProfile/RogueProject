@@ -2,6 +2,8 @@
 #define MATRIX2_H__
 
 #include <array>
+#include "Array.h"
+#include "Vector2.h"
 
 template<typename T>
 class Matrix2
@@ -33,6 +35,8 @@ public:
 
     static constexpr Matrix2<T> zero();
     static constexpr Matrix2<T> identity();
+    static constexpr Matrix2<T> make_rotation(Radians<T> theta);
+    static constexpr Matrix2<T> make_scaling(Vector2<T> scaling_factors);
 
     std::array<T, 4> val;
 private:
@@ -170,6 +174,18 @@ template<typename T>
 inline constexpr Matrix2<T> Matrix2<T>::identity()
 {
     return Matrix2<T>{1, 0, 0, 1}; 
+}
+ 
+template<typename T>
+inline constexpr Matrix2<T> Matrix2<T>::make_rotation(Radians<T> theta)
+{
+    return Matrix2<T>{cos(theta), -sin(theta), sin(theta), cos(theta)}; 
+}
+ 
+template<typename T>
+inline constexpr Matrix2<T> Matrix2<T>::make_scaling(Vector2<T> scaling_factors)
+{
+    return Matrix2<T>{ scaling_factors.x, 0, 0, scaling_factors.y };
 }
  
 #endif
