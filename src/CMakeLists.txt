@@ -19,8 +19,8 @@ set(EXECUTABLE_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/BufferObject.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/GlContext.h
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/GlContext.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/gl/GlException.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/gl/GlException.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/gl/GlError.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/gl/GlError.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/GlMacros.h
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/GlObject.h
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/GlObject.cpp
