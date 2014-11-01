@@ -6,6 +6,7 @@
 #include "Flags.h"
 
 #include "BoundShaderProgram.h"
+#include "Texture2d.h"
 
 namespace gl
 {
@@ -34,9 +35,17 @@ public:
 
     BoundShaderProgram bind_shader_program(ShaderProgram* program);
 
+    Texture2d create_texture(int width, int height, int mipmap_levels,
+            Texture::InternalPixelFormat format);
+
+protected:
+
+    void rebind_texture_2d();
+
 private:
 
     GlObject* m_bound_shader_program = nullptr;
+    GlObject* m_bound_texture_2d = nullptr;
 
 };
 

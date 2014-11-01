@@ -18,6 +18,8 @@ set(EXECUTABLE_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/TargetBindError.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/TargetLock.h
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/TargetLock.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/gl/Texture2d.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/gl/Texture2d.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/sdl/Events/Event.h
     ${CMAKE_CURRENT_SOURCE_DIR}/sdl/Events/Event.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/sdl/SdlException.h
