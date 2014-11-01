@@ -1,6 +1,8 @@
 set(EXECUTABLE_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Exceptions/Exception.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Exceptions/Exception.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Exceptions/EnumValueError.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Exceptions/EnumValueError.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/BoundShaderProgram.h
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/BoundShaderProgram.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/GlContext.h
