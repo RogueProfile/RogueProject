@@ -1,12 +1,19 @@
 #include "GlException.h"
 
+#include "GlHeaders.h"
+
+#include <sstream>
+
 namespace gl
 {
 
-GlException::GlException(const std::string& message, GLenum error_code):
-    Exception(message),
+GlException::GlException(const std::string& function, GLenum error_code):
     m_error_code(error_code)
 {
+    std::ostringstream stream;
+    auto error_string = gluErrorString(error_code);
+    stream << "In function '" << function << "': " << error_string;
+    set_message(stream.str());
 }
  
 GlException::GlException(const GlException& other):
