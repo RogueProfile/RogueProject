@@ -148,7 +148,7 @@ inline constexpr Vector2<T> Vector2<T>::operator-() const
 template<typename T>
 constexpr Vector2<T> operator *(T lhs, Vector2<T> rhs)
 {
-    return rhs + lhs;
+    return rhs * lhs;
 }
 
 template<typename T>
