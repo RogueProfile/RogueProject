@@ -27,7 +27,7 @@ BufferObject GlContext::create_vertex_buffer(BufferObject::UsageType usage, size
     rebind_vertex_buffer();
     return buf;
 }
- 
+
 IndexBufferObject GlContext::create_index_buffer(BufferObject::UsageType usage,
    size_t size, IndexFormat format)
 {
@@ -50,7 +50,7 @@ void GlContext::draw_vertex_array(const BoundVertexArrayObject& vao,
     }
 }
  
-void GlContext::copy_buffer_data(const BufferObject& from, const BufferObject& to,
+void GlContext::copy_buffer_data(const BufferObject& from, BufferObject& to,
        size_t offset_from, size_t offset_to, size_t count)
 {
     glBindBuffer(GL_COPY_READ_BUFFER, from.handle());
@@ -61,6 +61,7 @@ void GlContext::copy_buffer_data(const BufferObject& from, const BufferObject& t
         offset_to, count);
     CHECK_GL_ERROR(glCopyBufferSubData);
 }
+ 
  
 VertexArrayObject GlContext::create_vertex_array_object()
 {

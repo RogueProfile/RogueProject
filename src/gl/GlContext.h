@@ -1,6 +1,8 @@
 #ifndef GLCONTEXT_H__
 #define GLCONTEXT_H__
 
+#include <vector>
+
 #include "GlHeaders.h"
 
 #include "Flags.h"
@@ -43,11 +45,12 @@ public:
     void draw_vertex_array(const BoundVertexArrayObject& vao, 
         PrimitiveType primitive, int first, size_t count); 
 
-    void copy_buffer_data(const BufferObject& from, const BufferObject& to,
-            size_t offset_from, size_t offset_to, size_t count);
+    void copy_buffer_data(const BufferObject& from, BufferObject& to,
+        size_t offset_from, size_t offset_to, size_t count);
 
     BufferObject create_vertex_buffer(BufferObject::UsageType usage,
         size_t size);
+
     IndexBufferObject create_index_buffer(BufferObject::UsageType usage,
         size_t size, IndexFormat format);
     VertexArrayObject create_vertex_array_object();
