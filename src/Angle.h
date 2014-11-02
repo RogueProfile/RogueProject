@@ -59,45 +59,45 @@ std::ostream& operator <<(std::ostream& stream, Degrees<T> rhs)
 }
 
 template<typename T>
-Radians<T> sin(Radians<T> arg)
+T sin(Radians<T> arg)
 {
     using std::sin;
-    return Radians<T>(sin(arg.value));
+    return T(sin(arg.value));
 }
 
 template<typename T>
-Degrees<T> sin(Degrees<T> arg)
+T sin(Degrees<T> arg)
 {
     using std::sin;
-    return Radians<T>(sin(arg.to_radians().value)).to_degrees();
+    return T(sin(arg.to_radians().value));
 }
 
 template<typename T>
-Radians<T> cos(Radians<T> arg)
+T cos(Radians<T> arg)
 {
     using std::cos;
-    return Radians<T>(cos(arg.value));
+    return T(cos(arg.value));
 }
 
 template<typename T>
-Degrees<T> cos(Degrees<T> arg)
+T cos(Degrees<T> arg)
 {
     using std::cos;
-    return Radians<T>(cos(arg.to_radians().value)).to_degrees();
+    return T(cos(arg.to_radians().value));
 }
 
 template<typename T>
-Radians<T> tan(Radians<T> arg)
+T tan(Radians<T> arg)
 {
     using std::tan;
-    return Radians<T>(tan(arg.value));
+    return T(tan(arg.value));
 }
 
 template<typename T>
-Degrees<T> tan(Degrees<T> arg)
+T tan(Degrees<T> arg)
 {
     using std::tan;
-    return Radians<T>(tan(arg.to_radians().value)).to_degrees();
+    return T(tan(arg.to_radians().value));
 }
 
 template<typename T>
