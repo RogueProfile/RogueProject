@@ -28,7 +28,7 @@ BufferObject GlContext::create_vertex_buffer(BufferObject::UsageType usage, size
 }
 
 BufferObject GlContext::create_vertex_buffer(BufferObject::UsageType usage,
-    void* data, size_t data_size)
+    const void* data, size_t data_size)
 {
     auto buf = BufferObject(usage, data, data_size, GL_ARRAY_BUFFER);
     return buf;

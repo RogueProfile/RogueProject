@@ -12,7 +12,8 @@ BufferObject::BufferObject(UsageType usage, size_t size, GLenum start_target):
 }
 
 BufferObject::BufferObject(BufferObject::UsageType usage, const void* data,
-    size_t size, GLenum start_target)
+    size_t size, GLenum start_target):
+    m_usage(usage), m_size(size)
 {
     glGenBuffers(1, &m_handle); 
     CHECK_GL_ERROR(glGenBuffers);

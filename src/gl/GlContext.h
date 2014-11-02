@@ -51,7 +51,7 @@ public:
     BufferObject create_vertex_buffer(BufferObject::UsageType usage,
         size_t size);
     BufferObject create_vertex_buffer(BufferObject::UsageType usage,
-        void* data, size_t data_size);
+        const void* data, size_t data_size);
     template<typename T>
     BufferObject create_vertex_buffer(BufferObject::UsageType usage,
         const std::vector<T>& data);
@@ -109,14 +109,14 @@ template<typename T>
 inline BufferObject GlContext::create_vertex_buffer(BufferObject::UsageType usage,
     const std::vector<T>& data) 
 {
-    return create_vertex_buffer(usage, data.data, data.size() * sizeof(T));
+    return create_vertex_buffer(usage, data.data(), data.size() * sizeof(T));
 }
 
 template<typename T, size_t N>
 inline BufferObject GlContext::create_vertex_buffer(BufferObject::UsageType usage,
     const std::array<T, N>& data) 
 {
-    return create_vertex_buffer(usage, data.data, N * sizeof(T));
+    return create_vertex_buffer(usage, data.data(), N * sizeof(T));
 }
 
 inline IndexBufferObject GlContext::create_index_buffer(BufferObject::UsageType usage,
