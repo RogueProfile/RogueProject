@@ -7,6 +7,8 @@
 #include "sdl/SdlWindow.h"
 #include "sdl/SdlGlContext.h"
 
+#include "ScreenManager.h"
+
 #include "Vector2.h"
 
 class Game: public sdl::SdlUser
@@ -30,6 +32,7 @@ protected:
     void update();
     void draw();
 
+    ScreenManager m_screen_manager;
     sdl::SdlWindow m_window;
     std::unique_ptr<sdl::SdlGlContext> m_context;
     

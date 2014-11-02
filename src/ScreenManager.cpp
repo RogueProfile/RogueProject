@@ -5,6 +5,11 @@
 #include "Exceptions/KeyError.h"
 
 
+ScreenManager::~ScreenManager()
+{
+ 
+}
+ 
 ScreenManager::ScreenManager(ScreenManager&& other) noexcept:
     m_screens(std::move(other.m_screens)), m_active_screen(other.m_active_screen)    
 {

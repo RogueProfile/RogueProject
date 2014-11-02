@@ -12,7 +12,7 @@ class ScreenManager
 {
 public:
     ScreenManager() = default;
-    ~ScreenManager() = default;
+    ~ScreenManager();
 
     ScreenManager(const ScreenManager& other) = delete;
     ScreenManager(ScreenManager&& other) noexcept;

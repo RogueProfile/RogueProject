@@ -6,6 +6,8 @@
 
 #include "sdl/Events/Event.h"
 
+#include "Screen.h"
+
 Game::Game(Vector2i window_size):
     sdl::SdlUser({sdl::SdlSubsystem::Video, sdl::SdlSubsystem::Events}),
     m_window("Roguelike", window_size.x, window_size.y, sdl::SdlWindow::WindowFlags::OpenGl)
@@ -68,11 +70,11 @@ void Game::initialize_open_gl()
  
 void Game::update()
 {
- 
+    m_screen_manager.update(); 
 }
  
 void Game::draw()
 {
- 
+    m_screen_manager.draw(); 
 }
  
