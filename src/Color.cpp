@@ -12,6 +12,14 @@ HsvColor Color::to_hsv() const
     std::array<float, 3> rgb {red, green, blue};
     auto minmax = std::minmax_element(rgb.begin(), rgb.end());
     float delta = minmax.second - minmax.first;
+    
+    if (delta == 0)
+    {
+        rval.hue.value = 0;
+        rval.saturation = 0;
+        rval.value = 1;
+        return rval;
+    }
 
     if (*minmax.second != 0 )
     {
