@@ -5,13 +5,14 @@
 
 #include "GlMacros.h"
 #include "BoundShaderProgram.h"
-#include "BoundVertexBufferObject.h"
-#include "BoundIndexBufferObject.h"
 #include "Texture2d.h"
 #include "IndexBufferObject.h"
 #include "VertexArrayObject.h"
 #include "BoundVertexArrayObject.h"
+#include "BoundBufferObject.h"
 
+
+#include <iostream>
 namespace gl
 {
 
@@ -24,7 +25,6 @@ void GlContext::clear(const Flags<ClearTarget>& buffers)
 BufferObject GlContext::create_vertex_buffer(BufferObject::UsageType usage, size_t size)
 {
     auto buf = BufferObject(usage, size, GL_ARRAY_BUFFER); 
-    rebind_vertex_buffer();
     return buf;
 }
 
@@ -38,16 +38,7 @@ IndexBufferObject GlContext::create_index_buffer(BufferObject::UsageType usage,
 void GlContext::draw_vertex_array(const BoundVertexArrayObject& vao,
       PrimitiveType primitive, int first, size_t count)
 {
-    if(vao.index_buffer() == nullptr)
-    {
-        glDrawArrays(static_cast<GLenum>(primitive), first, count); 
-    }
-    else
-    {
-        glDrawElements(static_cast<GLenum>(primitive), count, 
-            static_cast<GLenum>(vao.index_buffer()->format()),
-            reinterpret_cast<void*>(first));
-    }
+    glDrawArrays(static_cast<GLenum>(primitive), first, count); 
 }
  
 void GlContext::copy_buffer_data(const BufferObject& from, BufferObject& to,
@@ -80,28 +71,16 @@ BoundShaderProgram GlContext::bind_shader_program(ShaderProgram& program)
         &m_bound_shader_program));
 }
  
-BoundVertexBufferObject GlContext::bind_vertex_buffer(BufferObject& buffer)
+BoundBufferObject GlContext::bind_buffer_object(BufferObject& buffer)
 {
-    if(m_bound_vertex_buffer != nullptr)
+    if(m_bound_buffer_object != nullptr)
     {
-        throw TargetBindError(Target::VertexBuffer);
+        throw TargetBindError(Target::Buffer);
     } 
-    glBindBuffer(GL_ARRAY_BUFFER, buffer.handle());
+    glBindBuffer(GL_COPY_WRITE_BUFFER, buffer.handle());
     CHECK_GL_ERROR(glBindBuffer);
-    return BoundVertexBufferObject(&buffer, this, 
-            TargetLock(&buffer, &m_bound_vertex_buffer));
-}
- 
-BoundIndexBufferObject GlContext::bind_index_buffer(IndexBufferObject& buffer)
-{
-    if(m_bound_vertex_buffer != nullptr)
-    {
-        throw TargetBindError(Target::VertexBuffer);
-    } 
-    glBindBuffer(GL_ARRAY_BUFFER, buffer.handle());
-    CHECK_GL_ERROR(glBindBuffer);
-    return BoundIndexBufferObject(&buffer, this, 
-            TargetLock(&buffer, &m_bound_vertex_buffer));
+    return BoundBufferObject(&buffer, this, 
+            TargetLock(&buffer, &m_bound_buffer_object));
 }
  
 BoundVertexArrayObject GlContext::bind_vertex_array(VertexArrayObject& vao)
@@ -135,11 +114,11 @@ void GlContext::rebind_texture_2d()
     } 
 }
  
-void GlContext::rebind_vertex_buffer()
+void GlContext::rebind_buffer_object()
 {
-    if(m_bound_vertex_buffer != nullptr)
+    if(m_bound_buffer_object != nullptr)
     {
-        glBindBuffer(GL_ARRAY_BUFFER, m_bound_vertex_buffer->handle());
+        glBindBuffer(GL_COPY_WRITE_BUFFER, m_bound_buffer_object->handle());
         CHECK_GL_ERROR(glBindBuffer);
     }
 }

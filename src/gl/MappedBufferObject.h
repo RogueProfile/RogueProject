@@ -78,7 +78,7 @@ public:
 
     operator MappedBufferObject<const T>() const
     {
-        auto ret = MappedBufferObject<const T>(m_context, m_target, m_data, m_size);
+        auto ret = MappedBufferObject<const T>(m_context, m_data, m_size);
         m_data = nullptr;
         return ret;
     }
@@ -105,13 +105,11 @@ public:
     const_iterator cend() const {return cend(*this);}
 
 protected:
-    MappedBufferObject(GlContext* context, BufferBindTarget target,
-           T* data, size_t size);
+    MappedBufferObject(GlContext* context, T* data, size_t size);
 
     GlContext* m_context = nullptr;
     T* m_data = nullptr;
     size_t m_size = 0;
-    BufferBindTarget m_target;
 
 private:
 };
@@ -119,8 +117,8 @@ private:
 
 template<typename T>
 inline MappedBufferObject<T>::MappedBufferObject(GlContext* context,
-       BufferBindTarget target, T* data, size_t size):
-    m_context(context), m_target(target), m_data(data), m_size(size)
+       T* data, size_t size):
+    m_context(context), m_data(data), m_size(size)
 {
 }
 
@@ -132,7 +130,7 @@ MappedBufferObject<T>::~MappedBufferObject()
     
 template<typename T>
 inline MappedBufferObject<T>::MappedBufferObject(MappedBufferObject<T>&& other) noexcept:
-    m_context(other.m_context), m_target(other.m_target), m_data(other.m_data),
+    m_context(other.m_context), m_data(other.m_data),
     m_size(other.m_size)
 {
     other.m_data = nullptr;
@@ -143,7 +141,6 @@ inline MappedBufferObject<T>& MappedBufferObject<T>::operator=(MappedBufferObjec
 {
     release();
     m_context = other.m_context;
-    m_target = other.m_target;
     m_data = other.m_data; 
     m_size = other.m_size;
     other.m_data = nullptr;
@@ -161,11 +158,7 @@ inline void MappedBufferObject<T>::release()
 {
     if(m_data != nullptr)
     {
-        switch(m_target)
-        {
-            case BufferBindTarget::VertexBuffer: m_context->rebind_vertex_buffer(); break;
-            default: assert(false);
-        }
+        m_context->rebind_buffer_object();
     } 
     m_data = nullptr;
 }

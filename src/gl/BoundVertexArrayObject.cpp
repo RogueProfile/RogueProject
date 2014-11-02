@@ -23,8 +23,7 @@ BoundVertexArrayObject::~BoundVertexArrayObject()
 }
  
 BoundVertexArrayObject::BoundVertexArrayObject(BoundVertexArrayObject&& other) noexcept:
-    m_vertex_array(other.m_vertex_array), m_lock(std::move(other.m_lock)),
-    m_index_buffer(std::move(other.m_index_buffer))
+    m_vertex_array(other.m_vertex_array), m_lock(std::move(other.m_lock))
 {
     other.m_vertex_array = nullptr; 
 }
@@ -34,7 +33,6 @@ BoundVertexArrayObject& BoundVertexArrayObject::operator=(BoundVertexArrayObject
     m_vertex_array = other.m_vertex_array;
     other.m_vertex_array = nullptr;
     m_lock = std::move(other.m_lock);
-    m_index_buffer = std::move(other.m_index_buffer);
     return *this;
 }
  
@@ -53,7 +51,6 @@ void BoundVertexArrayObject::set_index_buffer(std::shared_ptr<IndexBufferObject>
 {
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, index_buffer->handle()); 
     CHECK_GL_ERROR(glBindBuffer);
-    m_index_buffer = std::move(index_buffer);
 }
  
 }

@@ -65,8 +65,7 @@ public:
     void invalidate();
 
 protected:
-    virtual BufferBindTarget target() const = 0;
-    GLenum raw_target() const {return static_cast<GLenum>(target());}
+    GLenum raw_target() const {return GL_COPY_WRITE_BUFFER;}
 
     BufferObject* m_buffer;
     GlContext* m_context;
@@ -101,7 +100,7 @@ MappedBufferObject<T> BoundBufferObject::map(intptr_t offset, size_t count,
         access |= BufferObject::MappingAccess::Read;
     }
     void* buffer = map_raw(offset, size, options, access);
-    auto ret = MappedBufferObject<T>(m_context, target(), buffer, size);
+    auto ret = MappedBufferObject<T>(m_context, buffer, size);
     return ret;
 }
  
@@ -111,7 +110,7 @@ MappedBufferObject<const T> BoundBufferObject::map_const(intptr_t offset, size_t
 {
     auto size = count * sizeof(T);
     void* buffer = map_raw(offset, size, options, BufferObject::MappingAccess::Read);
-    auto ret = MappedBufferObject<const T>(m_context, target(), buffer, size);
+    auto ret = MappedBufferObject<const T>(m_context, buffer, size);
     return ret;
 }
 

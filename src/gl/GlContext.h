@@ -16,11 +16,10 @@ namespace gl
 class GlObject;
 class ShaderProgram;
 class BoundShaderProgram;
-class BoundVertexBufferObject;
-class BoundIndexBufferObject;
 class IndexBufferObject;
 class VertexArrayObject;
 class BoundVertexArrayObject;
+class BoundBufferObject;
 
 enum class ClearTarget
 {
@@ -56,17 +55,15 @@ public:
     VertexArrayObject create_vertex_array_object();
 
     BoundShaderProgram bind_shader_program(ShaderProgram& program);
-    BoundVertexBufferObject bind_vertex_buffer(BufferObject& buffer);
-    BoundIndexBufferObject bind_index_buffer(IndexBufferObject& buffer);
+    BoundBufferObject bind_buffer_object(BufferObject& buffer);
     BoundVertexArrayObject bind_vertex_array(VertexArrayObject& vao);
 
     Texture2d create_texture(int width, int height, int mipmap_levels,
             Texture::InternalPixelFormat format);
 
     void rebind_texture_2d();
-    void rebind_vertex_buffer();
+    void rebind_buffer_object();
 protected:
-
 
 private:
 
@@ -74,7 +71,7 @@ private:
 
     GlObject* m_bound_texture_2d = nullptr;
 
-    GlObject* m_bound_vertex_buffer = nullptr;
+    GlObject* m_bound_buffer_object = nullptr;
 
     GlObject* m_bound_vertex_array = nullptr;
 

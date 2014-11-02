@@ -9,7 +9,8 @@ namespace gl
 enum class BufferBindTarget: GLenum
 {
     VertexBuffer = GL_ARRAY_BUFFER,
-    IndexBuffer = GL_ELEMENT_ARRAY_BUFFER
+    IndexBuffer = GL_ELEMENT_ARRAY_BUFFER,
+    CopyWriteBuffer = GL_COPY_WRITE_BUFFER
 };
 
 enum class VertexComponentType: GLenum

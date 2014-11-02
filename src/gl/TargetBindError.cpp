@@ -49,8 +49,7 @@ std::ostream& operator <<(std::ostream& stream, gl::Target target)
     switch(target)
     {
     case gl::Target::ShaderProgram: stream << "shader program"; break;
-    case gl::Target::VertexBuffer: stream << "vertex buffer"; break;
-    case gl::Target::IndexBuffer: stream << "index buffer"; break;
+    case gl::Target::Buffer: stream << "buffer object"; break;
     case gl::Target::VertexArray: stream << "vertex array"; break;
     }
     return stream;

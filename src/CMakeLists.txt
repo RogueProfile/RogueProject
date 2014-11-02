@@ -7,16 +7,12 @@ set(EXECUTABLE_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Exceptions/KeyError.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/BoundBufferObject.h
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/BoundBufferObject.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/gl/BoundIndexBufferObject.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/gl/BoundIndexBufferObject.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/BoundShaderProgram.h
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/BoundShaderProgram.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/BoundTexture2d.h
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/BoundTexture2d.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/BoundVertexArrayObject.h
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/BoundVertexArrayObject.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/gl/BoundVertexBufferObject.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/gl/BoundVertexBufferObject.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/BufferObject.h
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/BufferObject.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/GlContext.h
