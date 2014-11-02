@@ -92,6 +92,18 @@ BoundVertexBufferObject GlContext::bind_vertex_buffer(BufferObject& buffer)
             TargetLock(&buffer, &m_bound_vertex_buffer));
 }
  
+BoundIndexBufferObject GlContext::bind_index_buffer(IndexBufferObject& buffer)
+{
+    if(m_bound_vertex_buffer != nullptr)
+    {
+        throw TargetBindError(Target::VertexBuffer);
+    } 
+    glBindBuffer(GL_ARRAY_BUFFER, buffer.handle());
+    CHECK_GL_ERROR(glBindBuffer);
+    return BoundIndexBufferObject(&buffer, this, 
+            TargetLock(&buffer, &m_bound_vertex_buffer));
+}
+ 
 BoundVertexArrayObject GlContext::bind_vertex_array(VertexArrayObject& vao)
 {
     if(m_bound_vertex_array != nullptr)

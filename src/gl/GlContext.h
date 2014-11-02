@@ -57,6 +57,7 @@ public:
 
     BoundShaderProgram bind_shader_program(ShaderProgram& program);
     BoundVertexBufferObject bind_vertex_buffer(BufferObject& buffer);
+    BoundIndexBufferObject bind_index_buffer(IndexBufferObject& buffer);
     BoundVertexArrayObject bind_vertex_array(VertexArrayObject& vao);
 
     Texture2d create_texture(int width, int height, int mipmap_levels,
