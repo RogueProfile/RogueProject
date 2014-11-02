@@ -50,11 +50,11 @@ void Game::run()
 } 
 void Game::initialize()
 {
+    initialize_open_gl(); 
     if(glewInit() != GLEW_OK)
     {
         //TODO: Exception
     }
-    initialize_open_gl(); 
 }
  
 void Game::initialize_open_gl()
