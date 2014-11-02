@@ -8,7 +8,7 @@ class Screen
     friend class ScreenManager;
 public:
     Screen(ScreenManager* manager);
-    ~Screen() = default;
+    virtual ~Screen() = default;
 
     Screen(const Screen& other) = delete;
     Screen(Screen&& other) noexcept = delete;
