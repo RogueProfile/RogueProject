@@ -38,7 +38,16 @@ IndexBufferObject GlContext::create_index_buffer(BufferObject::UsageType usage,
 void GlContext::draw_vertex_array(const BoundVertexArrayObject& vao,
       PrimitiveType primitive, int first, size_t count)
 {
-    glDrawArrays(static_cast<GLenum>(primitive), first, count); 
+    if(vao.index_buffer() == nullptr)
+    {
+        glDrawArrays(static_cast<GLenum>(primitive), first, count); 
+    }
+    else
+    {
+        glDrawElements(static_cast<GLenum>(primitive), count, 
+            static_cast<GLenum>(vao.index_buffer()->format()),
+            reinterpret_cast<void*>(first));
+    }
 }
  
 VertexArrayObject GlContext::create_vertex_array_object()

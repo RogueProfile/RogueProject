@@ -40,6 +40,9 @@ public:
 
     void clear(const Flags<ClearTarget>& buffers);
 
+    void draw_vertex_array(const BoundVertexArrayObject& vao, 
+        PrimitiveType primitive, int first, size_t count); 
+
     BufferObject create_vertex_buffer(BufferObject::UsageType usage,
         size_t size);
     IndexBufferObject create_index_buffer(BufferObject::UsageType usage,

@@ -35,7 +35,9 @@ public:
 
     VertexArrayObject* vertex_array() {return m_vertex_array;}
     std::shared_ptr<IndexBufferObject> index_buffer() {return m_index_buffer;}
+    std::shared_ptr<const IndexBufferObject> index_buffer() const {return m_index_buffer;}
     
+    VertexArrayObject& array_object() {return *m_vertex_array;}     
 
 protected:
     std::shared_ptr<IndexBufferObject> m_index_buffer;
