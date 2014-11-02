@@ -8,6 +8,7 @@
 #include "BoundVertexBufferObject.h"
 #include "BoundIndexBufferObject.h"
 #include "Texture2d.h"
+#include "IndexBufferObject.h"
 
 namespace gl
 {
@@ -18,6 +19,20 @@ void GlContext::clear(const Flags<ClearTarget>& buffers)
     CHECK_GL_ERROR(glClear);
 }
 
+BufferObject GlContext::create_vertex_buffer(BufferObject::UsageType usage, size_t size)
+{
+    auto buf = BufferObject(usage, size, GL_ARRAY_BUFFER); 
+    rebind_vertex_buffer();
+    return buf;
+}
+ 
+IndexBufferObject GlContext::create_index_buffer(BufferObject::UsageType usage,
+   size_t size, IndexFormat format)
+{
+    auto buf = IndexBufferObject(usage, size, format); 
+    return buf;
+}
+ 
 BoundShaderProgram GlContext::bind_shader_program(ShaderProgram& program)
 {
     if(m_bound_shader_program != nullptr)

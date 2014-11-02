@@ -21,4 +21,11 @@ enum class VertexComponentType
     Double = GL_DOUBLE
 };
 
+enum class IndexFormat
+{
+    Byte = GL_BYTE,
+    UShort = GL_UNSIGNED_SHORT,
+    UInt = GL_UNSIGNED_INT
+};
+
 #endif

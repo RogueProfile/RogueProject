@@ -6,6 +6,8 @@
 #include "Flags.h"
 
 #include "Texture2d.h"
+#include "BufferObject.h"
+#include "Enums.h"
 
 namespace gl
 {
@@ -14,7 +16,7 @@ class ShaderProgram;
 class BoundShaderProgram;
 class BoundVertexBufferObject;
 class BoundIndexBufferObject;
-class BufferObject;
+class IndexBufferObject;
 
 enum class ClearTarget
 {
@@ -35,6 +37,11 @@ public:
     GlContext& operator =(GlContext&& other) = default;
 
     void clear(const Flags<ClearTarget>& buffers);
+
+    BufferObject create_vertex_buffer(BufferObject::UsageType usage,
+        size_t size);
+    IndexBufferObject create_index_buffer(BufferObject::UsageType usage,
+        size_t size, IndexFormat format);
 
     BoundShaderProgram bind_shader_program(ShaderProgram& program);
     BoundVertexBufferObject bind_vertex_buffer(BufferObject& buffer);

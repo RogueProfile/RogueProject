@@ -3,18 +3,14 @@
 
 #include "BufferObject.h"
 
+#include "Enums.h"
+
 namespace gl
 {
 
 class IndexBufferObject: public BufferObject
 {
 public:
-    enum class IndexFormat
-    {
-        Byte = GL_BYTE,
-        UShort = GL_UNSIGNED_SHORT,
-        UInt = GL_UNSIGNED_INT
-    };
 
     IndexBufferObject(UsageType usage, size_t element_count,
             IndexFormat format);
