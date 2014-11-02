@@ -51,10 +51,12 @@ void Game::run()
 void Game::initialize()
 {
     initialize_open_gl(); 
+    glewExperimental = GL_TRUE;
     if(glewInit() != GLEW_OK)
     {
         //TODO: Exception
     }
+    glGetError();
 }
  
 void Game::initialize_open_gl()
