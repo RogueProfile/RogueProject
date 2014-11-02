@@ -21,6 +21,17 @@ enum class VertexComponentType
     Double = GL_DOUBLE
 };
 
+enum class PrimitiveType: GLenum
+{
+    Points = GL_POINTS,
+    Lines = GL_LINES,
+    LineStrip = GL_LINE_STRIP,
+    LineLoop = GL_LINE_LOOP,
+    Triangles = GL_TRIANGLES,
+    TriangleStrip = GL_TRIANGLE_STRIP,
+    TriangleFan = GL_TRIANGLE_FAN,
+};
+
 enum class IndexFormat
 {
     Byte = GL_BYTE,

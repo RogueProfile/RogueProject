@@ -35,6 +35,12 @@ IndexBufferObject GlContext::create_index_buffer(BufferObject::UsageType usage,
     return buf;
 }
  
+void GlContext::draw_vertex_array(const BoundVertexArrayObject& vao,
+      PrimitiveType primitive, int first, size_t count)
+{
+    glDrawArrays(static_cast<GLenum>(primitive), first, count); 
+}
+ 
 VertexArrayObject GlContext::create_vertex_array_object()
 {
     return VertexArrayObject(); 
