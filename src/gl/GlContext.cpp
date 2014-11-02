@@ -50,6 +50,18 @@ void GlContext::draw_vertex_array(const BoundVertexArrayObject& vao,
     }
 }
  
+void GlContext::copy_buffer_data(const BufferObject& from, const BufferObject& to,
+       size_t offset_from, size_t offset_to, size_t count)
+{
+    glBindBuffer(GL_COPY_READ_BUFFER, from.handle());
+    CHECK_GL_ERROR(glBindBuffer);
+    glBindBuffer(GL_COPY_WRITE_BUFFER, to.handle());
+    CHECK_GL_ERROR(glBindBuffer);
+    glCopyBufferSubData(GL_COPY_READ_BUFFER, GL_COPY_WRITE_BUFFER, offset_from,
+        offset_to, count);
+    CHECK_GL_ERROR(glCopyBufferSubData);
+}
+ 
 VertexArrayObject GlContext::create_vertex_array_object()
 {
     return VertexArrayObject(); 
