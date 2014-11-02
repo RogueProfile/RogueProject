@@ -12,7 +12,9 @@ class IndexBufferObject: public BufferObject
 {
 public:
 
-    IndexBufferObject(UsageType usage, size_t element_count,
+    IndexBufferObject(UsageType usage, size_t length,
+            IndexFormat format);
+    IndexBufferObject(UsageType usage, const void* data, size_t element_count,
             IndexFormat format);
     virtual ~IndexBufferObject() = default;
 

@@ -24,8 +24,7 @@ void GlContext::clear(const Flags<ClearTarget>& buffers)
 
 BufferObject GlContext::create_vertex_buffer(BufferObject::UsageType usage, size_t size)
 {
-    auto buf = BufferObject(usage, size, GL_ARRAY_BUFFER); 
-    return buf;
+    return create_vertex_buffer(usage, nullptr, size);
 }
 
 BufferObject GlContext::create_vertex_buffer(BufferObject::UsageType usage,
@@ -36,9 +35,15 @@ BufferObject GlContext::create_vertex_buffer(BufferObject::UsageType usage,
 }
 
 IndexBufferObject GlContext::create_index_buffer(BufferObject::UsageType usage,
-   size_t size, IndexFormat format)
+    size_t size, IndexFormat format)
 {
-    auto buf = IndexBufferObject(usage, size, format); 
+    return create_index_buffer(usage, nullptr, size, format);
+}
+
+IndexBufferObject GlContext::create_index_buffer(BufferObject::UsageType usage,
+    const void* data, size_t data_size, IndexFormat format)
+{
+    auto buf = IndexBufferObject(usage, data, data_size, format);
     return buf;
 }
  
@@ -57,9 +62,9 @@ void GlContext::copy_buffer_data(const BufferObject& from, BufferObject& to,
     CHECK_GL_ERROR(glBindBuffer);
     glCopyBufferSubData(GL_COPY_READ_BUFFER, GL_COPY_WRITE_BUFFER, offset_from,
         offset_to, count);
+    rebind_buffer_object();
     CHECK_GL_ERROR(glCopyBufferSubData);
 }
- 
  
  
 VertexArrayObject GlContext::create_vertex_array_object()

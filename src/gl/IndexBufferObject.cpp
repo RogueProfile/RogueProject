@@ -6,8 +6,14 @@ namespace gl
 {
 
 IndexBufferObject::IndexBufferObject(BufferObject::UsageType usage,
-       size_t element_count, IndexFormat format):
-    BufferObject(usage, element_count * index_size(format), GL_ELEMENT_ARRAY_BUFFER),
+       size_t length, IndexFormat format):
+    IndexBufferObject(usage, nullptr, length, format)
+{
+}
+ 
+IndexBufferObject::IndexBufferObject(gl::BufferObject::UsageType usage, const void* data,
+       size_t data_size, IndexFormat format):
+    BufferObject(usage, data, data_size, GL_ELEMENT_ARRAY_BUFFER),
     m_format(format)
 {
 }

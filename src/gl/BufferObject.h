@@ -37,7 +37,7 @@ public:
     };
 
     BufferObject(UsageType usage, size_t size, GLenum start_target);
-    BufferObject(UsageType usage, void* data, size_t size, GLenum start_target);
+    BufferObject(UsageType usage, const void* data, size_t size, GLenum start_target);
     virtual ~BufferObject();
 
     BufferObject(const BufferObject& other) = delete;
@@ -50,7 +50,7 @@ public:
 
 protected:
     virtual void destroy() override;
-    void allocate(void* data, GLenum target);
+    void allocate(const void* data, GLenum target);
 
     UsageType m_usage;
     size_t m_size;

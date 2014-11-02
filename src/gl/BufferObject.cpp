@@ -11,7 +11,7 @@ BufferObject::BufferObject(UsageType usage, size_t size, GLenum start_target):
 {
 }
 
-BufferObject::BufferObject(BufferObject::UsageType usage, void* data,
+BufferObject::BufferObject(BufferObject::UsageType usage, const void* data,
     size_t size, GLenum start_target)
 {
     glGenBuffers(1, &m_handle); 
@@ -49,7 +49,7 @@ void BufferObject::destroy()
     } 
 }
  
-void BufferObject::allocate(void* data, GLenum target)
+void BufferObject::allocate(const void* data, GLenum target)
 {
     glBindBuffer(target, m_handle); 
     CHECK_GL_ERROR(glBindBuffer);

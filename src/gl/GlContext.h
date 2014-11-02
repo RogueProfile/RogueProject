@@ -10,6 +10,7 @@
 
 #include "Texture2d.h"
 #include "BufferObject.h"
+#include "IndexBufferObject.h"
 #include "Enums.h"
 
 namespace gl
@@ -17,7 +18,6 @@ namespace gl
 class GlObject;
 class ShaderProgram;
 class BoundShaderProgram;
-class IndexBufferObject;
 class VertexArrayObject;
 class BoundVertexArrayObject;
 class BoundBufferObject;
@@ -61,6 +61,25 @@ public:
 
     IndexBufferObject create_index_buffer(BufferObject::UsageType usage,
         size_t size, IndexFormat format);
+    IndexBufferObject create_index_buffer(BufferObject::UsageType usage,
+        const void* data, size_t data_size, IndexFormat format);
+    IndexBufferObject create_index_buffer(BufferObject::UsageType usage,
+        const std::vector<uint8_t>& data);
+    IndexBufferObject create_index_buffer(BufferObject::UsageType usage,
+        const std::vector<uint16_t>& data);
+    IndexBufferObject create_index_buffer(BufferObject::UsageType usage,
+        const std::vector<uint32_t>& data);
+    template<size_t N>
+    IndexBufferObject create_index_buffer(BufferObject::UsageType usage,
+        const std::array<uint8_t, N>& data);
+    template<size_t N>
+    IndexBufferObject create_index_buffer(BufferObject::UsageType usage,
+        const std::array<uint16_t, N>& data);
+    template<size_t N>
+    IndexBufferObject create_index_buffer(BufferObject::UsageType usage,
+        const std::array<uint32_t, N>& data);
+
+
     VertexArrayObject create_vertex_array_object();
 
     BoundShaderProgram bind_shader_program(ShaderProgram& program);
@@ -87,17 +106,62 @@ private:
 };
 
 template<typename T>
-BufferObject GlContext::create_vertex_buffer(BufferObject::UsageType usage,
+inline BufferObject GlContext::create_vertex_buffer(BufferObject::UsageType usage,
     const std::vector<T>& data) 
 {
     return create_vertex_buffer(usage, data.data, data.size() * sizeof(T));
 }
 
 template<typename T, size_t N>
-BufferObject GlContext::create_vertex_buffer(BufferObject::UsageType usage,
+inline BufferObject GlContext::create_vertex_buffer(BufferObject::UsageType usage,
     const std::array<T, N>& data) 
 {
     return create_vertex_buffer(usage, data.data, N * sizeof(T));
+}
+
+inline IndexBufferObject GlContext::create_index_buffer(BufferObject::UsageType usage,
+      const std::vector<uint8_t>& data)
+{
+    return create_index_buffer(usage, data.data(), data.size()*sizeof(uint8_t),
+        IndexFormat::Byte); 
+}
+ 
+inline IndexBufferObject GlContext::create_index_buffer(BufferObject::UsageType usage,
+      const std::vector<uint16_t>& data)
+{
+    return create_index_buffer(usage, data.data(), data.size()*sizeof(uint16_t),
+        IndexFormat::UShort); 
+}
+ 
+inline IndexBufferObject GlContext::create_index_buffer(BufferObject::UsageType usage,
+      const std::vector<uint32_t>& data)
+{
+    return create_index_buffer(usage, data.data(), data.size()*sizeof(uint32_t),
+        IndexFormat::UInt); 
+}
+
+template<size_t N>
+inline IndexBufferObject GlContext::create_index_buffer(BufferObject::UsageType usage,
+    const std::array<uint8_t, N>& data)
+{
+    return create_index_buffer(usage, data.data(), N * sizeof(uint8_t),
+        IndexFormat::Byte);
+}
+
+template<size_t N>
+inline IndexBufferObject GlContext::create_index_buffer(BufferObject::UsageType usage,
+    const std::array<uint16_t, N>& data)
+{
+    return create_index_buffer(usage, data.data(), N * sizeof(uint8_t),
+        IndexFormat::UShort);
+}
+
+template<size_t N>
+inline IndexBufferObject GlContext::create_index_buffer(BufferObject::UsageType usage,
+    const std::array<uint32_t, N>& data)
+{
+    return create_index_buffer(usage, data.data(), N * sizeof(uint8_t),
+        IndexFormat::UInt);
 }
 
 }
