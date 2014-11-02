@@ -4,7 +4,7 @@
 
 #include "VertexArrayObject.h"
 #include "GlMacros.h"
-#include "GlException.h"
+#include "GlError.h"
 #include "IndexBufferObject.h"
 
 namespace gl

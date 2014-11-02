@@ -1,7 +1,7 @@
 #include "BoundShaderProgram.h"
 
 #include "GlMacros.h"
-#include "GlException.h"
+#include "GlError.h"
 
 namespace gl
 {

@@ -1,6 +1,6 @@
 #include "ShaderProgram.h"
 
-#include "GlException.h"
+#include "GlError.h"
 #include "GlHeaders.h"
 #include "GlMacros.h"
 

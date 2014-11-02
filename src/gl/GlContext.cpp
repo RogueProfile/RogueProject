@@ -1,7 +1,7 @@
 #include "GlContext.h"
 
 #include "TargetBindError.h"
-#include "GlException.h"
+#include "GlError.h"
 
 #include "GlMacros.h"
 #include "BoundShaderProgram.h"

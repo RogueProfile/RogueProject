@@ -7,7 +7,7 @@
 #include "TargetLock.h"
 
 #include "GlMacros.h"
-#include "GlException.h"
+#include "GlError.h"
 
 #include "Rectangle.h"
 

@@ -1,4 +1,4 @@
-#include "GlException.h"
+#include "GlError.h"
 
 #include "GlHeaders.h"
 
@@ -7,7 +7,7 @@
 namespace gl
 {
 
-GlException::GlException(const std::string& function, GLenum error_code):
+GlError::GlError(const std::string& function, GLenum error_code):
     m_error_code(error_code)
 {
     std::ostringstream stream;
@@ -16,26 +16,26 @@ GlException::GlException(const std::string& function, GLenum error_code):
     set_message(stream.str());
 }
  
-GlException::GlException(const GlException& other):
+GlError::GlError(const GlError& other):
     Exception(other),
     m_error_code(other.m_error_code)
 {
 }
  
-GlException::GlException(GlException&& other) noexcept:
+GlError::GlError(GlError&& other) noexcept:
     Exception(std::move(other)),
     m_error_code(other.m_error_code)
 {
 }
  
-GlException& GlException::operator=(const GlException& other)
+GlError& GlError::operator=(const GlError& other)
 {
     Exception::operator=(other);
     m_error_code = other.m_error_code; 
     return *this;
 }
  
-GlException& GlException::operator=(gl::GlException&& other) noexcept
+GlError& GlError::operator=(gl::GlError&& other) noexcept
 {
     Exception::operator=(std::move(other));
     m_error_code = other.m_error_code; 
