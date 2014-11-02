@@ -26,15 +26,24 @@ public:
     size_t index_count() const;
 
 protected:
-    int index_size() const;
 
     IndexFormat m_format;
 private:
 };
 
+inline int index_size(IndexFormat format)
+{
+    switch(format)
+    {
+        case IndexFormat::Byte: return 1;
+        case IndexFormat::UShort: return 2;
+        case IndexFormat::UInt: return 4;
+    } 
+}
+
 inline size_t IndexBufferObject::index_count() const
 {
-    return m_size / index_size(); 
+    return m_size / index_size(m_format); 
 }
  
 }
