@@ -3,13 +3,16 @@
 
 #include "GlHeaders.h"
 
+namespace gl
+{
+
 enum class BufferBindTarget: GLenum
 {
     VertexBuffer = GL_ARRAY_BUFFER,
     IndexBuffer = GL_ELEMENT_ARRAY_BUFFER
 };
 
-enum class VertexComponentType
+enum class VertexComponentType: GLenum
 {
     Byte = GL_BYTE,
     UByte = GL_UNSIGNED_BYTE,
@@ -32,11 +35,13 @@ enum class PrimitiveType: GLenum
     TriangleFan = GL_TRIANGLE_FAN,
 };
 
-enum class IndexFormat
+enum class IndexFormat: GLenum
 {
     Byte = GL_BYTE,
     UShort = GL_UNSIGNED_SHORT,
     UInt = GL_UNSIGNED_INT
 };
+
+}
 
 #endif
