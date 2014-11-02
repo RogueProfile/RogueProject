@@ -67,6 +67,14 @@ HsvColor HsvColor::from_rgb(const Color& that)
     auto minmax = std::minmax_element(rgb.begin(), rgb.end());
     float delta = minmax.second - minmax.first;
 
+    if (delta == 0)
+    {
+        rval.hue.value = 0;
+        rval.saturation = 0;
+        rval.value = 1;
+        return rval;
+    }
+
     if (*minmax.second != 0 )
     {
         rval.hue.value = delta / *minmax.second;
