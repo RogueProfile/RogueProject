@@ -3,11 +3,18 @@
 
 #include "GlObject.h"
 
+#include <memory>
+#include <unordered_map>
+
+#include "VertexAttributeSource.h"
+
 namespace gl
 {
+class IndexBufferObject;
 
 class VertexArrayObject: public GlObject
 {
+    friend class BoundVertexArrayObject;
 public:
     VertexArrayObject();
     ~VertexArrayObject();
@@ -19,7 +26,9 @@ public:
 
 protected:
     virtual void destroy() override;
-private:
+    
+    std::unordered_map<unsigned int, VertexAttributeSource> m_attrib_sources;
+    std::shared_ptr<IndexBufferObject> m_index_buffer;
 };
 
 }

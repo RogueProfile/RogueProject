@@ -37,6 +37,8 @@ set(EXECUTABLE_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/Texture.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/Texture2d.h
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/Texture2d.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/gl/VertexAttributeSource.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/gl/VertexAttributeSource.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/VertexArrayObject.h
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/VertexArrayObject.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/sdl/Events/Event.h
