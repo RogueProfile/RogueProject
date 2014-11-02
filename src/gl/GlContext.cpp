@@ -51,6 +51,16 @@ void GlContext::draw_vertex_array(const BoundVertexArrayObject& vao,
       PrimitiveType primitive, int first, size_t count)
 {
     glDrawArrays(static_cast<GLenum>(primitive), first, count); 
+    CHECK_GL_ERROR(glDrawArrays);
+}
+
+void GlContext::draw_vertex_array_indexed(const BoundVertexArrayObject& vao,
+      gl::PrimitiveType primitive, int first, size_t count)
+{
+    glDrawElements(static_cast<GLenum>(primitive), count, 
+           static_cast<GLenum>(vao.array_object().index_buffer()->format()),
+           reinterpret_cast<void*>(first));
+    CHECK_GL_ERROR(glDrawElements);
 }
  
 void GlContext::copy_buffer_data(const BufferObject& from, BufferObject& to,
@@ -65,6 +75,7 @@ void GlContext::copy_buffer_data(const BufferObject& from, BufferObject& to,
     rebind_buffer_object();
     CHECK_GL_ERROR(glCopyBufferSubData);
 }
+ 
  
  
 VertexArrayObject GlContext::create_vertex_array_object()

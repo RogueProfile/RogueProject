@@ -53,6 +53,7 @@ public:
     void set_index_buffer(std::shared_ptr<IndexBufferObject> index_buffer);
 
     VertexArrayObject& array_object() {return *m_vertex_array;}     
+    const VertexArrayObject& array_object() const {return *m_vertex_array;}     
 
 protected:
     VertexArrayObject* m_vertex_array;

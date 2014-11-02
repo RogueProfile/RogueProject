@@ -38,7 +38,7 @@ enum class PrimitiveType: GLenum
 
 enum class IndexFormat: GLenum
 {
-    Byte = GL_BYTE,
+    Byte = GL_UNSIGNED_BYTE,
     UShort = GL_UNSIGNED_SHORT,
     UInt = GL_UNSIGNED_INT
 };

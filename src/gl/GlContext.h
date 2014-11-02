@@ -45,6 +45,9 @@ public:
     void draw_vertex_array(const BoundVertexArrayObject& vao, 
         PrimitiveType primitive, int first, size_t count); 
 
+    void draw_vertex_array_indexed(const BoundVertexArrayObject& vao, 
+        PrimitiveType primitive, int first, size_t count);
+
     void copy_buffer_data(const BufferObject& from, BufferObject& to,
         size_t offset_from, size_t offset_to, size_t count);
 

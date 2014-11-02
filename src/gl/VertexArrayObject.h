@@ -24,6 +24,9 @@ public:
     VertexArrayObject& operator =(const VertexArrayObject& other) = delete;
     VertexArrayObject& operator =(VertexArrayObject&& other) noexcept;
 
+    std::shared_ptr<IndexBufferObject> index_buffer() {return m_index_buffer;}
+    std::shared_ptr<const IndexBufferObject> index_buffer() const {return m_index_buffer;}
+
 protected:
     virtual void destroy() override;
     
