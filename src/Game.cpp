@@ -6,6 +6,8 @@
 
 #include "sdl/Events/Event.h"
 
+#include "GlHeaders.h"
+
 #include "Screen.h"
 
 Game::Game(Vector2i window_size):
@@ -48,6 +50,10 @@ void Game::run()
 } 
 void Game::initialize()
 {
+    if(glewInit() != GLEW_OK)
+    {
+        //TODO: Exception
+    }
     initialize_open_gl(); 
 }
  
