@@ -3,6 +3,8 @@ set(EXECUTABLE_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Exceptions/Exception.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Exceptions/EnumValueError.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Exceptions/EnumValueError.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Exceptions/KeyError.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Exceptions/KeyError.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/BoundBufferObject.h
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/BoundBufferObject.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/BoundIndexBufferObject.h
