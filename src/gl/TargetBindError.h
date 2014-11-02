@@ -11,7 +11,8 @@ enum class Target
 {
     ShaderProgram,
     VertexBuffer,
-    IndexBuffer
+    IndexBuffer,
+    VertexArray
 };
 
 

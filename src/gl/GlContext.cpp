@@ -9,6 +9,8 @@
 #include "BoundIndexBufferObject.h"
 #include "Texture2d.h"
 #include "IndexBufferObject.h"
+#include "VertexArrayObject.h"
+#include "BoundVertexArrayObject.h"
 
 namespace gl
 {
@@ -33,6 +35,11 @@ IndexBufferObject GlContext::create_index_buffer(BufferObject::UsageType usage,
     return buf;
 }
  
+VertexArrayObject GlContext::create_vertex_array_object()
+{
+    return VertexArrayObject(); 
+}
+ 
 BoundShaderProgram GlContext::bind_shader_program(ShaderProgram& program)
 {
     if(m_bound_shader_program != nullptr)
@@ -55,6 +62,18 @@ BoundVertexBufferObject GlContext::bind_vertex_buffer(BufferObject& buffer)
     CHECK_GL_ERROR(glBindBuffer);
     return BoundVertexBufferObject(&buffer, this, 
             TargetLock(&buffer, &m_bound_vertex_buffer));
+}
+ 
+BoundVertexArrayObject GlContext::bind_vertex_array(VertexArrayObject& vao)
+{
+    if(m_bound_vertex_array != nullptr)
+    {
+        throw TargetBindError(Target::VertexArray);
+    } 
+    glBindVertexArray(vao.handle());
+    CHECK_GL_ERROR(glBindVertexArray);
+    return BoundVertexArrayObject(&vao, 
+            TargetLock(&vao, &m_bound_vertex_array));
 }
  
 Texture2d GlContext::create_texture(int width, int height, int mipmap_levels, 
