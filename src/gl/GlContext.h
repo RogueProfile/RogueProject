@@ -2,6 +2,7 @@
 #define GLCONTEXT_H__
 
 #include <vector>
+#include <array>
 
 #include "GlHeaders.h"
 
@@ -49,6 +50,14 @@ public:
 
     BufferObject create_vertex_buffer(BufferObject::UsageType usage,
         size_t size);
+    BufferObject create_vertex_buffer(BufferObject::UsageType usage,
+        void* data, size_t data_size);
+    template<typename T>
+    BufferObject create_vertex_buffer(BufferObject::UsageType usage,
+        const std::vector<T>& data);
+    template<typename T, size_t N>
+    BufferObject create_vertex_buffer(BufferObject::UsageType usage,
+        const std::array<T, N>& data);
 
     IndexBufferObject create_index_buffer(BufferObject::UsageType usage,
         size_t size, IndexFormat format);
@@ -76,6 +85,20 @@ private:
     GlObject* m_bound_vertex_array = nullptr;
 
 };
+
+template<typename T>
+BufferObject GlContext::create_vertex_buffer(BufferObject::UsageType usage,
+    const std::vector<T>& data) 
+{
+    return create_vertex_buffer(usage, data.data, data.size() * sizeof(T));
+}
+
+template<typename T, size_t N>
+BufferObject GlContext::create_vertex_buffer(BufferObject::UsageType usage,
+    const std::array<T, N>& data) 
+{
+    return create_vertex_buffer(usage, data.data, N * sizeof(T));
+}
 
 }
 

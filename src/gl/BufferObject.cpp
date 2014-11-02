@@ -7,17 +7,23 @@ namespace gl
 {
 
 BufferObject::BufferObject(UsageType usage, size_t size, GLenum start_target):
-    m_usage(usage), m_size(size)
+    BufferObject(usage, nullptr, size, start_target)
+{
+}
+
+BufferObject::BufferObject(BufferObject::UsageType usage, void* data,
+    size_t size, GLenum start_target)
 {
     glGenBuffers(1, &m_handle); 
     CHECK_GL_ERROR(glGenBuffers);
-    allocate(start_target);
+    allocate(data, start_target);
 }
  
 BufferObject::~BufferObject()
 {
     destroy(); 
 }
+ 
  
 BufferObject::BufferObject(BufferObject&& other) noexcept:
     GlObject(std::move(other)),
@@ -43,11 +49,11 @@ void BufferObject::destroy()
     } 
 }
  
-void BufferObject::allocate(GLenum target)
+void BufferObject::allocate(void* data, GLenum target)
 {
     glBindBuffer(target, m_handle); 
     CHECK_GL_ERROR(glBindBuffer);
-    glBufferData(target, m_size, nullptr, static_cast<GLenum>(m_usage));
+    glBufferData(target, m_size, data, static_cast<GLenum>(m_usage));
     CHECK_GL_ERROR(glBufferData);
 }
  
