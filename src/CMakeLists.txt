@@ -5,6 +5,8 @@ set(EXECUTABLE_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Exceptions/EnumValueError.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Exceptions/KeyError.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Exceptions/KeyError.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/freetype/FreeTypeError.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/freetype/FreeTypeError.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/freetype/FreeTypeLibrary.h
     ${CMAKE_CURRENT_SOURCE_DIR}/freetype/FreeTypeLibrary.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/BoundBufferObject.h
