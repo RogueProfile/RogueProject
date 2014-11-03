@@ -9,6 +9,7 @@
 #include "GlHeaders.h"
 
 #include "Screen.h"
+#include "Keyboard.h"
 
 Game::Game(Vector2i window_size):
     sdl::SdlUser({sdl::SdlSubsystem::Video, sdl::SdlSubsystem::Events}),
@@ -30,6 +31,7 @@ void Game::run()
                 return;
             }
         }
+        Keyboard::update();
         m_context->clear({gl::ClearTarget::ColorBuffer, gl::ClearTarget::DepthBuffer,
             gl::ClearTarget::StencilBuffer}); 
 
@@ -57,6 +59,7 @@ void Game::initialize()
         //TODO: Exception
     }
     glGetError();
+    Keyboard::initialize();
 }
  
 void Game::initialize_open_gl()
