@@ -19,6 +19,7 @@ class Glyph
 {
     friend class BitmapGlyph;
 public:
+    explicit Glyph(FT_Glyph glyph);
     virtual ~Glyph();
 
     Glyph(const Glyph& other) = delete;
@@ -38,7 +39,6 @@ public:
 	Rectanglei get_control_box() const;
 
 protected:
-    explicit Glyph(FT_Glyph glyph);
 
     FT_Glyph m_glyph = nullptr;
 private:

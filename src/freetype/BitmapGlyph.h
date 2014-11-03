@@ -12,8 +12,8 @@ namespace ft
 
 class BitmapGlyph: public Glyph
 {
-    friend class Glyph;
 public:
+    explicit BitmapGlyph(FT_BitmapGlyph glyph);
     virtual ~BitmapGlyph();
 
     BitmapGlyph(const BitmapGlyph& other) = delete;
@@ -39,7 +39,6 @@ public:
     static BitmapGlyph from_glyph(Glyph glyph, GlyphRenderMode render_mode);
 
 protected:
-    explicit BitmapGlyph(FT_BitmapGlyph glyph);
 
     FT_BitmapGlyph bitmap_glyph() const {return reinterpret_cast<FT_BitmapGlyph>(m_glyph);}
 private:
