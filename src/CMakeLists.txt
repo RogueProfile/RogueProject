@@ -9,6 +9,8 @@ set(EXECUTABLE_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/freetype/BitmapGlyph.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/freetype/FontFace.h
     ${CMAKE_CURRENT_SOURCE_DIR}/freetype/FontFace.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/freetype/FontManager.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/freetype/FontManager.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/freetype/FreeTypeError.h
     ${CMAKE_CURRENT_SOURCE_DIR}/freetype/FreeTypeError.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/freetype/FreeTypeLibrary.h
