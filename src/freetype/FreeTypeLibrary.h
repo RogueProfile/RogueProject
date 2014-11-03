@@ -18,6 +18,8 @@ public:
     FreeTypeLibrary& operator =(const FreeTypeLibrary& other) = delete;
     FreeTypeLibrary& operator =(FreeTypeLibrary&& other) noexcept;
 
+    FT_Library ft_object() const {return m_library;}
+
 protected:
     void destroy();
 

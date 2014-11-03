@@ -83,7 +83,7 @@ inline void LruCache<Key, Type>::add_item(const Key& key, Type item)
 {
 	m_order.push_front(key);
 	CacheItem cache_item = {std::move(item), m_order.begin()};
-	m_items.insert(std::make_pair(key, cache_item));
+	m_items.emplace(std::make_pair(key, cache_item));
 
 	if(m_items.size() > m_capacity)
 	{

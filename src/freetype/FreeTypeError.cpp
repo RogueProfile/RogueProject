@@ -9,7 +9,7 @@ FreeTypeError::FreeTypeError(const std::string& message, int error_code):
     m_error_code(error_code)
 {
     std::ostringstream stream;
-    stream << message << " error code = " < m_error_code; 
+    stream << message << " error code = " << m_error_code; 
     set_message(stream.str());
 }
  
