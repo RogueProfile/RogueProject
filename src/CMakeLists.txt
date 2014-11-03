@@ -5,10 +5,14 @@ set(EXECUTABLE_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Exceptions/EnumValueError.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Exceptions/KeyError.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Exceptions/KeyError.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/freetype/BitmapGlyph.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/freetype/BitmapGlyph.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/freetype/FreeTypeError.h
     ${CMAKE_CURRENT_SOURCE_DIR}/freetype/FreeTypeError.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/freetype/FreeTypeLibrary.h
     ${CMAKE_CURRENT_SOURCE_DIR}/freetype/FreeTypeLibrary.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/freetype/Glyph.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/freetype/Glyph.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/BoundBufferObject.h
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/BoundBufferObject.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/BoundShaderProgram.h
@@ -64,6 +68,7 @@ set(EXECUTABLE_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Flags.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Game.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Game.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/LruCache.h
     ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Screen.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Screen.cpp
