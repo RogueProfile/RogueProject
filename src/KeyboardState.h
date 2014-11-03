@@ -3,13 +3,14 @@
 
 #include <SDL2/SDL.h>
 
-#include <vector>
+#include <array>
 
 #include "Flags.h"
 
 
 class KeyboardState
 {
+    friend class Keyboard;
 public:
     enum class ScanCode: SDL_Keycode
     {
@@ -521,7 +522,7 @@ public:
 protected:
     KeyboardState() {};
 
-    std::vector<uint8_t> m_scan_codes;
+    std::array<uint8_t, SDL_NUM_SCANCODES> m_scan_codes;
     Flags<ModKey> m_mod_keys;
 
 private:
