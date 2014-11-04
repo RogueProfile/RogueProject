@@ -1,6 +1,8 @@
 set(EXECUTABLE_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Events/Event.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Events/Event.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Events/KeyboardEvent.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Events/KeyboardEvent.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Exceptions/Exception.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Exceptions/Exception.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Exceptions/EnumValueError.h

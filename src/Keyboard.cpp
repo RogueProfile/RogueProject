@@ -12,8 +12,8 @@ void Keyboard::update()
     {
         m_current_state.m_scan_codes[i] = key_state[i];
     }
-    m_current_state.m_mod_keys = Flags<KeyboardState::ModKey>(
-        static_cast<KeyboardState::ModKey>(SDL_GetModState()));
+    m_current_state.m_mod_keys = Flags<ModKey>(
+        static_cast<ModKey>(SDL_GetModState()));
 }
 
 void Keyboard::initialize()
