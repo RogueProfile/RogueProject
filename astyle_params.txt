@@ -1,0 +1,1 @@
+--indent=spaces=4 --style=allman --indent-cases --indent-labels --indent-preproc-define --indent-col1-comments --keep-one-line-blocks --unpad-paren --align-pointer=type --align-reference=type --add-brackets --convert-tabs --max-code-length=100 --mode=c --lineend=linux
