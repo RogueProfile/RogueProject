@@ -4,7 +4,7 @@
 #include <chrono>
 #include <iostream>
 
-#include "sdl/Events/Event.h"
+#include "Events/Event.h"
 
 #include "GlHeaders.h"
 
@@ -26,7 +26,7 @@ void Game::run()
         m_frame_start_time = Clock::now();
         for(auto event = m_window.poll_event(); event != nullptr; event = m_window.poll_event())
         {
-            if(event->type() == sdl::Event::Type::Quit)
+            if(event->type() == event::EventType::Quit)
             {
                 return;
             }

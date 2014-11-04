@@ -1,9 +1,9 @@
 #include "Event.h"
 
-namespace sdl
+namespace event
 {
 
-Event::Event(Event::Type type):
+Event::Event(EventType type):
     m_type(type)
 {
  

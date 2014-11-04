@@ -77,7 +77,7 @@ SdlWindow& SdlWindow::operator=(SdlWindow&& other) noexcept
     return *this;
 }
  
-std::unique_ptr<Event> SdlWindow::poll_event()
+std::unique_ptr<event::Event> SdlWindow::poll_event()
 {
     SDL_Event event;
     if(SDL_PollEvent(&event))
@@ -97,17 +97,17 @@ void SdlWindow::destroy()
     } 
 }
  
-std::unique_ptr<Event> SdlWindow::translate_event(const SDL_Event& event)
+std::unique_ptr<event::Event> SdlWindow::translate_event(const SDL_Event& event)
 {
     switch(event.type)
     {
         case SDL_QUIT:
         {
-            return std::make_unique<Event>(Event::Type::Quit);
+            return std::make_unique<event::Event>(event::EventType::Quit);
         }
         default:
         {
-            return std::make_unique<Event>(Event::Type::Unknown);
+            return std::make_unique<event::Event>(event::EventType::Unknown);
         }
     } 
 }

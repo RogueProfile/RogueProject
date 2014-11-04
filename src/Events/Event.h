@@ -1,19 +1,20 @@
 #ifndef EVENT_H__
 #define EVENT_H__
 
-namespace sdl
+namespace event
 {
+
+enum class EventType
+{
+    Quit,
+    Unknown
+};
 
 class Event
 {
 public:
-    enum class Type
-    {
-        Quit,
-        Unknown
-    };
 
-    explicit Event(Type type);
+    explicit Event(EventType type);
     ~Event() = default;
 
     Event(const Event& other) = default;
@@ -21,10 +22,10 @@ public:
     Event& operator =(const Event& other) = default;
     Event& operator =(Event&& other) noexcept = default;
 
-    Type type() const {return m_type;}
+    EventType type() const {return m_type;}
 
 protected:
-    Type m_type;
+    EventType m_type;
 private:
 };
 
