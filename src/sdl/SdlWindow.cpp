@@ -1,6 +1,7 @@
 #include "SdlWindow.h"
 
 #include "Events/Event.h"
+#include "Events/KeyboardEvent.h"
 
 #include "SdlException.h"
 
@@ -101,10 +102,11 @@ std::unique_ptr<event::Event> SdlWindow::translate_event(const SDL_Event& event)
 {
     switch(event.type)
     {
-        case SDL_QUIT:
-        {
-            return std::make_unique<event::Event>(event::EventType::Quit);
-        }
+        case SDL_QUIT: return std::make_unique<event::Event>(event::EventType::Quit);
+        case SDL_KEYDOWN: return std::make_unique<event::KeyboardEvent>(event::EventType::KeyDown, 
+            reinterpret_cast<const SDL_KeyboardEvent&>(event));
+        case SDL_KEYUP: return std::make_unique<event::KeyboardEvent>(event::EventType::KeyUp, 
+            reinterpret_cast<const SDL_KeyboardEvent&>(event));
         default:
         {
             return std::make_unique<event::Event>(event::EventType::Unknown);
