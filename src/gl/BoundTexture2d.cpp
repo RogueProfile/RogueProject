@@ -50,7 +50,7 @@ void BoundTexture2d::set_filter_modes(Texture::FilterMode mag_filter,
 void BoundTexture2d::generate_mipmap()
 {
     glGenerateMipmap(GL_TEXTURE_2D);
-    CHECK_GL_ERROR(GL_TEXTURE_2D);
+    CHECK_GL_ERROR(glGenerateMipmap);
 }
 
  

@@ -66,7 +66,7 @@ void Texture2d::allocate_mipmap_storage(int mipmap_levels, InternalPixelFormat f
 #if GL_TARGET_VERSION >= 402
 	//Use immutable storage if available
 	glTexStorage2D(GL_TEXTURE_2D, mipmapLevels, static_cast<GLenum>(format),
-			width, height);
+			m_width, m_height);
 	CHECK_GL_ERROR(glTexStorage2D);
 #else
 	auto level_width = m_width;

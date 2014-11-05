@@ -27,6 +27,8 @@ set(EXECUTABLE_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/BoundShaderProgram.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/BoundTexture2d.h
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/BoundTexture2d.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/gl/BoundTextureArray2d.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/gl/BoundTextureArray2d.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/BoundVertexArrayObject.h
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/BoundVertexArrayObject.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/BufferObject.h
@@ -53,6 +55,8 @@ set(EXECUTABLE_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/Texture.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/Texture2d.h
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/Texture2d.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/gl/TextureArray2d.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/gl/TextureArray2d.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/VertexAttributeSource.h
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/VertexAttributeSource.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/VertexArrayObject.h
