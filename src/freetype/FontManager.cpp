@@ -4,13 +4,15 @@
 
 #include "FontFace.h"
 
+#include <iostream>
+
 namespace ft
 {
 
 FontManager::FontManager(boost::filesystem::path root_directory):
     m_root_directory(std::move(root_directory))
 {
- 
+    std::cout << m_root_directory << std::endl; 
 }
 
 FontManager::FontManager(FontManager&& other) noexcept:
@@ -76,10 +78,8 @@ FontFace FontManager::create_font_face(const std::string& name, int width,
  
 FontManager::FontFileData FontManager::load_font_file(const boost::filesystem::path& font_file)
 {
-    auto file_path = m_root_directory;
-    file_path /= (font_file);
-    auto file_size = boost::filesystem::file_size(file_path);
-    boost::filesystem::ifstream file_stream(file_path, std::ios::binary | std::ios::in);
+    auto file_size = boost::filesystem::file_size(font_file);
+    boost::filesystem::ifstream file_stream(font_file, std::ios::binary | std::ios::in);
     if(!file_stream.is_open())
     {
         //TODO: Throw exception
@@ -135,10 +135,13 @@ boost::optional<boost::filesystem::path> FontManager::get_path_for_font(const st
 {
     static constexpr std::array<const char*, 2> extensions = {".ttf", ".otf"}; 
 
+    auto file_path_base = m_root_directory;
+    file_path_base /= font_name;
+
     for(auto ext : extensions)
     {
-        auto try_path = m_root_directory;
-        try_path /= ext;
+        auto try_path = file_path_base;
+        try_path += ext;
         if(boost::filesystem::exists(try_path))
         {
             return boost::optional<boost::filesystem::path>(try_path);
