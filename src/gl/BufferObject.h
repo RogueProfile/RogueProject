@@ -26,10 +26,6 @@ public:
         Write = GL_MAP_WRITE_BIT
     };
 
-    BufferObject(GlContext* ctx, BufferUsageType usage, size_t size,
-           GLenum start_target);
-    BufferObject(GlContext* ctx, BufferUsageType usage, const void* data,
-           size_t size, GLenum start_target);
     virtual ~BufferObject();
 
     BufferObject(const BufferObject& other) = delete;
@@ -41,6 +37,10 @@ public:
     BufferUsageType usage_type() const {return m_usage;}
 
 protected:
+    BufferObject(GlContext* ctx, BufferUsageType usage, size_t size,
+           GLenum start_target);
+    BufferObject(GlContext* ctx, BufferUsageType usage, const void* data,
+           size_t size, GLenum start_target);
     virtual void destroy() override;
     void allocate(const void* data, GLenum target);
 
