@@ -1,7 +1,7 @@
 #include "KeyError.h"
 
 KeyError::KeyError(std::string message):
-    Exception(message)
+    Exception(std::move(message))
 {}
 
 KeyError::KeyError(const KeyError& other):
