@@ -7,7 +7,7 @@ namespace gl
 
 VertexBufferObject::VertexBufferObject(GlContext* ctx, gl::BufferUsageType usage,
         const void* data, size_t size):
-    BufferObject(ctx, usage, data, size, GL_VERTEX_ARRAY)
+    BufferObject(ctx, usage, data, size, GL_ARRAY_BUFFER)
 {
 }
  
