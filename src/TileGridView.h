@@ -108,10 +108,7 @@ inline TileGridView& TileGridView::write_line(Iterator start, Iterator end,
     Tile base_tile(fg_color, bg_color, 0);
     for(auto it = start; it != end; ++it)
     {
-        base_tile.set_tile_index(*it);
-        set_tile(x, y, base_tile); 
-        x += 1;
-        if(x >= width())
+        if(x >= width() || *it == '\n')
         {
             y += 1;
             x = 0;
@@ -119,7 +116,14 @@ inline TileGridView& TileGridView::write_line(Iterator start, Iterator end,
             {
                 break;
             }
+            if(*it == '\n')
+            {
+                continue;
+            }
         }
+        base_tile.set_tile_index(*it);
+        set_tile(x, y, base_tile); 
+        x += 1;
     }  
     return *this;
 }
