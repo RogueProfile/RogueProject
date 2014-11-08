@@ -1,9 +1,11 @@
 #include "Shader.h"
 
+#include <memory>
+
 #include "GlError.h"
 #include "GlMacros.h"
 
-#include <memory>
+#include "ShaderCompilationError.h"
 
 namespace gl
 {
@@ -41,6 +43,10 @@ void Shader::compile_source(const std::string& source)
     CHECK_GL_ERROR(glShaderSource);
     glCompileShader(m_handle);
     CHECK_GL_ERROR(glCompileShader); 
+    if(!is_compiled())
+    {
+        throw ShaderCompilationError(get_info_log());
+    }
 }
  
 bool Shader::is_compiled() const

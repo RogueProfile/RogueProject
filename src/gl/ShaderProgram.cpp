@@ -4,6 +4,8 @@
 #include "GlHeaders.h"
 #include "GlMacros.h"
 
+#include "ShaderCompilationError.h"
+
 namespace gl
 {
 
@@ -57,6 +59,18 @@ void ShaderProgram::link()
 {
     glLinkProgram(m_handle);
     CHECK_GL_ERROR(glLinkProgram); 
+    if(!is_linked())
+    {
+        throw ShaderCompilationError(get_info_log());
+    }
+}
+ 
+bool ShaderProgram::is_linked() const
+{
+    int is_linked = 0;
+    glGetProgramiv(m_handle, GL_LINK_STATUS, &is_linked); 
+    CHECK_GL_ERROR(glGetProgramiv); 
+    return is_linked != 0;
 }
  
 void ShaderProgram::bind_attribute_location(const char* name, int location)

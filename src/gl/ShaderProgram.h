@@ -28,6 +28,8 @@ public:
     void attach_shader(const Shader& new_shader);
     void link();
 
+    bool is_linked() const;
+
     void bind_attribute_location(const char* name, int location);
     void bind_attribute_location(const std::string& name, int location)
         {bind_attribute_location(name.c_str(), location);}

@@ -47,6 +47,8 @@ set(EXECUTABLE_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/MappedBufferObject.h
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/Shader.h
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/Shader.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/gl/ShaderCompilationError.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/gl/ShaderCompilationError.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/ShaderProgram.h
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/ShaderProgram.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/TargetBindError.h
