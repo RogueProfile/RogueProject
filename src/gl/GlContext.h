@@ -59,11 +59,6 @@ public:
 
     BoundTextureArray2d bind_texture_array_2d(TextureArray2d& texture);
 
-    Texture2d create_texture(int width, int height, int mipmap_levels,
-            Texture::InternalPixelFormat format);
-    TextureArray2d create_texture_array_2d(int width, int height, int layers,
-            int mipmap_levels, Texture::InternalPixelFormat format);
-
     void rebind_texture_2d();
     void rebind_texture_array_2d();
     void rebind_buffer_object();

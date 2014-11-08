@@ -5,11 +5,13 @@
 
 #include "GlMacros.h"
 #include "GlError.h"
+#include "GlContext.h"
 
 namespace gl
 {
 
-Texture2d::Texture2d(int width, int height, int mipmap_levels, InternalPixelFormat format):
+Texture2d::Texture2d(GlContext* ctx, int width, int height,
+       int mipmap_levels, InternalPixelFormat format):
     m_width(width), m_height(height), m_pixel_format(format)
 {
     glGenTextures(1, &m_handle); 
@@ -20,7 +22,7 @@ Texture2d::Texture2d(int width, int height, int mipmap_levels, InternalPixelForm
 
     initialize_params_to_default();
     allocate_mipmap_storage(mipmap_levels, format);
-
+    ctx->rebind_texture_2d();
 }
  
 Texture2d::~Texture2d()

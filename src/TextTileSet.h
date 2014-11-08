@@ -40,11 +40,14 @@ public:
     virtual gl::Texture* get_texture() override;
 
 protected:
+    static constexpr int texture_width() {return 1024;}
+    static constexpr int texture_height() {return 1024;}
+
     void add_initial_slots();
     void compute_geometries(int min_slots);
 
-    int tiles_per_line() const {return m_texture_width / tile_width();}
-    int tile_lines() const {return m_texture_height / m_tile_height;}
+    int tiles_per_line() const {return texture_height() / tile_width();}
+    int tile_lines() const {return texture_width() / m_tile_height;}
 
     void add_glyph(const TileLocation& location, TileIdType character);
     std::vector<uint32_t> copy_glyph_bitmap(const ft::BitmapGlyph& glyph) const;
@@ -59,8 +62,7 @@ protected:
 
     mutable std::vector<TileLocation> m_free_slots;
     std::shared_ptr<const ft::FontFace> m_font_face;
-    static constexpr int m_texture_width = 1024;
-    static constexpr int m_texture_height = 1024;
+
     int m_texture_layers;
 
     int m_tile_height;

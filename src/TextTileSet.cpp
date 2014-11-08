@@ -17,10 +17,9 @@ TextTileSet::TextTileSet(gl::GlContext* context,
             std::placeholders::_1, std::placeholders::_2))
 {
     compute_geometries(min_tile_slots);
-    m_texture = 
-        std::make_unique<gl::TextureArray2d>(
-            m_context->create_texture_array_2d(m_texture_width, m_texture_height,
-            m_texture_layers, 1, gl::Texture::InternalPixelFormat::RGBA8));            
+    m_texture = std::make_unique<gl::TextureArray2d>(
+            m_context, texture_width(), texture_height(),
+            m_texture_layers, 1, gl::Texture::InternalPixelFormat::RGBA8);            
     add_initial_slots();
 }
  
@@ -48,8 +47,8 @@ void TextTileSet::compute_geometries(int min_slots)
     m_texture_layers = std::ceil(static_cast<float>(min_slots) /
            (tiles_per_line() * tile_lines()));
 
-    m_cell_width = tile_width() / static_cast<double>(m_texture_width);
-    m_cell_height = tile_height() / static_cast<double>(m_texture_height);
+    m_cell_width = tile_width() / static_cast<double>(texture_width());
+    m_cell_height = tile_height() / static_cast<double>(texture_height());
 
     auto tile_count = tiles_per_line() * tile_lines() * m_texture_layers;
     m_free_slots.resize(tile_count);
@@ -109,8 +108,8 @@ void TextTileSet::add_glyph(const TileLocation& location, TileIdType character)
 
     auto bitmap_data = copy_glyph_bitmap(*glyph); 
 
-    Rectanglei tile_location(location.bottom_left.x * m_texture_width,
-            location.bottom_left.y * m_texture_height,
+    Rectanglei tile_location(location.bottom_left.x * texture_width(),
+            location.bottom_left.y * texture_height(),
             tile_width(), tile_height());
     
     auto bound_texture = m_context->bind_texture_array_2d(*m_texture);

@@ -100,27 +100,6 @@ BoundTextureArray2d GlContext::bind_texture_array_2d(TextureArray2d& texture)
             TargetLock(&texture, &m_bound_texture_array_2d));
 }
  
-Texture2d GlContext::create_texture(int width, int height, int mipmap_levels, 
-        Texture::InternalPixelFormat format)
-{
-    Texture2d texture(width, height, mipmap_levels, format);
-    //Texture2d binds itself to create the texture. Restore the set
-    //binding before returning back to the user.
-    rebind_texture_2d();
-    return texture;  
-}
- 
-TextureArray2d GlContext::create_texture_array_2d(int width, int height, int layers,
-      int mipmap_levels, Texture::InternalPixelFormat format)
-{
- 
-    TextureArray2d texture(width, height, layers, mipmap_levels, format);
-    //Texture2d binds itself to create the texture. Restore the set
-    //binding before returning back to the user.
-    rebind_texture_array_2d();
-    return texture;  
-}
- 
 void GlContext::rebind_texture_2d()
 {
     if(m_bound_texture_2d != nullptr)

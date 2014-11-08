@@ -2,10 +2,25 @@
 
 #include "GlMacros.h"
 #include "GlError.h"
+#include "GlContext.h"
 
 namespace gl
 {
 
+TextureArray2d::TextureArray2d(GlContext* ctx, int width, int height,
+        int num_layers, int mipmap_levels, InternalPixelFormat format):
+    m_width(width), m_height(height), m_num_layers(num_layers)
+{
+    glGenTextures(1, &m_handle);
+    CHECK_GL_ERROR(glGenTextures);
+
+    glBindTexture(GL_TEXTURE_2D_ARRAY, m_handle);
+    CHECK_GL_ERROR(glBindTexture);
+
+    initialize_params_to_default();
+    allocate_mipmap_storage(mipmap_levels, format);
+    ctx->rebind_texture_array_2d();
+}
  
 TextureArray2d::~TextureArray2d()
 {
@@ -29,19 +44,6 @@ TextureArray2d& TextureArray2d::operator=(TextureArray2d&& other) noexcept
     return *this;
 }
  
-TextureArray2d::TextureArray2d(int width, int height, int num_layers, int mipmap_levels,
-       InternalPixelFormat format):
-    m_width(width), m_height(height), m_num_layers(num_layers)
-{
-    glGenTextures(1, &m_handle);
-    CHECK_GL_ERROR(glGenTextures);
-
-    glBindTexture(GL_TEXTURE_2D_ARRAY, m_handle);
-    CHECK_GL_ERROR(glBindTexture);
-
-    initialize_params_to_default();
-    allocate_mipmap_storage(mipmap_levels, format);
-}
 
 void TextureArray2d::destroy()
 {

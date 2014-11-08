@@ -5,11 +5,14 @@
 
 namespace gl
 {
+class GlContext;
 
 class TextureArray2d: public Texture
 {
     friend class GlContext;
 public:
+    TextureArray2d(GlContext* ctx, int width, int height, int num_layers,
+            int mipmap_levels, InternalPixelFormat format);
     ~TextureArray2d();
 
     TextureArray2d(const TextureArray2d& other) = default;
@@ -22,8 +25,6 @@ public:
     int num_layers() const {return m_num_layers;}
 
 protected:
-    TextureArray2d(int width, int height, int num_layers, int mipmap_levels,
-            InternalPixelFormat format);
 
     virtual void destroy() override;
 
