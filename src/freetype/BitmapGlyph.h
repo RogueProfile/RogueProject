@@ -36,8 +36,6 @@ public:
 
 	const unsigned char* buffer() const {return bitmap_glyph()->bitmap.buffer;}
 
-    static BitmapGlyph from_glyph(Glyph glyph, GlyphRenderMode render_mode);
-
 protected:
 
     FT_BitmapGlyph bitmap_glyph() const {return reinterpret_cast<FT_BitmapGlyph>(m_glyph);}

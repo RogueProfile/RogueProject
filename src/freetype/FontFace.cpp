@@ -27,10 +27,26 @@ FontFace::FontFace(const FreeTypeLibrary& library,
  
 FontFace::~FontFace()
 {
-    if(m_face != nullptr)
-    {
-        FT_Done_Face(m_face);
-    } 
+    destroy();
+}
+ 
+FontFace::FontFace(FontFace&& other) noexcept:
+    m_cache(std::move(other.m_cache)), m_face(other.m_face),
+    m_font_data(std::move(other.m_font_data)), m_glyph_flags(other.m_glyph_flags)
+{
+    other.m_face = nullptr;
+}
+ 
+FontFace& FontFace::operator=(ft::FontFace&& other) noexcept
+{
+    using std::swap;
+    destroy(); 
+    m_face = nullptr;
+    m_cache = std::move(other.m_cache);
+    m_font_data = std::move(other.m_font_data);
+    std::swap(m_face, other.m_face);
+    m_glyph_flags = other.m_glyph_flags;
+    return *this;
 }
  
 std::string FontFace::family_name() const
@@ -174,6 +190,14 @@ void FontFace::select_char_map(CharMapEncoding encoding)
 	{
 		throw FreeTypeError("Unable to set char map", error);
 	}    
+}
+ 
+void FontFace::destroy()
+{
+    if(m_face != nullptr)
+    {
+        FT_Done_Face(m_face);
+    } 
 }
  
 void FontFace::invalidate_cache() const

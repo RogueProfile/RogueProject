@@ -9,6 +9,8 @@ set(EXECUTABLE_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Exceptions/EnumValueError.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Exceptions/KeyError.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Exceptions/KeyError.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Exceptions/ResourceNotFoundError.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Exceptions/ResourceNotFoundError.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/freetype/BitmapGlyph.h
     ${CMAKE_CURRENT_SOURCE_DIR}/freetype/BitmapGlyph.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/freetype/FontFace.h

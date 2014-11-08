@@ -45,10 +45,10 @@ public:
         const Flags<GlyphLoadFlags>& glyph_flags);
     ~FontFace();
 
-    FontFace(const FontFace& other) = default;
-    FontFace(FontFace&& other) noexcept = default;
-    FontFace& operator =(const FontFace& other) = default;
-    FontFace& operator =(FontFace&& other) noexcept = default;
+    FontFace(const FontFace& other) = delete;
+    FontFace(FontFace&& other) noexcept;
+    FontFace& operator =(const FontFace& other) = delete;
+    FontFace& operator =(FontFace&& other) noexcept;
 
     std::string family_name() const;
     std::string style_name() const;
@@ -104,6 +104,7 @@ public:
 
 protected:
     constexpr static float frac_266_to_float(int val) {return val / 64.f;}
+    void destroy();
 
     std::shared_ptr<Glyph> construct_glyph_object(FT_Glyph glyph) const;
     FT_Glyph load_glyph(char32_t chr) const;

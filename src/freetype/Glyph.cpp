@@ -14,10 +14,7 @@ Glyph::Glyph(FT_Glyph glyph):
 
 Glyph::~Glyph()
 {
-    if(m_glyph != nullptr)
-    {
-        FT_Done_Glyph(m_glyph);
-    } 
+    destroy();
 }
 
 Glyph::Glyph(Glyph&& other) noexcept:
@@ -29,6 +26,7 @@ Glyph::Glyph(Glyph&& other) noexcept:
 Glyph& Glyph::operator=(Glyph&& other) noexcept
 {
     using std::swap;
+    destroy();
     m_glyph = nullptr;
     swap(m_glyph, other.m_glyph);
     return *this;
@@ -52,7 +50,6 @@ Rectanglei Glyph::get_control_box() const
 	return Rectanglei::from_vertices(bbox.xMin >> 6, -bbox.yMin >> 6, bbox.xMax >> 6, -bbox.yMax >> 6); 
 }
  
- 
 BitmapGlyph Glyph::make_bitmap_glyph(GlyphRenderMode render_mode) const
 {
     auto new_glyph = m_glyph;
@@ -68,6 +65,14 @@ BitmapGlyph Glyph::make_bitmap_glyph(GlyphRenderMode render_mode) const
             "it is either already a bitmap or it is not a scalar", 0);
     }
     return BitmapGlyph(reinterpret_cast<FT_BitmapGlyph>(new_glyph));
+}
+ 
+void Glyph::destroy()
+{
+    if(m_glyph != nullptr)
+    {
+        FT_Done_Glyph(m_glyph);
+    } 
 }
  
 }

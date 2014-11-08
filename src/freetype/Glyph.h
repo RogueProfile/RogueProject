@@ -39,6 +39,7 @@ public:
 	Rectanglei get_control_box() const;
 
 protected:
+    void destroy();
 
     FT_Glyph m_glyph = nullptr;
 private:

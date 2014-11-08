@@ -4,7 +4,7 @@
 
 #include "FontFace.h"
 
-#include <iostream>
+#include "Exceptions/ResourceNotFoundError.h"
 
 namespace ft
 {
@@ -12,7 +12,6 @@ namespace ft
 FontManager::FontManager(boost::filesystem::path root_directory):
     m_root_directory(std::move(root_directory))
 {
-    std::cout << m_root_directory << std::endl; 
 }
 
 FontManager::FontManager(FontManager&& other) noexcept:
@@ -82,7 +81,7 @@ FontManager::FontFileData FontManager::load_font_file(const boost::filesystem::p
     boost::filesystem::ifstream file_stream(font_file, std::ios::binary | std::ios::in);
     if(!file_stream.is_open())
     {
-        //TODO: Throw exception
+        throw ResourceNotFoundError("Font file '" + font_file.string() + "' could not be loaded.");
     }
     FontFileData data(file_size);
     file_stream.read(reinterpret_cast<char*>(data.data()), file_size);
@@ -126,7 +125,9 @@ std::shared_ptr<FontManager::FontFileData> FontManager::get_font_data_from_name(
     auto path = get_path_for_font(font_name);
     if(!path)
     {
-        //TODO: Throw exception
+        throw ResourceNotFoundError("No font named '" + font_name
+            + "' could be found in " + m_root_directory.string());
+
     }
     return get_font_data(*path);
 }

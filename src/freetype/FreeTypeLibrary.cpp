@@ -1,5 +1,7 @@
 #include "FreeTypeLibrary.h"
 
+#include <utility>
+
 namespace ft
 {
 
@@ -21,9 +23,10 @@ FreeTypeLibrary::FreeTypeLibrary(FreeTypeLibrary&& other) noexcept:
  
 FreeTypeLibrary& FreeTypeLibrary::operator=(FreeTypeLibrary&& other) noexcept
 {
+    using std::swap;
     destroy();
-    m_library = other.m_library;
-    other.m_library = nullptr;
+    m_library = nullptr;
+    swap(m_library, other.m_library);
     return *this; 
 }
  
