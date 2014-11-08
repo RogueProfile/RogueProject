@@ -35,7 +35,7 @@ public:
     virtual int tile_width() const override;
     virtual int tile_height() const override {return m_tile_height;}
 
-    virtual const TileLocation& get_tile_location(TileIdType id) override;
+    virtual const TileLocation& get_tile_location(unsigned int id) override;
 
     virtual gl::Texture* get_texture() override;
 
@@ -49,11 +49,11 @@ protected:
     int tiles_per_line() const {return texture_height() / tile_width();}
     int tile_lines() const {return texture_width() / m_tile_height;}
 
-    void add_glyph(const TileLocation& location, TileIdType character);
+    void add_glyph(const TileLocation& location, unsigned int character);
     std::vector<uint32_t> copy_glyph_bitmap(const ft::BitmapGlyph& glyph) const;
 
     std::unique_ptr<gl::TextureArray2d> m_texture;
-    mutable LruCache<TileIdType, TileLocation> m_tiles;
+    mutable LruCache<unsigned int, TileLocation> m_tiles;
 
     gl::GlContext* m_context;
 
@@ -69,7 +69,7 @@ protected:
     int m_vert_shift;
 private:
 
-    void on_tile_drop(const TileIdType& tile_id, const TileLocation& location);
+    void on_tile_drop(const unsigned int& tile_id, const TileLocation& location);
 };
 
 

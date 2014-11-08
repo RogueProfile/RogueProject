@@ -55,7 +55,7 @@ void TextTileSet::compute_geometries(int min_slots)
     m_tiles.resize(tile_count);
 }
  
-const TileSet::TileLocation& TextTileSet::get_tile_location(TileIdType id)
+const TileSet::TileLocation& TextTileSet::get_tile_location(unsigned int id)
 {
     const auto* cell = m_tiles.get_item(id);
     if(cell != nullptr)
@@ -101,7 +101,7 @@ void TextTileSet::add_initial_slots()
     }
 }
  
-void TextTileSet::add_glyph(const TileLocation& location, TileIdType character)
+void TextTileSet::add_glyph(const TileLocation& location, unsigned int character)
 {
     auto glyph = std::static_pointer_cast<const ft::BitmapGlyph>(
         m_font_face->get_glyph(character)); 
@@ -144,7 +144,7 @@ std::vector<uint32_t> TextTileSet::copy_glyph_bitmap(const ft::BitmapGlyph& glyp
     return bitmap_data;
 }
  
-void TextTileSet::on_tile_drop(const TileIdType& tile_id, const TileSet::TileLocation& location)
+void TextTileSet::on_tile_drop(const unsigned int& tile_id, const TileSet::TileLocation& location)
 {
     m_free_slots.push_back(location); 
 }

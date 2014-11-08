@@ -11,8 +11,6 @@ namespace gl
 class TileSet
 {
 public:
-    using TileIdType = unsigned int;
-
     enum class TextureType
     {
         Texture2d,
@@ -40,7 +38,7 @@ public:
     virtual int tile_width() const = 0;
     virtual int tile_height() const = 0;
 
-    virtual const TileLocation& get_tile_location(TileIdType id) = 0;
+    virtual const TileLocation& get_tile_location(unsigned int id) = 0;
 
     virtual gl::Texture* get_texture() = 0;
 
