@@ -27,10 +27,10 @@ public:
         TileSet* tile_set, const TileGrid* tile_grid);
     ~TileGridRenderer();
 
-    TileGridRenderer(const TileGridRenderer& other) = default;
-    TileGridRenderer(TileGridRenderer&& other) noexcept = default;
-    TileGridRenderer& operator =(const TileGridRenderer& other) = default;
-    TileGridRenderer& operator =(TileGridRenderer&& other) noexcept = default;
+    TileGridRenderer(const TileGridRenderer& other) = delete;
+    TileGridRenderer(TileGridRenderer&& other) noexcept = delete;
+    TileGridRenderer& operator =(const TileGridRenderer& other) = delete;
+    TileGridRenderer& operator =(TileGridRenderer&& other) noexcept = delete;
 
     void set_transform(const Matrix3f& transform);
 
@@ -50,6 +50,10 @@ protected:
     void fill_static_vertex_attribs();
     void fill_dynamic_vertex_attribs();
     void build_vertex_array_object();
+    void create_dynamic_vertex_buffer();
+
+    static constexpr int vertices_per_tile() {return 4;}
+    static constexpr int indices_per_tile() {return 6;}
 
     std::shared_ptr<gl::BufferObject> m_static_vertex_attribs;
     std::shared_ptr<gl::BufferObject> m_dynamic_vertex_attribs;

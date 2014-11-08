@@ -32,6 +32,8 @@ public:
     int width() const {return m_width;}
     int height() const {return m_height;}
 
+    int tile_count() const {return m_width*m_height;}
+
     TileGridView default_view();
 
 protected:

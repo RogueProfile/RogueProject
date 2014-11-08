@@ -2,7 +2,6 @@
 
 #include <utility>
 #include <cstddef>
-#include <iostream>
 
 #include "gl/ShaderProgram.h"
 #include "gl/BufferObject.h"
@@ -18,6 +17,14 @@
 #include "TileGrid.h"
 #include "TileSet.h"
 
+enum Attribute
+{
+    Position = 0,
+    TexCoord = 1,
+    FgColor = 2,
+    BgColor = 3
+};
+
 TileGridRenderer::TileGridRenderer(gl::GlContext* context,
         std::shared_ptr<gl::ShaderProgram> shader,
         const Matrix3f& transform,
@@ -25,9 +32,7 @@ TileGridRenderer::TileGridRenderer(gl::GlContext* context,
     m_context(context), m_shader(std::move(shader)), m_transform(transform),
     m_tile_set(tile_set), m_grid(tile_grid)
 {
-    m_dynamic_vertex_attribs = std::make_shared<gl::VertexBufferObject>(
-            m_context, gl::BufferUsageType::StreamDraw,
-            m_grid->width() * m_grid->height() * sizeof(DynVertexAttribs) * 4);
+    create_dynamic_vertex_buffer();
     fill_static_vertex_attribs();
     build_vertex_array_object();
 }
@@ -39,13 +44,16 @@ TileGridRenderer::~TileGridRenderer()
 
 void TileGridRenderer::fill_static_vertex_attribs()
 {
+    constexpr auto COMPONENTS_PER_VERTEX = 2;
+
     m_static_vertex_attribs = std::make_shared<gl::VertexBufferObject>(
         m_context, gl::BufferUsageType::StaticDraw,
-        m_grid->width() * m_grid->height() * sizeof(float) * 2 * 4);
+        m_grid->tile_count() * sizeof(float) * COMPONENTS_PER_VERTEX
+            * vertices_per_tile());
 
     m_index_buffer = std::make_shared<gl::IndexBufferObject>(
         m_context, gl::BufferUsageType::StaticDraw,
-        m_grid->width() * m_grid->height() * sizeof(unsigned int) * 6,
+        m_grid->tile_count() * sizeof(unsigned int) * indices_per_tile(),
         gl::IndexFormat::UInt);
 
     auto bound_vbo = m_context->bind_buffer_object(*m_static_vertex_attribs);
@@ -62,9 +70,9 @@ void TileGridRenderer::fill_static_vertex_attribs()
     auto index_index = 0;
     unsigned int index_base = 0;
 
-    for(auto x = 0; x < m_grid->width(); ++x)
+    for(auto y = 0; y < m_grid->height(); ++y)
     {
-        for(auto y = 0; y < m_grid->height(); ++y)
+        for(auto x = 0; x < m_grid->width(); ++x)
         {
             mapped_buffer[component_index++] = x * tile_width;     
             mapped_buffer[component_index++] = y * tile_height;     
@@ -96,9 +104,9 @@ void TileGridRenderer::fill_dynamic_vertex_attribs()
 
     auto component_index = 0;
 
-    for(auto x = 0; x < m_grid->width(); ++x)
+    for(auto y = 0; y < m_grid->height(); ++y)
     {
-        for(auto y = 0; y < m_grid->height(); ++y)
+        for(auto x = 0; x < m_grid->width(); ++x)
         {
             const auto& tile = m_grid->get_tile(x, y);
             auto fg_color = tile.foreground_color().to_abgr();
@@ -152,7 +160,7 @@ void TileGridRenderer::render()
     auto bound_texture = m_context->bind_texture_array_2d(
         *reinterpret_cast<gl::TextureArray2d*>(m_tile_set->get_texture()));
     m_context->draw_vertex_array_indexed(bound_vao, gl::PrimitiveType::Triangles,
-            0, 10*10*6);
+            0, m_grid->tile_count() * indices_per_tile());
 }
  
 std::shared_ptr<gl::ShaderProgram> TileGridRenderer::create_default_shader(gl::GlContext* context)
@@ -204,10 +212,8 @@ std::shared_ptr<gl::ShaderProgram> TileGridRenderer::create_default_shader(gl::G
 
     auto vertex_shader = std::make_shared<gl::Shader>(gl::ShaderType::Vertex);
     vertex_shader->compile_source(vertex_shader_source);
-    std::cout << "VERTEX: " << vertex_shader->get_info_log() << std::endl;
     auto fragment_shader = std::make_shared<gl::Shader>(gl::ShaderType::Fragment);
     fragment_shader->compile_source(fragment_shader_source);
-    std::cout << "FRAGMENT: " << fragment_shader->get_info_log() << std::endl;
 
     auto shader_program = std::make_shared<gl::ShaderProgram>();
     shader_program->attach_shader(std::move(vertex_shader));
@@ -217,7 +223,6 @@ std::shared_ptr<gl::ShaderProgram> TileGridRenderer::create_default_shader(gl::G
     shader_program->bind_attribute_location("fg_color", 2);
     shader_program->bind_attribute_location("bg_color", 3);
     shader_program->link();
-    std::cout << "PROGRAM: " << shader_program->get_info_log() << std::endl;
     return shader_program;
 }
  
@@ -226,17 +231,24 @@ void TileGridRenderer::build_vertex_array_object()
     m_vao = std::make_unique<gl::VertexArrayObject>(m_context); 
     auto bound_vao = m_context->bind_vertex_array(*m_vao);
 
-    bound_vao.set_vertex_attrib_source(0, 2, m_static_vertex_attribs,
+    bound_vao.set_vertex_attrib_source(Position, 2, m_static_vertex_attribs,
             gl::VertexComponentType::Float);
-    bound_vao.set_vertex_attrib_source(1, 3, m_dynamic_vertex_attribs,
+    bound_vao.set_vertex_attrib_source(TexCoord, 3, m_dynamic_vertex_attribs,
             gl::VertexComponentType::Float, sizeof(DynVertexAttribs),
             offsetof(DynVertexAttribs, u));
-    bound_vao.set_vertex_attrib_source(2, 4, m_dynamic_vertex_attribs,
+    bound_vao.set_vertex_attrib_source(FgColor, 4, m_dynamic_vertex_attribs,
             gl::VertexComponentType::UByte, sizeof(DynVertexAttribs),
             offsetof(DynVertexAttribs, fg_color), true);
-    bound_vao.set_vertex_attrib_source(3, 4, m_dynamic_vertex_attribs,
+    bound_vao.set_vertex_attrib_source(BgColor, 4, m_dynamic_vertex_attribs,
             gl::VertexComponentType::UByte, sizeof(DynVertexAttribs),
             offsetof(DynVertexAttribs, bg_color), true);
     bound_vao.set_index_buffer(m_index_buffer);
+}
+ 
+void TileGridRenderer::create_dynamic_vertex_buffer()
+{
+    m_dynamic_vertex_attribs = std::make_shared<gl::VertexBufferObject>(
+            m_context, gl::BufferUsageType::StreamDraw,
+            m_grid->tile_count() * sizeof(DynVertexAttribs) * vertices_per_tile());
 }
  
