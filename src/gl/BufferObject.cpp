@@ -6,12 +6,14 @@
 namespace gl
 {
 
-BufferObject::BufferObject(BufferUsageType usage, size_t size, GLenum start_target):
-    BufferObject(usage, nullptr, size, start_target)
+BufferObject::BufferObject(GlContext* ctx,
+        BufferUsageType usage, size_t size, GLenum start_target):
+    BufferObject(ctx, usage, nullptr, size, start_target)
 {
 }
 
-BufferObject::BufferObject(BufferUsageType usage, const void* data,
+BufferObject::BufferObject(GlContext* ctx, 
+        BufferUsageType usage, const void* data,
     size_t size, GLenum start_target):
     m_usage(usage), m_size(size)
 {

@@ -61,6 +61,8 @@ set(EXECUTABLE_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/VertexAttributeSource.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/VertexArrayObject.h
     ${CMAKE_CURRENT_SOURCE_DIR}/gl/VertexArrayObject.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/gl/VertexBufferObject.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/gl/VertexBufferObject.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/sdl/SdlException.h
     ${CMAKE_CURRENT_SOURCE_DIR}/sdl/SdlException.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/sdl/SdlGlContext.h

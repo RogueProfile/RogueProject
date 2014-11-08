@@ -15,7 +15,7 @@ IndexBufferObject::IndexBufferObject(GlContext* ctx, BufferUsageType usage,
  
 IndexBufferObject::IndexBufferObject(GlContext* ctx, BufferUsageType usage,
        const void* data, size_t data_size, IndexFormat format):
-    BufferObject(usage, data, data_size, GL_ELEMENT_ARRAY_BUFFER),
+    BufferObject(ctx, usage, data, data_size, GL_ELEMENT_ARRAY_BUFFER),
     m_format(format)
 {
 }

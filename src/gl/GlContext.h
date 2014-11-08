@@ -53,17 +53,6 @@ public:
     void copy_buffer_data(const BufferObject& from, BufferObject& to,
         size_t offset_from, size_t offset_to, size_t count);
 
-    BufferObject create_vertex_buffer(BufferUsageType usage,
-        size_t size);
-    BufferObject create_vertex_buffer(BufferUsageType usage,
-        const void* data, size_t data_size);
-    template<typename T>
-    BufferObject create_vertex_buffer(BufferUsageType usage,
-        const std::vector<T>& data);
-    template<typename T, size_t N>
-    BufferObject create_vertex_buffer(BufferUsageType usage,
-        const std::array<T, N>& data);
-
     BoundShaderProgram bind_shader_program(ShaderProgram& program);
     BoundBufferObject bind_buffer_object(BufferObject& buffer);
     BoundVertexArrayObject bind_vertex_array(VertexArrayObject& vao);
@@ -92,20 +81,6 @@ private:
     GlObject* m_bound_vertex_array = nullptr;
 
 };
-
-template<typename T>
-inline BufferObject GlContext::create_vertex_buffer(BufferUsageType usage,
-    const std::vector<T>& data) 
-{
-    return create_vertex_buffer(usage, data.data(), data.size() * sizeof(T));
-}
-
-template<typename T, size_t N>
-inline BufferObject GlContext::create_vertex_buffer(BufferUsageType usage,
-    const std::array<T, N>& data) 
-{
-    return create_vertex_buffer(usage, data.data(), N * sizeof(T));
-}
 
 }
 

@@ -23,18 +23,6 @@ void GlContext::clear(const Flags<ClearTarget>& buffers)
     CHECK_GL_ERROR(glClear);
 }
 
-BufferObject GlContext::create_vertex_buffer(BufferUsageType usage, size_t size)
-{
-    return create_vertex_buffer(usage, nullptr, size);
-}
-
-BufferObject GlContext::create_vertex_buffer(BufferUsageType usage,
-    const void* data, size_t data_size)
-{
-    auto buf = BufferObject(usage, data, data_size, GL_ARRAY_BUFFER);
-    return buf;
-}
-
 void GlContext::draw_vertex_array(const BoundVertexArrayObject& vao,
       PrimitiveType primitive, int first, size_t count)
 {

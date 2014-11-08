@@ -13,6 +13,7 @@
 #include "gl/BoundVertexArrayObject.h"
 #include "gl/BoundShaderProgram.h"
 #include "gl/BoundTextureArray2d.h"
+#include "gl/VertexBufferObject.h"
 
 #include "TileGrid.h"
 #include "TileSet.h"
@@ -24,10 +25,9 @@ TileGridRenderer::TileGridRenderer(gl::GlContext* context,
     m_context(context), m_shader(std::move(shader)), m_transform(transform),
     m_tile_set(tile_set), m_grid(tile_grid)
 {
-    m_dynamic_vertex_attribs.reset(
-        new gl::BufferObject(
-            m_context->create_vertex_buffer(gl::BufferUsageType::StreamDraw,
-            m_grid->width() * m_grid->height() * sizeof(DynVertexAttribs) * 4)));
+    m_dynamic_vertex_attribs = std::make_shared<gl::VertexBufferObject>(
+            m_context, gl::BufferUsageType::StreamDraw,
+            m_grid->width() * m_grid->height() * sizeof(DynVertexAttribs) * 4);
     fill_static_vertex_attribs();
     build_vertex_array_object();
 }
@@ -39,9 +39,9 @@ TileGridRenderer::~TileGridRenderer()
 
 void TileGridRenderer::fill_static_vertex_attribs()
 {
-    m_static_vertex_attribs.reset(new gl::BufferObject(
-        m_context->create_vertex_buffer(gl::BufferUsageType::StaticDraw,
-        m_grid->width() * m_grid->height() * sizeof(float) * 2 * 4)));
+    m_static_vertex_attribs = std::make_shared<gl::VertexBufferObject>(
+        m_context, gl::BufferUsageType::StaticDraw,
+        m_grid->width() * m_grid->height() * sizeof(float) * 2 * 4);
 
     m_index_buffer = std::make_shared<gl::IndexBufferObject>(
         m_context, gl::BufferUsageType::StaticDraw,

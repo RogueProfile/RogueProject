@@ -6,6 +6,7 @@
 
 namespace gl
 {
+class GlContext;
 
 class BufferObject: public GlObject
 {
@@ -25,8 +26,10 @@ public:
         Write = GL_MAP_WRITE_BIT
     };
 
-    BufferObject(BufferUsageType usage, size_t size, GLenum start_target);
-    BufferObject(BufferUsageType usage, const void* data, size_t size, GLenum start_target);
+    BufferObject(GlContext* ctx, BufferUsageType usage, size_t size,
+           GLenum start_target);
+    BufferObject(GlContext* ctx, BufferUsageType usage, const void* data,
+           size_t size, GLenum start_target);
     virtual ~BufferObject();
 
     BufferObject(const BufferObject& other) = delete;
