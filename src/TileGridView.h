@@ -2,8 +2,10 @@
 #define TILEGRIDVIEW_H__
 
 #include <cstddef>
+#include <cstring>
 
 #include "Rectangle.h"
+#include "Vector2.h"
 
 #include "Tile.h"
 #include "Color.h"
@@ -47,6 +49,29 @@ public:
     TileGrid* parent() {return m_parent;}
     const TileGrid* parent() const {return m_parent;}
 
+    template<typename Iterator>
+    TileGridView& write_line(Iterator start, Iterator end, int x, int y, 
+        const Color& fg_color = Color::white(), const Color& bg_color = Color::black());
+    template<typename Iterator>
+    TileGridView& write_line(Iterator start, Iterator end, const Vector2i& pos,
+        const Color& fg_color = Color::white(), const Color& bg_color = Color::black());
+
+    TileGridView& write_line(const char* string,
+        int x, int y, const Color& fg_color = Color::white(),
+        const Color& bg_color = Color::black());
+    TileGridView& write_line(const char* string,
+        const Vector2i& pos, const Color& fg_color = Color::white(),
+        const Color& bg_color = Color::black());
+
+    template<typename T>
+    TileGridView& write_line(const T& str,
+        int x, int y, const Color& fg_color = Color::white(),
+        const Color& bg_color = Color::black());
+    template<typename T>
+    TileGridView& write_line(const T& str,
+        const Vector2i& pos, const Color& fg_color = Color::white(),
+        const Color& bg_color = Color::black());
+
     template<typename FnType>
     void apply_to_all(const FnType& fn);
 
@@ -75,6 +100,62 @@ protected:
 private:
 };
 
+ 
+template<typename Iterator>
+inline TileGridView& TileGridView::write_line(Iterator start, Iterator end,
+       int x, int y, const Color& fg_color, const Color& bg_color)
+{
+    Tile base_tile(fg_color, bg_color, 0);
+    for(auto it = start; it != end; ++it)
+    {
+        base_tile.set_tile_index(*it);
+        set_tile(x, y, base_tile); 
+        x += 1;
+        if(x >= width())
+        {
+            y += 1;
+            x = 0;
+            if(y >= height())
+            {
+                break;
+            }
+        }
+    }  
+    return *this;
+}
+ 
+template<typename Iterator>
+inline TileGridView& TileGridView::write_line(Iterator start, Iterator end,
+    const Vector2i& pos, const Color& fg_color, const Color& bg_color)
+{
+    return write_line(start, end, pos.x, pos.y, fg_color, bg_color); 
+}
+ 
+inline TileGridView& TileGridView::write_line(const char* string,
+       int x, int y, const Color& fg_color, const Color& bg_color)
+{
+    return write_line(string, string+std::strlen(string), x, y, fg_color, bg_color);
+}
+ 
+inline TileGridView& TileGridView::write_line(const char* string,
+       const Vector2i& pos, const Color& fg_color, const Color& bg_color)
+{
+    return write_line(string, pos.x, pos.y, fg_color, bg_color); 
+}
+ 
+template<typename T>
+inline TileGridView& TileGridView::write_line(const T& str, int x,
+       int y, const Color& fg_color, const Color& bg_color)
+{
+    return write_line(str.begin(), str.end(), x, y, fg_color, bg_color);
+}
+ 
+template<typename T>
+inline TileGridView& TileGridView::write_line(const T& str, const Vector2i& pos,
+       const Color& fg_color, const Color& bg_color)
+{
+    return write_line(str, pos, fg_color, bg_color); 
+}
  
 template<typename FnType>
 inline void TileGridView::apply_to_all(const FnType& fn)
