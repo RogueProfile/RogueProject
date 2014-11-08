@@ -64,26 +64,6 @@ public:
     BufferObject create_vertex_buffer(BufferUsageType usage,
         const std::array<T, N>& data);
 
-    IndexBufferObject create_index_buffer(BufferUsageType usage,
-        size_t size, IndexFormat format);
-    IndexBufferObject create_index_buffer(BufferUsageType usage,
-        const void* data, size_t data_size, IndexFormat format);
-    IndexBufferObject create_index_buffer(BufferUsageType usage,
-        const std::vector<uint8_t>& data);
-    IndexBufferObject create_index_buffer(BufferUsageType usage,
-        const std::vector<uint16_t>& data);
-    IndexBufferObject create_index_buffer(BufferUsageType usage,
-        const std::vector<uint32_t>& data);
-    template<size_t N>
-    IndexBufferObject create_index_buffer(BufferUsageType usage,
-        const std::array<uint8_t, N>& data);
-    template<size_t N>
-    IndexBufferObject create_index_buffer(BufferUsageType usage,
-        const std::array<uint16_t, N>& data);
-    template<size_t N>
-    IndexBufferObject create_index_buffer(BufferUsageType usage,
-        const std::array<uint32_t, N>& data);
-
     VertexArrayObject create_vertex_array_object(); 
     BoundShaderProgram bind_shader_program(ShaderProgram& program);
     BoundBufferObject bind_buffer_object(BufferObject& buffer);
@@ -126,51 +106,6 @@ inline BufferObject GlContext::create_vertex_buffer(BufferUsageType usage,
     const std::array<T, N>& data) 
 {
     return create_vertex_buffer(usage, data.data(), N * sizeof(T));
-}
-
-inline IndexBufferObject GlContext::create_index_buffer(BufferUsageType usage,
-      const std::vector<uint8_t>& data)
-{
-    return create_index_buffer(usage, data.data(), data.size()*sizeof(uint8_t),
-        IndexFormat::Byte); 
-}
- 
-inline IndexBufferObject GlContext::create_index_buffer(BufferUsageType usage,
-      const std::vector<uint16_t>& data)
-{
-    return create_index_buffer(usage, data.data(), data.size()*sizeof(uint16_t),
-        IndexFormat::UShort); 
-}
- 
-inline IndexBufferObject GlContext::create_index_buffer(BufferUsageType usage,
-      const std::vector<uint32_t>& data)
-{
-    return create_index_buffer(usage, data.data(), data.size()*sizeof(uint32_t),
-        IndexFormat::UInt); 
-}
-
-template<size_t N>
-inline IndexBufferObject GlContext::create_index_buffer(BufferUsageType usage,
-    const std::array<uint8_t, N>& data)
-{
-    return create_index_buffer(usage, data.data(), N * sizeof(uint8_t),
-        IndexFormat::Byte);
-}
-
-template<size_t N>
-inline IndexBufferObject GlContext::create_index_buffer(BufferUsageType usage,
-    const std::array<uint16_t, N>& data)
-{
-    return create_index_buffer(usage, data.data(), N * sizeof(uint8_t),
-        IndexFormat::UShort);
-}
-
-template<size_t N>
-inline IndexBufferObject GlContext::create_index_buffer(BufferUsageType usage,
-    const std::array<uint32_t, N>& data)
-{
-    return create_index_buffer(usage, data.data(), N * sizeof(uint8_t),
-        IndexFormat::UInt);
 }
 
 }

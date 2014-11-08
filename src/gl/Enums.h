@@ -28,7 +28,7 @@ enum class BufferUsageType: GLenum
 
 enum class IndexFormat: GLenum
 {
-    Byte = GL_UNSIGNED_BYTE,
+    UByte = GL_UNSIGNED_BYTE,
     UShort = GL_UNSIGNED_SHORT,
     UInt = GL_UNSIGNED_INT
 };

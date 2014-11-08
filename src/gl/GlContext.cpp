@@ -35,19 +35,6 @@ BufferObject GlContext::create_vertex_buffer(BufferUsageType usage,
     return buf;
 }
 
-IndexBufferObject GlContext::create_index_buffer(BufferUsageType usage,
-    size_t size, IndexFormat format)
-{
-    return create_index_buffer(usage, nullptr, size, format);
-}
-
-IndexBufferObject GlContext::create_index_buffer(BufferUsageType usage,
-    const void* data, size_t data_size, IndexFormat format)
-{
-    auto buf = IndexBufferObject(usage, data, data_size, format);
-    return buf;
-}
- 
 void GlContext::draw_vertex_array(const BoundVertexArrayObject& vao,
       PrimitiveType primitive, int first, size_t count)
 {

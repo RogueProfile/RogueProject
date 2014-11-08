@@ -42,10 +42,11 @@ void TileGridRenderer::fill_static_vertex_attribs()
     m_static_vertex_attribs.reset(new gl::BufferObject(
         m_context->create_vertex_buffer(gl::BufferUsageType::StaticDraw,
         m_grid->width() * m_grid->height() * sizeof(float) * 2 * 4)));
-    m_index_buffer.reset(new gl::IndexBufferObject(
-        m_context->create_index_buffer(gl::BufferUsageType::StaticDraw,
+
+    m_index_buffer = std::make_shared<gl::IndexBufferObject>(
+        m_context, gl::BufferUsageType::StaticDraw,
         m_grid->width() * m_grid->height() * sizeof(unsigned int) * 6,
-        gl::IndexFormat::UInt)));
+        gl::IndexFormat::UInt);
 
     auto bound_vbo = m_context->bind_buffer_object(*m_static_vertex_attribs);
     auto mapped_buffer = bound_vbo.map<float>(false);
