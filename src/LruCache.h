@@ -37,7 +37,7 @@ public:
 	}
 
 	Type* get_item(const Key& key);
-	void add_item(const Key& key, Type item);
+	const Type& add_item(const Key& key, Type item);
 
 	void resize(size_t new_size);
 
@@ -79,16 +79,17 @@ inline Type* LruCache<Key, Type>::get_item(const Key& key)
 }
 
 template<typename Key, typename Type>
-inline void LruCache<Key, Type>::add_item(const Key& key, Type item)
+inline const Type& LruCache<Key, Type>::add_item(const Key& key, Type item)
 {
 	m_order.push_front(key);
 	CacheItem cache_item = {std::move(item), m_order.begin()};
-	m_items.emplace(std::make_pair(key, cache_item));
+	auto it = m_items.emplace(std::make_pair(key, cache_item)).first;
 
 	if(m_items.size() > m_capacity)
 	{
 		drop_one();
 	}
+    return it->second.value;
 }
 
 template<typename Key, typename Type>

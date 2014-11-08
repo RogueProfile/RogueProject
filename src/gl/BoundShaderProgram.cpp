@@ -115,6 +115,36 @@ void BoundShaderProgram::set_uniform_value(int location, const Vector2f& value)
     glUniform2f(location, value.x, value.y); 
     CHECK_GL_ERROR(glUniform2f);
 }
+
+void BoundShaderProgram::set_uniform_value(int location, const Vector3i& value)
+{
+    glUniform3i(location, value.x, value.y, value.z); 
+    CHECK_GL_ERROR(glUniform3i);
+}
+ 
+void BoundShaderProgram::set_uniform_value(int location, const Vector3ui& value)
+{
+    glUniform3ui(location, value.x, value.y, value.z); 
+    CHECK_GL_ERROR(glUniform3ui);
+}
+ 
+void BoundShaderProgram::set_uniform_value(int location, const Vector3f& value)
+{
+    glUniform3f(location, value.x, value.y, value.z); 
+    CHECK_GL_ERROR(glUniform3f);
+}
+ 
+void BoundShaderProgram::set_uniform_value(int location, const Matrix2f& value)
+{
+    glUniformMatrix2fv(location, 1, false, value.val.data()); 
+    CHECK_GL_ERROR(glUniformMatrix2fv);
+}
+
+void BoundShaderProgram::set_uniform_value(int location, const Matrix3f& value)
+{
+    glUniformMatrix3fv(location, 1, false, value.val.data());
+    CHECK_GL_ERROR(glUniformMatrix3fv);
+}
  
 void BoundShaderProgram::set_uniform_value_matrix2(int location, const float* values, bool transpose)
 {

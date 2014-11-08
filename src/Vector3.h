@@ -77,7 +77,7 @@ inline constexpr Vector3<T>::Vector3():
 }
  
 template<typename T>
-inline constexpr Vector3<T>::Vector3(T x_val, T y_val):
+inline constexpr Vector3<T>::Vector3(T x_val, T y_val, T z_val):
    x(x_val), y(y_val), z(z_val) 
 {
 }
@@ -160,7 +160,7 @@ inline Vector3<T>& Vector3<T>::operator+=(const Vector3<T>& rhs)
 {
     x += rhs.x;
     y += rhs.y;  
-    z += ths.z; 
+    z += rhs.z; 
     return *this;
 }
  

@@ -6,6 +6,9 @@
 
 
 #include "Vector2.h"
+#include "Vector3.h"
+#include "Matrix2.h"
+#include "Matrix3.h"
 
 namespace gl
 {
@@ -38,11 +41,11 @@ public:
     void set_uniform_value(int location, const Vector2i& value);
     void set_uniform_value(int location, const Vector2ui& value);
     void set_uniform_value(int location, const Vector2f& value);
-    //TODO: Vector3
-    //TODO: Vector4
-    //TODO: Matrix2
-    //TODO: Matrix3
-    //TODO: Matrix4
+    void set_uniform_value(int location, const Vector3i& value);
+    void set_uniform_value(int location, const Vector3ui& value);
+    void set_uniform_value(int location, const Vector3f& value);
+    void set_uniform_value(int location, const Matrix2f& value);
+    void set_uniform_value(int location, const Matrix3f& value);
 
     void set_uniform_value(const char* uniform_name, int value);
     void set_uniform_value(const char* uniform_name, unsigned int value);

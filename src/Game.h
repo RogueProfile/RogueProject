@@ -11,12 +11,19 @@
 
 #include "Vector2.h"
 
+namespace ft
+{
+    class FontManager;
+}
+
+class TileSet;
+
 class Game: public sdl::SdlUser
 {
 public:
     using Clock = std::chrono::high_resolution_clock;
     Game(Vector2i window_size);
-    ~Game() = default;
+    ~Game();
 
     Game(const Game& other) = delete;
     Game(Game&& other) noexcept = delete;
@@ -27,6 +34,8 @@ public:
 
 protected:
     void initialize();
+    void initialize_screens();
+    void initialize_tile_set();
     void initialize_open_gl();
 
     void update();
@@ -35,6 +44,9 @@ protected:
     ScreenManager m_screen_manager;
     sdl::SdlWindow m_window;
     std::unique_ptr<sdl::SdlGlContext> m_context;
+
+    std::unique_ptr<ft::FontManager> m_font_manager;
+    std::unique_ptr<TileSet> m_tile_set;
     
     Clock::time_point m_frame_start_time;
 

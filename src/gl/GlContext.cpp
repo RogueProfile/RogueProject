@@ -5,11 +5,12 @@
 
 #include "GlMacros.h"
 #include "BoundShaderProgram.h"
-#include "Texture2d.h"
+#include "TextureArray2d.h"
 #include "IndexBufferObject.h"
 #include "VertexArrayObject.h"
 #include "BoundVertexArrayObject.h"
 #include "BoundBufferObject.h"
+#include "BoundTextureArray2d.h"
 
 
 #include <iostream>
@@ -119,6 +120,18 @@ BoundVertexArrayObject GlContext::bind_vertex_array(VertexArrayObject& vao)
             TargetLock(&vao, &m_bound_vertex_array));
 }
  
+BoundTextureArray2d GlContext::bind_texture_array_2d(TextureArray2d& texture)
+{
+    if(m_bound_texture_array_2d != nullptr)
+    {
+        throw TargetBindError(Target::TextureArray2d);
+    } 
+    glBindTexture(GL_TEXTURE_2D_ARRAY, texture.handle());
+    CHECK_GL_ERROR(glBindTexture);
+    return BoundTextureArray2d(&texture,
+            TargetLock(&texture, &m_bound_texture_array_2d));
+}
+ 
 Texture2d GlContext::create_texture(int width, int height, int mipmap_levels, 
         Texture::InternalPixelFormat format)
 {
@@ -129,11 +142,31 @@ Texture2d GlContext::create_texture(int width, int height, int mipmap_levels,
     return texture;  
 }
  
+TextureArray2d GlContext::create_texture_array_2d(int width, int height, int layers,
+      int mipmap_levels, Texture::InternalPixelFormat format)
+{
+ 
+    TextureArray2d texture(width, height, layers, mipmap_levels, format);
+    //Texture2d binds itself to create the texture. Restore the set
+    //binding before returning back to the user.
+    rebind_texture_array_2d();
+    return texture;  
+}
+ 
 void GlContext::rebind_texture_2d()
 {
     if(m_bound_texture_2d != nullptr)
     {
         glBindTexture(GL_TEXTURE_2D, m_bound_texture_2d->handle());
+        CHECK_GL_ERROR(glBindTexture);
+    } 
+}
+ 
+void GlContext::rebind_texture_array_2d()
+{
+    if(m_bound_texture_array_2d != nullptr)
+    {
+        glBindTexture(GL_TEXTURE_2D_ARRAY, m_bound_texture_array_2d->handle());
         CHECK_GL_ERROR(glBindTexture);
     } 
 }

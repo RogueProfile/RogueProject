@@ -48,6 +48,15 @@ public:
     std::array<T, N> get_data(intptr_t offset);
 
     template<typename T>
+    MappedBufferObject<T> map(bool can_read)
+        {return map<T>(0, m_buffer->size() / sizeof(T), Flags<BufferObject::MappingOptions>(), can_read);}
+
+    template<typename T>
+    MappedBufferObject<T> map(const Flags<BufferObject::MappingOptions>& options,
+        bool can_read)
+        {return map<T>(0, m_buffer->size() / sizeof(T), options, can_read);}
+
+    template<typename T>
     MappedBufferObject<T> map(intptr_t offset, size_t count, 
         const Flags<BufferObject::MappingOptions>& options,
         bool can_read);
@@ -63,6 +72,8 @@ public:
     void flush_mapped_buffer_range(intptr_t offset, size_t length);
 
     void invalidate();
+
+    void release();
 
 protected:
     GLenum raw_target() const {return GL_COPY_WRITE_BUFFER;}
@@ -100,7 +111,7 @@ MappedBufferObject<T> BoundBufferObject::map(intptr_t offset, size_t count,
         access |= BufferObject::MappingAccess::Read;
     }
     void* buffer = map_raw(offset, size, options, access);
-    auto ret = MappedBufferObject<T>(m_context, buffer, size);
+    auto ret = MappedBufferObject<T>(m_context, m_buffer, reinterpret_cast<T*>(buffer), size);
     return ret;
 }
  
@@ -110,7 +121,7 @@ MappedBufferObject<const T> BoundBufferObject::map_const(intptr_t offset, size_t
 {
     auto size = count * sizeof(T);
     void* buffer = map_raw(offset, size, options, BufferObject::MappingAccess::Read);
-    auto ret = MappedBufferObject<const T>(m_context, buffer, size);
+    auto ret = MappedBufferObject<const T>(m_context, m_buffer, buffer, size);
     return ret;
 }
 

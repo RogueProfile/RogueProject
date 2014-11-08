@@ -6,16 +6,26 @@
 
 #include "Events/Event.h"
 
+#include "freetype/FontManager.h"
+#include "freetype/FontFace.h"
+
 #include "GlHeaders.h"
+#include "GameScreen.h"
+#include "TextTileSet.h"
 
 #include "Screen.h"
 #include "Keyboard.h"
 
 Game::Game(Vector2i window_size):
     sdl::SdlUser({sdl::SdlSubsystem::Video, sdl::SdlSubsystem::Events}),
-    m_window("Roguelike", window_size.x, window_size.y, sdl::SdlWindow::WindowFlags::OpenGl)
+    m_window("Roguelike", window_size.x, window_size.y, sdl::SdlWindow::WindowFlags::OpenGl),
+    m_font_manager(std::make_unique<ft::FontManager>("assets/fonts"))
 {
     initialize();
+}
+ 
+Game::~Game()
+{
 }
  
 void Game::run()
@@ -46,7 +56,11 @@ void Game::run()
         if(m_target_framerate > 0)
         {
             auto sleep_time = (1000000.0 / m_target_framerate) - frame_duration.count();
-            std::this_thread::sleep_for(std::chrono::microseconds(static_cast<uint32_t>(sleep_time)));
+            if(sleep_time > 0)
+            {
+                std::this_thread::sleep_for(std::chrono::microseconds(static_cast<uint32_t>(sleep_time)));
+            }
+            //std::cout << sleep_time << std::endl;
         }
     }
 } 
@@ -60,6 +74,22 @@ void Game::initialize()
     }
     glGetError();
     Keyboard::initialize();
+    initialize_tile_set();
+    initialize_screens();
+}
+ 
+void Game::initialize_screens()
+{
+    m_screen_manager.add_screen(std::make_unique<GameScreen>(
+        &m_screen_manager, m_context.get(), m_tile_set.get()), "game_screen");
+}
+ 
+void Game::initialize_tile_set()
+{
+    auto tile_font = m_font_manager->get_font_face("DejaVuSansMono",
+        0, 12, ft::GlyphLoadFlags::Render, 0);
+    m_tile_set = std::make_unique<TextTileSet>(m_context.get(),
+            std::move(tile_font), 2000);
 }
  
 void Game::initialize_open_gl()

@@ -61,9 +61,8 @@ void BoundTextureArray2d::update_data(const Rectanglei& update_region,
     int start_layer, int stop_layer,
     Texture::DataPixelFormat data_format, Texture::PixelType pixel_type,
     const void* data)
-{
-     
-    glTexSubImage3D(GL_TEXTURE_2D, 0, update_region.left(), update_region.bottom(), start_layer,
+{     
+    glTexSubImage3D(GL_TEXTURE_2D_ARRAY, 0, update_region.left(), update_region.bottom(), start_layer,
 			update_region.width(), update_region.height(), stop_layer,
             static_cast<GLenum>(data_format), static_cast<GLenum>(pixel_type), data);
     CHECK_GL_ERROR(glTexSubImage3D);

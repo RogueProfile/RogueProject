@@ -46,6 +46,8 @@ public:
 private:
 };
 
+using Matrix3f = Matrix3<float>;
+
  
 template<typename T>
 inline constexpr Matrix3<T>::Matrix3()
@@ -208,7 +210,7 @@ inline constexpr Matrix3<T> Matrix3<T>::make_translation(const Vector2<T>& trans
 template<typename T>
 inline constexpr Matrix3<T> Matrix3<T>::make_orthographic_projection(T left, T right, T bottom, T top)
 {
-    return Matrix3<T>((2. / (right - left), 0, 0,
+    return Matrix3<T>(2. / (right - left), 0, 0,
         0, 2. / (top - bottom), 0
         , - (right + left) / (right - left), - (top + bottom) / (top - bottom), 1);
 }

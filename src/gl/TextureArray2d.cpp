@@ -30,7 +30,8 @@ TextureArray2d& TextureArray2d::operator=(TextureArray2d&& other) noexcept
 }
  
 TextureArray2d::TextureArray2d(int width, int height, int num_layers, int mipmap_levels,
-       InternalPixelFormat format)
+       InternalPixelFormat format):
+    m_width(width), m_height(height), m_num_layers(num_layers)
 {
     glGenTextures(1, &m_handle);
     CHECK_GL_ERROR(glGenTextures);
@@ -70,7 +71,7 @@ void TextureArray2d::allocate_mipmap_storage(int mipmap_levels,
 
 #if GL_TARGET_VERSION >= 402
 	//Use immutable storage if available
-	glTexStorage3D(GL_TEXTURE_2D, mipmapLevels, static_cast<GLenum>(format),
+	glTexStorage3D(GL_TEXTURE_2D_ARRAY, mipmapLevels, static_cast<GLenum>(format),
 			m_width, m_height, m_num_layers);
 	CHECK_GL_ERROR(glTexStorage3D);
 #else
@@ -79,9 +80,9 @@ void TextureArray2d::allocate_mipmap_storage(int mipmap_levels,
 	for(auto i = 0; i < mipmap_levels; ++i)
 	{
 		glTexImage3D(GL_TEXTURE_2D_ARRAY, i, static_cast<GLenum>(format),
-                level_width, level_height, m_num_layers, 0, GL_UNSIGNED_BYTE,
+                level_width, level_height, m_num_layers, 0, GL_RGBA,
                 GL_UNSIGNED_BYTE, nullptr);
-		CHECK_GL_ERROR(glTexImage2D);
+		CHECK_GL_ERROR(glTexImage3D);
 		if(level_width == 1 && level_height == 1)
 		{
 			break;

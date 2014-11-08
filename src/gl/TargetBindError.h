@@ -11,7 +11,8 @@ enum class Target
 {
     ShaderProgram,
     Buffer,
-    VertexArray
+    VertexArray,
+    TextureArray2d
 };
 
 

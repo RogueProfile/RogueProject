@@ -71,4 +71,9 @@ void* BoundBufferObject::map_raw(intptr_t offset, size_t size,
     return ret;
 }
  
+void BoundBufferObject::release()
+{
+    m_lock.release();
+}
+ 
 }

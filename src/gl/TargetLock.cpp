@@ -6,6 +6,7 @@ namespace gl
 TargetLock::TargetLock(GlObject* object, GlObject** target):
     m_lock_target(target), m_object(object)
 {
+    *target = object;
 }
  
 TargetLock::~TargetLock()

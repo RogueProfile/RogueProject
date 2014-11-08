@@ -2,7 +2,7 @@
 #define MATRIX2_H__
 
 #include <array>
-#include "Array.h"
+#include "Angle.h"
 #include "Vector2.h"
 
 template<typename T>
@@ -41,6 +41,8 @@ public:
     std::array<T, 4> val;
 private:
 };
+
+using Matrix2f = Matrix2<float>;
 
  
 template<typename T>

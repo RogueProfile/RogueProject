@@ -62,6 +62,7 @@ private:
 template<typename T>
 class MappedBufferObject
 {
+    friend class gl::BoundBufferObject;
 public:
     using iterator = MappedBufferObjectIterator<T>;
     using const_iterator = MappedBufferObjectIterator<const T>;
@@ -92,8 +93,6 @@ public:
 
     friend iterator begin(const MappedBufferObject<T>& obj) {return iterator(obj.m_data);}
     friend iterator end(const MappedBufferObject<T>& obj) {return iterator(obj.m_data+obj.m_size);}
-    friend const_iterator begin(const MappedBufferObject<T>& obj) {return const_iterator(obj.m_data);}
-    friend const_iterator end(const MappedBufferObject<T>& obj) {return const_iterator(obj.m_data+obj.m_size);}
     friend const_iterator cbegin(const MappedBufferObject<T>& obj) {return const_iterator(obj.m_data);}
     friend const_iterator cend(const MappedBufferObject<T>& obj) {return const_iterator(obj.m_data+obj.m_size);}
 
@@ -105,9 +104,11 @@ public:
     const_iterator cend() const {return cend(*this);}
 
 protected:
-    MappedBufferObject(GlContext* context, T* data, size_t size);
+    MappedBufferObject(GlContext* context, BufferObject* buffer,
+           T* data, size_t size);
 
     GlContext* m_context = nullptr;
+    BufferObject* m_buffer = nullptr;
     T* m_data = nullptr;
     size_t m_size = 0;
 
@@ -117,8 +118,8 @@ private:
 
 template<typename T>
 inline MappedBufferObject<T>::MappedBufferObject(GlContext* context,
-       T* data, size_t size):
-    m_context(context), m_data(data), m_size(size)
+        BufferObject* buffer, T* data, size_t size):
+    m_context(context), m_buffer(buffer), m_data(data), m_size(size)
 {
 }
 
@@ -130,8 +131,8 @@ MappedBufferObject<T>::~MappedBufferObject()
     
 template<typename T>
 inline MappedBufferObject<T>::MappedBufferObject(MappedBufferObject<T>&& other) noexcept:
-    m_context(other.m_context), m_data(other.m_data),
-    m_size(other.m_size)
+    m_context(other.m_context), m_buffer(other.m_buffer), 
+    m_data(other.m_data), m_size(other.m_size)
 {
     other.m_data = nullptr;
 }
@@ -141,6 +142,7 @@ inline MappedBufferObject<T>& MappedBufferObject<T>::operator=(MappedBufferObjec
 {
     release();
     m_context = other.m_context;
+    m_buffer = other.m_buffer;
     m_data = other.m_data; 
     m_size = other.m_size;
     other.m_data = nullptr;
@@ -158,6 +160,8 @@ inline void MappedBufferObject<T>::release()
 {
     if(m_data != nullptr)
     {
+        glBindBuffer(GL_COPY_WRITE_BUFFER, m_buffer->handle());
+        glUnmapBuffer(GL_COPY_WRITE_BUFFER);
         m_context->rebind_buffer_object();
     } 
     m_data = nullptr;

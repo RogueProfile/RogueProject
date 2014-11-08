@@ -21,6 +21,8 @@ class BoundShaderProgram;
 class VertexArrayObject;
 class BoundVertexArrayObject;
 class BoundBufferObject;
+class TextureArray2d;
+class BoundTextureArray2d;
 
 enum class ClearTarget
 {
@@ -82,17 +84,20 @@ public:
     IndexBufferObject create_index_buffer(BufferUsageType usage,
         const std::array<uint32_t, N>& data);
 
-
-    VertexArrayObject create_vertex_array_object();
-
+    VertexArrayObject create_vertex_array_object(); 
     BoundShaderProgram bind_shader_program(ShaderProgram& program);
     BoundBufferObject bind_buffer_object(BufferObject& buffer);
     BoundVertexArrayObject bind_vertex_array(VertexArrayObject& vao);
 
+    BoundTextureArray2d bind_texture_array_2d(TextureArray2d& texture);
+
     Texture2d create_texture(int width, int height, int mipmap_levels,
             Texture::InternalPixelFormat format);
+    TextureArray2d create_texture_array_2d(int width, int height, int layers,
+            int mipmap_levels, Texture::InternalPixelFormat format);
 
     void rebind_texture_2d();
+    void rebind_texture_array_2d();
     void rebind_buffer_object();
 protected:
 
@@ -101,6 +106,7 @@ private:
     GlObject* m_bound_shader_program = nullptr;
 
     GlObject* m_bound_texture_2d = nullptr;
+    GlObject* m_bound_texture_array_2d = nullptr;
 
     GlObject* m_bound_buffer_object = nullptr;
 

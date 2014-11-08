@@ -22,8 +22,10 @@ public:
     const Tile& operator [](size_t index) const {return m_tiles[index];}
     Tile& operator [](size_t index) {return m_tiles[index];}
 
-    const Tile& get_tile(size_t index) {return operator [](index);}
-    const Tile& get_tile(int x, int y) {return m_tiles[x + m_width * y];}
+    const Tile& get_tile(size_t index) const {return operator [](index);}
+    const Tile& get_tile(int x, int y) const {return m_tiles[x + m_width * y];}
+    Tile& get_tile(size_t index) {return operator [](index);}
+    Tile& get_tile(int x, int y) {return m_tiles[x + m_width * y];}
     void set_tile(size_t index, const Tile& tile) {m_tiles[index] = tile;}
     void set_tile(int x, int y, const Tile& tile) {m_tiles[x + m_width * y] = tile;}
 
