@@ -7,7 +7,7 @@
 namespace gl
 {
 
-VertexArrayObject::VertexArrayObject()
+VertexArrayObject::VertexArrayObject(gl::GlContext* ctx)
 {
     glGenVertexArrays(1, &m_handle); 
 }

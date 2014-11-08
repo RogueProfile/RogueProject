@@ -11,12 +11,13 @@
 namespace gl
 {
 class IndexBufferObject;
+class GlContext;
 
 class VertexArrayObject: public GlObject
 {
     friend class BoundVertexArrayObject;
 public:
-    VertexArrayObject();
+    explicit VertexArrayObject(GlContext* ctx);
     ~VertexArrayObject();
 
     VertexArrayObject(const VertexArrayObject& other) = delete;

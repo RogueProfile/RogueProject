@@ -64,7 +64,6 @@ public:
     BufferObject create_vertex_buffer(BufferUsageType usage,
         const std::array<T, N>& data);
 
-    VertexArrayObject create_vertex_array_object(); 
     BoundShaderProgram bind_shader_program(ShaderProgram& program);
     BoundBufferObject bind_buffer_object(BufferObject& buffer);
     BoundVertexArrayObject bind_vertex_array(VertexArrayObject& vao);

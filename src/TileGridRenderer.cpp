@@ -223,7 +223,7 @@ std::shared_ptr<gl::ShaderProgram> TileGridRenderer::create_default_shader(gl::G
  
 void TileGridRenderer::build_vertex_array_object()
 {
-    m_vao.reset(new gl::VertexArrayObject(m_context->create_vertex_array_object())); 
+    m_vao = std::make_unique<gl::VertexArrayObject>(m_context); 
     auto bound_vao = m_context->bind_vertex_array(*m_vao);
 
     bound_vao.set_vertex_attrib_source(0, 2, m_static_vertex_attribs,

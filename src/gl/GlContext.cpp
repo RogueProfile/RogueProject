@@ -64,13 +64,6 @@ void GlContext::copy_buffer_data(const BufferObject& from, BufferObject& to,
     CHECK_GL_ERROR(glCopyBufferSubData);
 }
  
- 
- 
-VertexArrayObject GlContext::create_vertex_array_object()
-{
-    return VertexArrayObject(); 
-}
- 
 BoundShaderProgram GlContext::bind_shader_program(ShaderProgram& program)
 {
     if(m_bound_shader_program != nullptr)
