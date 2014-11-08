@@ -44,18 +44,7 @@ TileGridRenderer::~TileGridRenderer()
 
 void TileGridRenderer::fill_static_vertex_attribs()
 {
-    constexpr auto COMPONENTS_PER_VERTEX = 2;
-
-    m_static_vertex_attribs = std::make_shared<gl::VertexBufferObject>(
-        m_context, gl::BufferUsageType::StaticDraw,
-        m_grid->tile_count() * sizeof(float) * COMPONENTS_PER_VERTEX
-            * vertices_per_tile());
-
-    m_index_buffer = std::make_shared<gl::IndexBufferObject>(
-        m_context, gl::BufferUsageType::StaticDraw,
-        m_grid->tile_count() * sizeof(unsigned int) * indices_per_tile(),
-        gl::IndexFormat::UInt);
-
+    create_static_buffers();
     auto bound_vbo = m_context->bind_buffer_object(*m_static_vertex_attribs);
     auto mapped_buffer = bound_vbo.map<float>(false);
     bound_vbo.release();
@@ -218,10 +207,10 @@ std::shared_ptr<gl::ShaderProgram> TileGridRenderer::create_default_shader(gl::G
     auto shader_program = std::make_shared<gl::ShaderProgram>();
     shader_program->attach_shader(vertex_shader);
     shader_program->attach_shader(fragment_shader);
-    shader_program->bind_attribute_location("position", 0);
-    shader_program->bind_attribute_location("tex", 1);
-    shader_program->bind_attribute_location("fg_color", 2);
-    shader_program->bind_attribute_location("bg_color", 3);
+    shader_program->bind_attribute_location("position", Position);
+    shader_program->bind_attribute_location("tex", TexCoord);
+    shader_program->bind_attribute_location("fg_color", FgColor);
+    shader_program->bind_attribute_location("bg_color", BgColor);
     shader_program->link();
     return shader_program;
 }
@@ -250,5 +239,20 @@ void TileGridRenderer::create_dynamic_vertex_buffer()
     m_dynamic_vertex_attribs = std::make_shared<gl::VertexBufferObject>(
             m_context, gl::BufferUsageType::StreamDraw,
             m_grid->tile_count() * sizeof(DynVertexAttribs) * vertices_per_tile());
+}
+ 
+void TileGridRenderer::create_static_buffers()
+{
+    constexpr auto COMPONENTS_PER_VERTEX = 2;
+
+    m_static_vertex_attribs = std::make_shared<gl::VertexBufferObject>(
+        m_context, gl::BufferUsageType::StaticDraw,
+        m_grid->tile_count() * sizeof(float) * COMPONENTS_PER_VERTEX
+            * vertices_per_tile());
+
+    m_index_buffer = std::make_shared<gl::IndexBufferObject>(
+        m_context, gl::BufferUsageType::StaticDraw,
+        m_grid->tile_count() * sizeof(unsigned int) * indices_per_tile(),
+        gl::IndexFormat::UInt);
 }
  

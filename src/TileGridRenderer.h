@@ -51,6 +51,7 @@ protected:
     void fill_dynamic_vertex_attribs();
     void build_vertex_array_object();
     void create_dynamic_vertex_buffer();
+    void create_static_buffers();
 
     static constexpr int vertices_per_tile() {return 4;}
     static constexpr int indices_per_tile() {return 6;}
