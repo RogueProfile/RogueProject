@@ -3,6 +3,7 @@
 #include <thread>
 #include <chrono>
 #include <iostream>
+#include <stdexcept>
 
 #include "Events/Event.h"
 
@@ -60,7 +61,6 @@ void Game::run()
             {
                 std::this_thread::sleep_for(std::chrono::microseconds(static_cast<uint32_t>(sleep_time)));
             }
-            //std::cout << sleep_time << std::endl;
         }
     }
 } 
@@ -70,7 +70,7 @@ void Game::initialize()
     glewExperimental = GL_TRUE;
     if(glewInit() != GLEW_OK)
     {
-        //TODO: Exception
+        throw std::runtime_error("GLEW could not be initialized");
     }
     glGetError();
     Keyboard::initialize();
