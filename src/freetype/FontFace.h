@@ -63,7 +63,7 @@ public:
     unsigned short units_per_em() const {return m_face->units_per_EM;}
 
 	int line_height() const {return m_face->size->metrics.height >> 6;}
-	int max_advance_width() const {return m_face->size->metrics.max_advance >> 6;}
+	int max_advance_width() const;
 
 	int fixed_size_count() const {return m_face->num_fixed_sizes;}
 

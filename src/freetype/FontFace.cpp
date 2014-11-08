@@ -87,6 +87,18 @@ bool FontFace::has_character(char32_t chr) const
     return FT_Get_Char_Index(m_face, chr) != 0; 
 }
  
+int FontFace::max_advance_width() const
+{
+    if(m_face->size->metrics.max_advance | ((1 << 6) > 0))
+    {
+        return (m_face->size->metrics.max_advance >> 6) + 1;    
+    }
+    else
+    {
+        return m_face->size->metrics.max_advance >> 6;    
+    }
+}
+ 
 std::vector<CharMap> FontFace::char_maps() const
 {
     std::vector<CharMap> maps(char_map_count());
