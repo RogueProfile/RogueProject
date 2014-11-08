@@ -25,7 +25,7 @@ public:
 
     std::string get_info_log() const;
 
-    void attach_shader(std::shared_ptr<Shader> new_shader);
+    void attach_shader(const Shader& new_shader);
     void link();
 
     void bind_attribute_location(const char* name, int location);
@@ -44,11 +44,9 @@ public:
 protected:
     virtual void destroy() override;
     
-    std::vector<std::shared_ptr<Shader>> m_shaders;
 private:
 };
 
 }
 
 #endif
-    

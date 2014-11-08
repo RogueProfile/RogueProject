@@ -19,15 +19,13 @@ ShaderProgram::~ShaderProgram()
 }
  
 ShaderProgram::ShaderProgram(ShaderProgram&& other) noexcept:
-    GlObject(std::move(other)),
-    m_shaders(std::move(other.m_shaders))
+    GlObject(std::move(other))
 {
 }
  
 ShaderProgram& ShaderProgram::operator=(ShaderProgram&& other) noexcept
 {
     GlObject::operator=(std::move(other));
-    m_shaders = std::move(other.m_shaders); 
     return *this;
 }
  
@@ -49,11 +47,10 @@ std::string ShaderProgram::get_info_log() const
 	return logText;
 }
  
-void ShaderProgram::attach_shader(std::shared_ptr<Shader> new_shader)
+void ShaderProgram::attach_shader(const Shader& new_shader)
 {
-    glAttachShader(m_handle, new_shader->handle()); 
+    glAttachShader(m_handle, new_shader.handle()); 
     CHECK_GL_ERROR(glAttachShader);
-    m_shaders.push_back(std::move(new_shader));
 }
  
 void ShaderProgram::link()

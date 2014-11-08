@@ -210,14 +210,14 @@ std::shared_ptr<gl::ShaderProgram> TileGridRenderer::create_default_shader(gl::G
     }
     )"; 
 
-    auto vertex_shader = std::make_shared<gl::Shader>(gl::ShaderType::Vertex);
-    vertex_shader->compile_source(vertex_shader_source);
-    auto fragment_shader = std::make_shared<gl::Shader>(gl::ShaderType::Fragment);
-    fragment_shader->compile_source(fragment_shader_source);
+    auto vertex_shader = gl::Shader(gl::ShaderType::Vertex);
+    vertex_shader.compile_source(vertex_shader_source);
+    auto fragment_shader = gl::Shader(gl::ShaderType::Fragment);
+    fragment_shader.compile_source(fragment_shader_source);
 
     auto shader_program = std::make_shared<gl::ShaderProgram>();
-    shader_program->attach_shader(std::move(vertex_shader));
-    shader_program->attach_shader(std::move(fragment_shader));
+    shader_program->attach_shader(vertex_shader);
+    shader_program->attach_shader(fragment_shader);
     shader_program->bind_attribute_location("position", 0);
     shader_program->bind_attribute_location("tex", 1);
     shader_program->bind_attribute_location("fg_color", 2);
