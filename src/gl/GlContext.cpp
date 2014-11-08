@@ -12,10 +12,12 @@
 #include "BoundBufferObject.h"
 #include "BoundTextureArray2d.h"
 
-
-#include <iostream>
 namespace gl
 {
+
+GlContext::GlContext()
+{
+}
 
 void GlContext::clear(const Flags<ClearTarget>& buffers)
 {
@@ -90,30 +92,38 @@ BoundVertexArrayObject GlContext::bind_vertex_array(VertexArrayObject& vao)
  
 BoundTextureArray2d GlContext::bind_texture_array_2d(TextureArray2d& texture)
 {
-    if(m_bound_texture_array_2d != nullptr)
+    if(m_bound_2d_array_textures[active_texture_unit()] != nullptr)
     {
         throw TargetBindError(Target::TextureArray2d);
     } 
     glBindTexture(GL_TEXTURE_2D_ARRAY, texture.handle());
     CHECK_GL_ERROR(glBindTexture);
     return BoundTextureArray2d(&texture,
-            TargetLock(&texture, &m_bound_texture_array_2d));
+            TargetLock(&texture, &m_bound_2d_array_textures[active_texture_unit()]));
+}
+ 
+void GlContext::set_active_texture_unit(int unit_num)
+{
+    glActiveTexture(GL_TEXTURE0 + unit_num); 
+    CHECK_GL_ERROR(glActiveTexture);
 }
  
 void GlContext::rebind_texture_2d()
 {
-    if(m_bound_texture_2d != nullptr)
+    if(m_bound_2d_textures[active_texture_unit()] != nullptr)
     {
-        glBindTexture(GL_TEXTURE_2D, m_bound_texture_2d->handle());
+        glBindTexture(GL_TEXTURE_2D, 
+            m_bound_2d_textures[active_texture_unit()]->handle());
         CHECK_GL_ERROR(glBindTexture);
     } 
 }
  
 void GlContext::rebind_texture_array_2d()
 {
-    if(m_bound_texture_array_2d != nullptr)
+    if(m_bound_2d_array_textures[active_texture_unit()] != nullptr)
     {
-        glBindTexture(GL_TEXTURE_2D_ARRAY, m_bound_texture_array_2d->handle());
+        glBindTexture(GL_TEXTURE_2D_ARRAY, 
+            m_bound_2d_array_textures[active_texture_unit()]->handle());
         CHECK_GL_ERROR(glBindTexture);
     } 
 }
@@ -125,6 +135,26 @@ void GlContext::rebind_buffer_object()
         glBindBuffer(GL_COPY_WRITE_BUFFER, m_bound_buffer_object->handle());
         CHECK_GL_ERROR(glBindBuffer);
     }
+}
+ 
+int GlContext::get_max_texture_units() const
+{
+    int out_val = 0;
+    glGetIntegerv(GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS, &out_val);
+    CHECK_GL_ERROR(glGetIntegerv);
+    return out_val; 
+}
+ 
+void GlContext::initialize_bound_texture_arrays()
+{
+    auto max_texture_units = get_max_texture_units();
+    m_bound_2d_textures.resize(max_texture_units);
+    m_bound_2d_array_textures.resize(max_texture_units); 
+}
+ 
+void GlContext::initialize()
+{
+    initialize_bound_texture_arrays(); 
 }
  
 }

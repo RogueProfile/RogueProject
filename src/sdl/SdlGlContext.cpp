@@ -13,6 +13,7 @@ SdlGlContext::SdlGlContext(const SdlWindow& window, const ContextSettings& ctx)
     {
         throw SdlException(SDL_GetError());
     }
+    GlContext::initialize();
 }
  
 SdlGlContext::~SdlGlContext()
@@ -20,20 +21,6 @@ SdlGlContext::~SdlGlContext()
     destroy(); 
 }
  
-SdlGlContext::SdlGlContext(SdlGlContext&& other) noexcept:
-    m_handle(other.m_handle)
-{
-    other.m_handle = 0; 
-}
- 
-SdlGlContext& SdlGlContext::operator=(SdlGlContext&& other) noexcept
-{
-    destroy();
-    m_handle = other.m_handle;
-    other.m_handle = NullHandle; 
-    return *this;
-}
-
 void SdlGlContext::destroy()
 {
     if(m_handle != NullHandle)

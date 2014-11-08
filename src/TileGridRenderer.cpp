@@ -143,9 +143,10 @@ void TileGridRenderer::render()
 {
     fill_dynamic_vertex_attribs(); 
     auto bound_shader = m_context->bind_shader_program(*m_shader);
+    m_context->set_active_texture_unit(0);
     bound_shader.set_uniform_value(0, m_transform);
+    bound_shader.set_uniform_value(1, 0);
     auto bound_vao = m_context->bind_vertex_array(*m_vao);
-    glActiveTexture(GL_TEXTURE0);
     auto bound_texture = m_context->bind_texture_array_2d(
         *reinterpret_cast<gl::TextureArray2d*>(m_tile_set->get_texture()));
     m_context->draw_vertex_array_indexed(bound_vao, gl::PrimitiveType::Triangles,

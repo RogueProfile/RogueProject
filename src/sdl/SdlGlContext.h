@@ -34,9 +34,9 @@ public:
     ~SdlGlContext();
 
     SdlGlContext(const SdlGlContext& other) = delete;
-    SdlGlContext(SdlGlContext&& other) noexcept;
+    SdlGlContext(SdlGlContext&& other) noexcept = delete;
     SdlGlContext& operator =(const SdlGlContext& other) = delete;
-    SdlGlContext& operator =(SdlGlContext&& other) noexcept;
+    SdlGlContext& operator =(SdlGlContext&& other) noexcept = delete;
 
 protected:
     void destroy();

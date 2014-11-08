@@ -34,7 +34,7 @@ enum class ClearTarget
 class GlContext
 {
 public:
-    GlContext() = default;
+    GlContext();
     ~GlContext() = default;
 
     GlContext(const GlContext& other) = delete;
@@ -59,21 +59,29 @@ public:
 
     BoundTextureArray2d bind_texture_array_2d(TextureArray2d& texture);
 
+    void set_active_texture_unit(int unit_num);
+    int active_texture_unit() const {return m_active_texture_unit;}
+
     void rebind_texture_2d();
     void rebind_texture_array_2d();
     void rebind_buffer_object();
+
+    int get_max_texture_units() const;
 protected:
+    void initialize_bound_texture_arrays();
+    void initialize();
 
 private:
+    std::vector<GlObject*> m_bound_2d_textures;
+    std::vector<GlObject*> m_bound_2d_array_textures;
 
     GlObject* m_bound_shader_program = nullptr;
-
-    GlObject* m_bound_texture_2d = nullptr;
-    GlObject* m_bound_texture_array_2d = nullptr;
 
     GlObject* m_bound_buffer_object = nullptr;
 
     GlObject* m_bound_vertex_array = nullptr;
+
+    int m_active_texture_unit = 0;
 
 };
 
