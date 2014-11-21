@@ -1,12 +1,14 @@
 set(EXECUTABLE_SOURCES
-    ${CMAKE_CURRENT_SOURCE_DIR}/Events/Event.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/Events/Event.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Events/WindowEvent.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Events/WindowEvent.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Events/KeyboardEvent.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Events/KeyboardEvent.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Exceptions/Exception.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Exceptions/Exception.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Exceptions/EnumValueError.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Exceptions/EnumValueError.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Exceptions/InvalidEventError.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Exceptions/InvalidEventError.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Exceptions/KeyError.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Exceptions/KeyError.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Exceptions/ResourceNotFoundError.h
@@ -81,6 +83,12 @@ set(EXECUTABLE_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Color.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/HsvColor.h
     ${CMAKE_CURRENT_SOURCE_DIR}/HsvColor.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Event.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Event.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/EventArgs.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/TupleEventArgs.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/EventManager.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/EventManager.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Flags.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Game.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Game.cpp
