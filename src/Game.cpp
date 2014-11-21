@@ -43,6 +43,7 @@ void Game::run()
             }
             else
             {
+                m_screen_manager.on_event(*event);
             }
         }
         Keyboard::update();
