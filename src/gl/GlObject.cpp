@@ -15,13 +15,5 @@ GlObject::GlObject(GlObject&& other) noexcept:
     other.m_handle = NullHandle; 
 }
  
-GlObject& GlObject::operator=(GlObject&& other) noexcept
-{
-    destroy();
-    m_handle = other.m_handle;
-    other.m_handle = NullHandle;    
-    return *this;
-}
- 
 }
 

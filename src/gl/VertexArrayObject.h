@@ -29,7 +29,7 @@ public:
     std::shared_ptr<const IndexBufferObject> index_buffer() const {return m_index_buffer;}
 
 protected:
-    virtual void destroy() override;
+    void destroy();
     
     std::unordered_map<unsigned int, VertexAttributeSource> m_attrib_sources;
     std::shared_ptr<IndexBufferObject> m_index_buffer;

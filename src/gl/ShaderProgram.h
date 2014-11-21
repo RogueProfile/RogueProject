@@ -44,7 +44,7 @@ public:
 
 
 protected:
-    virtual void destroy() override;
+    void destroy();
     
 private:
 };

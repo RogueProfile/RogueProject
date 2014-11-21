@@ -30,7 +30,9 @@ Shader::Shader(Shader&& other) noexcept:
  
 Shader& Shader::operator=(Shader&& other) noexcept
 {
-    GlObject::operator=(std::move(other));
+    destroy();
+    m_handle = NullHandle;
+    std::swap(m_handle, other.m_handle);
     m_type = other.m_type;
     return *this; 
 }

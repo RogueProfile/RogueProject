@@ -41,7 +41,7 @@ protected:
            GLenum start_target);
     BufferObject(GlContext* ctx, BufferUsageType usage, const void* data,
            size_t size, GLenum start_target);
-    virtual void destroy() override;
+    void destroy();
     void allocate(const void* data, GLenum target);
 
     BufferUsageType m_usage;

@@ -37,8 +37,8 @@ BufferObject::BufferObject(BufferObject&& other) noexcept:
 BufferObject& BufferObject::operator=(BufferObject&& other) noexcept
 {
     destroy();
-    m_handle = other.m_handle;
-    other.m_handle = NullHandle;
+    m_handle = NullHandle;
+    std::swap(m_handle, other.m_handle);
     m_usage = other.m_usage;
     m_size = other.m_size;
     return *this;

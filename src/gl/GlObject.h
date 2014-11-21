@@ -16,12 +16,11 @@ public:
     GlObject(const GlObject& other) = delete;
     GlObject(GlObject&& other) noexcept;
     GlObject& operator =(const GlObject& other) = delete;
-    GlObject& operator =(GlObject&& other) noexcept;
+    GlObject& operator =(GlObject&& other) noexcept = delete;
 
     GLuint handle() const {return m_handle;}
 
 protected:
-    virtual void destroy() = 0;
 
     GlObject() = default;
     GlObject(GLuint handle);

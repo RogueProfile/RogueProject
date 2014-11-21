@@ -40,8 +40,8 @@ Texture2d::Texture2d(Texture2d&& other) noexcept:
 Texture2d& Texture2d::operator=(Texture2d&& other) noexcept
 {
     destroy();
-    m_handle = other.m_handle;
-    other.m_handle = NullHandle;
+    m_handle = NullHandle;
+    std::swap(m_handle, other.m_handle);
     m_width = other.m_width;
     m_height = other.m_height;
     m_pixel_format = other.m_pixel_format;

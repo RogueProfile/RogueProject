@@ -26,7 +26,8 @@ public:
 
 protected:
 
-    virtual void destroy() override;
+    void destroy();
+
 
     void initialize_params_to_default();
     void allocate_mipmap_storage(int mipmap_levels, InternalPixelFormat format);

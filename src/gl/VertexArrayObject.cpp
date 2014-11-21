@@ -25,7 +25,9 @@ VertexArrayObject::VertexArrayObject(VertexArrayObject&& other) noexcept:
  
 VertexArrayObject& VertexArrayObject::operator=(VertexArrayObject&& other) noexcept
 {
-    GlObject::operator=(std::move(other)); 
+    destroy();
+    m_handle = NullHandle;
+    std::swap(m_handle, other.m_handle);
     return *this;
 }
  

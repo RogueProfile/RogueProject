@@ -35,7 +35,7 @@ public:
     ShaderType type() const {return m_type;}
 
 protected:
-    virtual void destroy() override;
+    void destroy();
 
     ShaderType m_type;
 };
