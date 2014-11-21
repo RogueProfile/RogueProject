@@ -7,6 +7,7 @@
 #include <string>
 
 class Screen;
+class EventManager;
 
 namespace event
 {
@@ -16,7 +17,7 @@ namespace event
 class ScreenManager
 {
 public:
-    ScreenManager() = default;
+    ScreenManager(EventManager* event_manager);
     ~ScreenManager();
 
     ScreenManager(const ScreenManager& other) = delete;
@@ -43,6 +44,7 @@ public:
 protected:
     std::unordered_map<std::string, std::unique_ptr<Screen>> m_screens;
     Screen* m_active_screen = nullptr;
+    EventManager* m_event_manager;
 private:
 };
 

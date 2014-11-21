@@ -13,6 +13,7 @@
 #include "GlHeaders.h"
 #include "GameScreen.h"
 #include "TextTileSet.h"
+#include "EventManager.h"
 
 #include "Screen.h"
 #include "Keyboard.h"
@@ -20,7 +21,9 @@
 Game::Game(Vector2i window_size):
     sdl::SdlUser({sdl::SdlSubsystem::Video, sdl::SdlSubsystem::Events}),
     m_window("Roguelike", window_size.x, window_size.y, sdl::SdlWindow::WindowFlags::OpenGl),
-    m_font_manager(std::make_unique<ft::FontManager>("assets/fonts"))
+    m_font_manager(std::make_unique<ft::FontManager>("assets/fonts")),
+    m_event_manager(std::make_unique<EventManager>()),
+    m_screen_manager(m_event_manager.get())
 {
     initialize();
 }

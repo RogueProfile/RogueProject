@@ -5,6 +5,12 @@
 #include "Exceptions/KeyError.h"
 
 
+ScreenManager::ScreenManager(EventManager* event_manager):
+    m_event_manager(event_manager)
+{
+ 
+}
+ 
 ScreenManager::~ScreenManager()
 {
  

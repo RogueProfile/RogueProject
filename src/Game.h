@@ -17,6 +17,7 @@ namespace ft
 }
 
 class TileSet;
+class EventManager;
 
 class Game: public sdl::SdlUser
 {
@@ -47,6 +48,8 @@ protected:
 
     std::unique_ptr<ft::FontManager> m_font_manager;
     std::unique_ptr<TileSet> m_tile_set;
+
+    std::unique_ptr<EventManager> m_event_manager;
     
     Clock::time_point m_frame_start_time;
 
