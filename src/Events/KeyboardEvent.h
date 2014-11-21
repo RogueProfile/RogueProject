@@ -11,7 +11,7 @@
 namespace event
 {
 
-class KeyboardEvent: public WindowEvent
+class KeyboardEvent: public WindowEvent, public VisitableImpl<KeyboardEvent, EventVisitor>
 {
 public:
     KeyboardEvent(EventType type, const SDL_KeyboardEvent& event);

@@ -96,3 +96,11 @@ void ScreenManager::draw()
     }     
 }
  
+void ScreenManager::on_event(event::WindowEvent& event)
+{
+    if(m_active_screen != nullptr)
+    {
+        event.accept(*m_active_screen);
+    } 
+}
+ 

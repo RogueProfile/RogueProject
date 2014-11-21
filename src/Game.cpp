@@ -41,6 +41,9 @@ void Game::run()
             {
                 return;
             }
+            else
+            {
+            }
         }
         Keyboard::update();
         m_context->clear({gl::ClearTarget::ColorBuffer, gl::ClearTarget::DepthBuffer,

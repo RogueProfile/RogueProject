@@ -1,6 +1,8 @@
 #ifndef WINDOWEVENT_H__
 #define WINDOWEVENT_H__
 
+#include "Visitor.h"
+
 namespace event
 {
 
@@ -12,7 +14,18 @@ enum class EventType
     Unknown
 };
 
-class WindowEvent
+class KeyboardEvent;
+class WindowEvent;
+
+class EventVisitor
+{
+public:
+    virtual void visit(const WindowEvent& object) {};
+    virtual void visit(const KeyboardEvent& object) {};
+    virtual ~EventVisitor() = default;
+};
+
+class WindowEvent: public VisitableImpl<WindowEvent, EventVisitor>
 {
 public:
 

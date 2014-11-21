@@ -1,9 +1,11 @@
 #ifndef SCREEN_H__
 #define SCREEN_H__
 
+#include "Events/WindowEvent.h"
+
 class ScreenManager;
 
-class Screen
+class Screen: public event::EventVisitor
 {
     friend class ScreenManager;
 public:

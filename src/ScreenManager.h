@@ -8,6 +8,11 @@
 
 class Screen;
 
+namespace event
+{
+    class WindowEvent;
+}
+
 class ScreenManager
 {
 public:
@@ -33,6 +38,8 @@ public:
     void update();
     void draw();
 
+    void on_event(event::WindowEvent& event);
+
 protected:
     std::unordered_map<std::string, std::unique_ptr<Screen>> m_screens;
     Screen* m_active_screen = nullptr;
@@ -41,4 +48,3 @@ private:
 
 
 #endif
-    
