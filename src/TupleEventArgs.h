@@ -5,11 +5,6 @@
 
 #include <tuple>
 
-namespace 
-{
-    
-}
-
 template<typename... Args>
 class TupleEventArgs: public EventArgs
 {
