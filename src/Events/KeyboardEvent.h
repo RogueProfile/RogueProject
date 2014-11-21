@@ -1,7 +1,7 @@
 #ifndef EVENT_KEYBOARDEVENT_H__
 #define EVENT_KEYBOARDEVENT_H__
 
-#include "Event.h"
+#include "WindowEvent.h"
 
 #include <SDL2/SDL.h>
 
@@ -11,7 +11,7 @@
 namespace event
 {
 
-class KeyboardEvent: public Event
+class KeyboardEvent: public WindowEvent
 {
 public:
     KeyboardEvent(EventType type, const SDL_KeyboardEvent& event);

@@ -1,6 +1,6 @@
 #include "SdlWindow.h"
 
-#include "Events/Event.h"
+#include "Events/WindowEvent.h"
 #include "Events/KeyboardEvent.h"
 
 #include "SdlException.h"
@@ -78,7 +78,7 @@ SdlWindow& SdlWindow::operator=(SdlWindow&& other) noexcept
     return *this;
 }
  
-std::unique_ptr<event::Event> SdlWindow::poll_event()
+std::unique_ptr<event::WindowEvent> SdlWindow::poll_event()
 {
     SDL_Event event;
     if(SDL_PollEvent(&event))
@@ -98,18 +98,18 @@ void SdlWindow::destroy()
     } 
 }
  
-std::unique_ptr<event::Event> SdlWindow::translate_event(const SDL_Event& event)
+std::unique_ptr<event::WindowEvent> SdlWindow::translate_event(const SDL_Event& event)
 {
     switch(event.type)
     {
-        case SDL_QUIT: return std::make_unique<event::Event>(event::EventType::Quit);
+        case SDL_QUIT: return std::make_unique<event::WindowEvent>(event::EventType::Quit);
         case SDL_KEYDOWN: return std::make_unique<event::KeyboardEvent>(event::EventType::KeyDown, 
             reinterpret_cast<const SDL_KeyboardEvent&>(event));
         case SDL_KEYUP: return std::make_unique<event::KeyboardEvent>(event::EventType::KeyUp, 
             reinterpret_cast<const SDL_KeyboardEvent&>(event));
         default:
         {
-            return std::make_unique<event::Event>(event::EventType::Unknown);
+            return std::make_unique<event::WindowEvent>(event::EventType::Unknown);
         }
     } 
 }

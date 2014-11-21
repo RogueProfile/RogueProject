@@ -5,7 +5,7 @@
 #include <iostream>
 #include <stdexcept>
 
-#include "Events/Event.h"
+#include "Events/WindowEvent.h"
 
 #include "freetype/FontManager.h"
 #include "freetype/FontFace.h"

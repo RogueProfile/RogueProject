@@ -11,7 +11,7 @@
 
 namespace event
 {
-class Event;
+class WindowEvent;
 }
 
 namespace sdl
@@ -47,14 +47,14 @@ public:
 
     void swap_window();
 
-    std::unique_ptr<event::Event> poll_event();
+    std::unique_ptr<event::WindowEvent> poll_event();
 
     SDL_Window* get_handle() const {return m_handle;}
 
 protected:
     void destroy();
 
-    std::unique_ptr<event::Event> translate_event(const SDL_Event& event);
+    std::unique_ptr<event::WindowEvent> translate_event(const SDL_Event& event);
 
     SDL_Window* m_handle;
 };
