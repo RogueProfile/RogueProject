@@ -94,6 +94,8 @@ set(EXECUTABLE_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Game.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/GameScreen.h
     ${CMAKE_CURRENT_SOURCE_DIR}/GameScreen.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/InputTranslator.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/InputTranslator.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Keyboard.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Keyboard.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/KeyboardState.h
